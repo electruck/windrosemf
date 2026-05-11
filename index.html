@@ -3,36 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#F4F1EA">
-<title>Zwijnaarde — 80 e-trucks scenario's</title>
+<meta name="theme-color" content="#0A0E0F">
+<title>Mainfreight Zwijnaarde — 80 e-trucks scenario's</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
   :root {
-    --bg: #F4F1EA;
-    --bg-2: #FFFFFF;
-    --bg-3: #EDE9E0;
-    --line: #DDD6C8;
-    --line-2: #C5BCA8;
-    --text: #0F1F33;
-    --text-dim: #4A5765;
-    --text-muted: #8B95A0;
-    --accent: #1B4D7A;
-    --accent-soft: rgba(27, 77, 122, 0.08);
-    --accent-glow: rgba(27, 77, 122, 0.25);
-    --warm: #A8542E;
-    --warm-soft: rgba(168, 84, 46, 0.08);
-    --red: #A8542E;
-    --green: #2F6B47;
+    --bg: #0A0E0F;
+    --bg-2: #11161A;
+    --bg-3: #181E22;
+    --line: #232B30;
+    --line-2: #2E373D;
+    --text: #EAE7DD;
+    --text-dim: #9BA3A8;
+    --text-muted: #6E767C;
+    --accent: #D4FF3F;
+    --accent-soft: rgba(212, 255, 63, 0.1);
+    --accent-glow: rgba(212, 255, 63, 0.4);
+    --warm: #FFAA5C;
+    --warm-soft: rgba(255, 170, 92, 0.1);
+    --red: #FF6B6B;
+    --green: #7CD67C;
     --serif: 'Fraunces', Georgia, serif;
     --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', monospace;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -44,8 +45,8 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     background-image:
-      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(27, 77, 122, 0.04), transparent 50%),
-      radial-gradient(ellipse 60% 40% at 100% 30%, rgba(168, 84, 46, 0.025), transparent 50%);
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(212, 255, 63, 0.06), transparent 50%),
+      radial-gradient(ellipse 60% 40% at 100% 30%, rgba(255, 170, 92, 0.04), transparent 50%);
     background-attachment: fixed;
   }
 
@@ -55,7 +56,7 @@
     border-bottom: 1px solid var(--line);
     position: sticky;
     top: 0;
-    background: rgba(244, 241, 234, 0.88);
+    background: rgba(10, 14, 15, 0.85);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     z-index: 100;
@@ -67,8 +68,6 @@
     text-transform: uppercase;
     color: var(--text-muted);
     display: flex;
-    flex-wrap: wrap;
-    gap: 6px 16px;
     justify-content: space-between;
     align-items: center;
   }
@@ -140,25 +139,6 @@
     color: var(--text-muted);
     margin-top: 6px;
   }
-  .stat-wide {
-    grid-column: 1 / -1;
-  }
-  .stat-wide .stat-value {
-    font-size: 32px;
-  }
-  .stat-wide .stat-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 24px;
-    align-items: baseline;
-  }
-  .stat-wide .stat-secondary {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text-dim);
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
 
   /* SECTIONS */
   section {
@@ -195,7 +175,10 @@
   }
 
   /* SCENARIO CARDS */
-  .cards { display: grid; gap: 12px; }
+  .cards {
+    display: grid;
+    gap: 12px;
+  }
   .card {
     background: var(--bg-2);
     border: 1px solid var(--line);
@@ -209,7 +192,7 @@
     border-color: var(--accent);
     background: linear-gradient(180deg, var(--accent-soft), transparent 60%), var(--bg-2);
   }
-  .card.warm { border-color: rgba(168, 84, 46, 0.3); }
+  .card.warm { border-color: rgba(255, 170, 92, 0.3); }
 
   .card-tag {
     display: inline-block;
@@ -241,157 +224,35 @@
     color: var(--text-muted);
     margin-bottom: 18px;
   }
-  .card-ref {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--text-dim);
-    letter-spacing: 0.02em;
-    margin-top: -8px;
-    margin-bottom: 18px;
-    padding-bottom: 14px;
-    border-bottom: 1px dashed var(--line);
-    line-height: 1.5;
-  }
-  .card-ref strong {
-    font-weight: 600;
-    color: var(--text);
-  }
 
-  /* ASSUMPTIONS PANEL */
-  .assumption-cards {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: 1fr;
+  .card-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
-  .assumption {
-    background: var(--bg-2);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 22px 20px;
-    position: relative;
-  }
-  .assumption-tag {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-  }
-  .assumption-value {
-    font-family: var(--serif);
-    font-size: 32px;
-    font-weight: 400;
-    color: var(--text);
-    letter-spacing: -0.02em;
-    line-height: 1;
-  }
-  .assumption-value span {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text-muted);
-    font-weight: 400;
-    margin-left: 4px;
-  }
-  .assumption-detail {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    margin-top: 12px;
-    line-height: 1.55;
-  }
-  .assumption-detail strong {
-    font-weight: 600;
-    color: var(--text);
-  }
-  @media (min-width: 720px) {
-    .assumption-cards { grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  }
-
-  .card-rows { display: flex; flex-direction: column; gap: 14px; }
   .card-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    padding-bottom: 14px;
+    align-items: baseline;
+    padding-bottom: 10px;
     border-bottom: 1px dashed var(--line);
+    font-size: 14px;
   }
-  .card-row:last-of-type { border-bottom: none; padding-bottom: 0; }
-  .card-row > span:first-child {
-    color: var(--text-dim);
-    font-size: 13px;
-    flex-shrink: 0;
-    padding-top: 2px;
-  }
-
-  /* Total prominent · per-truck + % lighter */
-  .data-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    text-align: right;
-  }
-  .data-main {
+  .card-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .card-row span:first-child { color: var(--text-dim); }
+  .card-row span:last-child {
     font-family: var(--mono);
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: 500;
     color: var(--text);
-    letter-spacing: -0.005em;
-    line-height: 1.1;
+    font-size: 13px;
   }
-  .data-sub {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    font-weight: 400;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-    line-height: 1.5;
-  }
-  .data-sub .pct-good { color: var(--accent); font-weight: 600; }
-  .data-sub .pct-warm { color: var(--warm); font-weight: 600; }
-
-  /* Card comparison block (headline takeaway) */
-  .card-compare {
-    margin: 18px -20px -22px;
-    padding: 16px 20px 20px;
-    border-top: 1px solid var(--line);
-    background: var(--accent-soft);
-    border-radius: 0 0 6px 6px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .card.warm .card-compare {
-    background: var(--warm-soft);
-    border-top-color: rgba(168, 84, 46, 0.2);
-  }
-  .card.highlight .card-compare {
-    background: rgba(27, 77, 122, 0.13);
-  }
-  .card-compare-label {
-    font-family: var(--mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  .card-compare-value {
+  .card-row.big span:last-child {
     font-family: var(--serif);
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 400;
     color: var(--accent);
-    letter-spacing: -0.01em;
-    line-height: 1.05;
   }
-  .card.warm .card-compare-value { color: var(--warm); }
-  .card-compare-detail {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-dim);
-    line-height: 1.45;
-  }
+  .card.warm .card-row.big span:last-child { color: var(--warm); }
 
   /* INFRA TABLE */
   .infra-table {
@@ -402,12 +263,11 @@
   }
   .infra-row {
     display: grid;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr auto;
     gap: 12px;
     padding: 14px 18px;
     border-bottom: 1px solid var(--line);
     font-size: 14px;
-    align-items: baseline;
   }
   .infra-row:last-child { border-bottom: none; }
   .infra-row.header {
@@ -422,27 +282,12 @@
     background: var(--accent-soft);
     font-weight: 700;
   }
-  .infra-row.total .infra-fleet { color: var(--accent); font-family: var(--serif); font-size: 18px; }
-  .infra-row .infra-fleet {
+  .infra-row.total span:last-child { color: var(--accent); font-family: var(--serif); font-size: 18px; }
+  .infra-row span:last-child {
     font-family: var(--mono);
-    font-weight: 600;
-    font-size: 14px;
+    font-weight: 500;
     white-space: nowrap;
-    text-align: right;
-    min-width: 100px;
-    color: var(--text);
   }
-  .infra-row .infra-truck {
-    font-family: var(--mono);
-    font-weight: 400;
-    font-size: 11px;
-    color: var(--text-muted);
-    white-space: nowrap;
-    text-align: right;
-    min-width: 80px;
-  }
-  .infra-row.header .infra-fleet,
-  .infra-row.header .infra-truck { font-size: 10px; font-weight: 500; color: var(--text-muted); }
   .infra-row .label { color: var(--text-dim); }
   .infra-row.total .label { color: var(--text); }
 
@@ -456,12 +301,16 @@
     font-size: 14px;
   }
   .callout strong { color: var(--accent); font-weight: 600; }
-  .callout em { font-family: var(--serif); font-style: italic; color: var(--text); }
+  .callout em {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--text);
+  }
 
   /* CALCULATOR */
   .calc-section {
     padding: 56px 20px 80px;
-    background: linear-gradient(180deg, var(--bg) 0%, #EAE5DA 100%);
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
     border-bottom: none;
   }
   .calc-grid {
@@ -470,7 +319,10 @@
     gap: 14px;
     margin-bottom: 28px;
   }
-  .calc-field { display: flex; flex-direction: column; }
+  .calc-field {
+    display: flex;
+    flex-direction: column;
+  }
   .calc-field label {
     font-family: var(--mono);
     font-size: 10px;
@@ -482,7 +334,7 @@
   .calc-field select {
     appearance: none;
     -webkit-appearance: none;
-    background: var(--bg-2);
+    background: var(--bg-3);
     border: 1px solid var(--line);
     color: var(--text);
     font-family: var(--mono);
@@ -492,13 +344,16 @@
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%231B4D7A' stroke-width='1.5' fill='none'/></svg>");
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1L6 6L11 1' stroke='%23D4FF3F' stroke-width='1.5' fill='none'/></svg>");
     background-repeat: no-repeat;
     background-position: right 14px center;
     transition: border-color 0.15s;
     min-height: 48px;
   }
-  .calc-field select:focus { outline: none; border-color: var(--accent); }
+  .calc-field select:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
   .calc-field select:hover { border-color: var(--line-2); }
 
   .calc-results {
@@ -520,7 +375,7 @@
   .result-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: baseline;
     padding: 14px 20px;
     border-bottom: 1px solid var(--line);
     gap: 16px;
@@ -529,35 +384,14 @@
   .result-label {
     font-size: 13px;
     color: var(--text-dim);
-    flex: 1;
-    padding-top: 2px;
-  }
-  .result-value-block {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 3px;
-    text-align: right;
   }
   .result-value {
     font-family: var(--mono);
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
     text-align: right;
     white-space: nowrap;
   }
-  .result-sub {
-    font-family: var(--mono);
-    font-size: 10.5px;
-    color: var(--text-muted);
-    letter-spacing: 0.02em;
-    line-height: 1.4;
-  }
-  .result-sub .pct { font-weight: 600; color: var(--accent); }
-  .result-sub .pct.warm { color: var(--warm); }
-  .result-sub .pct.dim { color: var(--text-muted); font-weight: 500; }
-
   .result-row.hero {
     background: linear-gradient(180deg, var(--accent-soft), transparent);
     padding: 22px 20px;
@@ -615,13 +449,21 @@
     section { padding: 72px 48px 32px; }
     .calc-section { padding: 80px 48px 100px; }
 
-    .stats { grid-template-columns: repeat(3, 1fr); }
+    .stats { grid-template-columns: repeat(4, 1fr); }
 
-    .cards { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
     .cards.three-up { grid-template-columns: repeat(3, 1fr); }
     .cards.five-up { grid-template-columns: repeat(2, 1fr); }
 
-    .calc-grid { grid-template-columns: repeat(3, 1fr); max-width: 1100px; gap: 18px; }
+    .calc-grid {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 1100px;
+      gap: 18px;
+    }
+
     .infra-row { padding: 16px 24px; }
   }
 
@@ -630,7 +472,10 @@
     .cards.five-up { grid-template-columns: repeat(5, 1fr); }
     .cards.three-up { grid-template-columns: repeat(3, 1fr); }
     .calc-grid { grid-template-columns: repeat(4, 1fr); }
-    .calc-results-wrap { max-width: 1100px; }
+
+    .calc-results-wrap {
+      max-width: 1100px;
+    }
   }
 
   /* ENTRANCE ANIM */
@@ -643,6 +488,7 @@
   section:nth-of-type(2) { animation-delay: 0.1s; }
   section:nth-of-type(3) { animation-delay: 0.15s; }
 
+  /* ACCESSIBILITY */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
@@ -656,13 +502,13 @@
 <header>
   <div class="meta">
     <span>BUSINESS CASE — MEI 2026</span>
-    <span>BERTHA DE VRIESESTRAAT 2 · ZWIJNAARDE</span>
+    <span>v1.0</span>
   </div>
 </header>
 
 <div class="hero">
   <h1>80 e-trucks <em>laden 's nachts</em> in Zwijnaarde — wat kost het echt?</h1>
-  <p>Bertha De Vriesestraat 2, 9052 Zwijnaarde (Eiland Zwijnaarde / Tech Lane Ghent). Volledige analyse van alle scenario's: van energieprijzen en infrastructuurkosten tot dieselsensitiviteit. Onderaan kan je elke variabele zelf instellen.</p>
+  <p>Volledige analyse van alle scenario's: van energieprijzen en infrastructuurkosten tot dieselsensitiviteit. Onderaan kan je elke variabele zelf instellen.</p>
   <div class="stats">
     <div class="stat">
       <div class="stat-label">Trucks</div>
@@ -672,188 +518,56 @@
     <div class="stat">
       <div class="stat-label">Verbruik / nacht</div>
       <div class="stat-value">40<span style="font-size:0.55em;color:var(--text-muted)"> MWh</span></div>
-      <div class="stat-sub">500 kWh/truck · 5 MW</div>
+      <div class="stat-sub">≈ 5 MW continu</div>
     </div>
     <div class="stat">
       <div class="stat-label">Investering</div>
       <div class="stat-value accent">€20<span style="font-size:0.55em;color:var(--text-dim)">M</span></div>
-      <div class="stat-sub">€198k truck + €45k infra/truck</div>
+      <div class="stat-sub">trucks + infra</div>
     </div>
     <div class="stat">
       <div class="stat-label">Voordeel 7j</div>
       <div class="stat-value accent">€7<span style="font-size:0.55em;color:var(--text-dim)">M</span></div>
-      <div class="stat-sub">€87k/truck · −29% vs diesel</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">Payback</div>
-      <div class="stat-value accent">3,7<span style="font-size:0.55em;color:var(--text-dim)"> jaar</span></div>
-      <div class="stat-sub">op operationele winst</div>
-    </div>
-    <div class="stat">
-      <div class="stat-label">ROI 7j</div>
-      <div class="stat-value accent">+99<span style="font-size:0.55em;color:var(--text-dim)">%</span></div>
-      <div class="stat-sub">op €9M extra investering</div>
-    </div>
-    <div class="stat stat-wide">
-      <div class="stat-label">Capaciteit</div>
-      <div class="stat-row">
-        <div class="stat-value">14<span style="font-size:0.55em;color:var(--text-muted)"> MW</span></div>
-        <span class="stat-secondary">laadvermogen · 40× 350 kW dual</span>
-        <div class="stat-value">5<span style="font-size:0.55em;color:var(--text-muted)"> MW</span></div>
-        <span class="stat-secondary">netaansluiting nodig (gem. 22u–06u)</span>
-      </div>
+      <div class="stat-sub">vs diesel</div>
     </div>
   </div>
 </div>
-
-<!-- ASSUMPTIONS PANEL -->
-<section>
-  <div class="section-num">00 — Uitgangspunten</div>
-  <h2 class="section-title">Drie kostencomponenten <em>per truck</em></h2>
-  <p class="section-lead">Alle scenarios hieronder gebruiken deze basisbedragen. Totaal CAPEX per truck (excl. aankoop): €60.000.</p>
-
-  <div class="assumption-cards">
-    <div class="assumption">
-      <div class="assumption-tag">Voertuig</div>
-      <div class="assumption-value">€198.000<span>/truck</span></div>
-      <div class="assumption-detail">
-        <strong>Windrose R700</strong> · 729 kWh batterij · 670 km bereik<br>
-        80× = €15,84 mln voor de vloot<br>
-        Lijstprijs windrose.ai (excl. lokale taksen)
-      </div>
-    </div>
-    <div class="assumption">
-      <div class="assumption-tag">Lader (per truck)</div>
-      <div class="assumption-value">€22.500<span>/truck</span></div>
-      <div class="assumption-detail">
-        <strong>350 kW dual-output</strong> · €45.000/lader incl. installatie<br>
-        <strong>1 lader voor 2 trucks</strong> · 40 ladders totaal<br>
-        80× = €1,8 mln voor de vloot
-      </div>
-    </div>
-    <div class="assumption">
-      <div class="assumption-tag">Aansluiting + cabine</div>
-      <div class="assumption-value">€37.500<span>/truck</span></div>
-      <div class="assumption-detail">
-        <strong>HS 36 kV</strong> via Flora of Zwijnaarde Alinso<br>
-        Cabine + transfo's + civiele werken<br>
-        €3,0 mln netto na subsidies (€4,5 mln bruto)
-      </div>
-    </div>
-  </div>
-
-  <div class="callout">
-    <strong>Technisch detail — dual-charger flexibiliteit</strong> · De 350 kW dual-output ladders kunnen <em>beide aansluitingen op 1 Windrose truck koppelen</em>. De Windrose R700 heeft twee CCS-inlaten die simultaan kunnen laden tot ~700 kW. Bij <em>depot nachtladen is dit niet nodig</em> — 8 uur is ruim voldoende met één aansluiting per truck — maar deze flexibiliteit blijft beschikbaar voor uitzonderlijke situaties: een truck die maar 4u beschikbaar is, urgent operationeel gebruik overdag, of bij operationele piekbehoefte.
-  </div>
-</section>
 
 <!-- ENERGY SCENARIOS -->
 <section>
   <div class="section-num">01 — Energieprijs</div>
   <h2 class="section-title">Drie scenario's voor <em>nachtladen op MS/HS</em></h2>
-  <p class="section-lead">All-in factuurprijs voor industrieel nachtladen, inclusief netkosten, heffingen en taksen. Volume 10 GWh/jaar. Diesel-referentie: €3,84 mln/jaar (€48.000/truck/j).</p>
+  <p class="section-lead">All-in factuurprijs voor industrieel nachtladen, inclusief netkosten, heffingen en taksen. Volume 10 GWh/jaar.</p>
 
   <div class="cards three-up">
     <div class="card">
       <span class="card-tag">Gunstig</span>
       <div class="card-title">€0,13 /kWh</div>
       <div class="card-sub">HS-aansluiting + agressief 7j contract</div>
-      <div class="card-ref">Per truck: <strong>€198k</strong> Windrose · <strong>€22,5k</strong> lader · <strong>€37,5k</strong> aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Per nacht</span>
-          <span class="data-block">
-            <span class="data-main">€5.200</span>
-            <span class="data-sub">€65/truck · <span class="pct-good">−66%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Per jaar</span>
-          <span class="data-block">
-            <span class="data-main">€1,3 mln</span>
-            <span class="data-sub">€16.250/truck · <span class="pct-good">−66%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Over 7 jaar</span>
-          <span class="data-block">
-            <span class="data-main">€9,1 mln</span>
-            <span class="data-sub">€113.750/truck · <span class="pct-good">−66%</span> vs diesel</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Besparing vs Diesel — 7 jaar</div>
-        <div class="card-compare-value">€17,8 mln</div>
-        <div class="card-compare-detail">€2,54 mln/jaar · €222.250/truck (7j) · <strong style="color:var(--accent)">−66%</strong> tov diesel</div>
+        <div class="card-row"><span>Per nacht</span><span>€5.200</span></div>
+        <div class="card-row"><span>Per jaar</span><span>€1,3 mln</span></div>
+        <div class="card-row big"><span>Per truck/jaar</span><span>€16.250</span></div>
       </div>
     </div>
     <div class="card highlight">
       <span class="card-tag">Realistisch</span>
       <div class="card-title">€0,18 /kWh</div>
       <div class="card-sub">7 jaar 100% vast — basisscenario</div>
-      <div class="card-ref">Per truck: <strong>€198k</strong> Windrose · <strong>€22,5k</strong> lader · <strong>€37,5k</strong> aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Per nacht</span>
-          <span class="data-block">
-            <span class="data-main">€7.200</span>
-            <span class="data-sub">€90/truck · <span class="pct-good">−53%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Per jaar</span>
-          <span class="data-block">
-            <span class="data-main">€1,8 mln</span>
-            <span class="data-sub">€22.500/truck · <span class="pct-good">−53%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Over 7 jaar</span>
-          <span class="data-block">
-            <span class="data-main">€12,6 mln</span>
-            <span class="data-sub">€157.500/truck · <span class="pct-good">−53%</span> vs diesel</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Besparing vs Diesel — 7 jaar</div>
-        <div class="card-compare-value">€14,3 mln</div>
-        <div class="card-compare-detail">€2,04 mln/jaar · €178.500/truck (7j) · <strong style="color:var(--accent)">−53%</strong> tov diesel</div>
+        <div class="card-row"><span>Per nacht</span><span>€7.200</span></div>
+        <div class="card-row"><span>Per jaar</span><span>€1,8 mln</span></div>
+        <div class="card-row big"><span>Per truck/jaar</span><span>€22.500</span></div>
       </div>
     </div>
     <div class="card">
       <span class="card-tag">Pessimistisch</span>
       <div class="card-title">€0,22 /kWh</div>
       <div class="card-sub">Hoge risicopremie / volatiele markt</div>
-      <div class="card-ref">Per truck: <strong>€198k</strong> Windrose · <strong>€22,5k</strong> lader · <strong>€37,5k</strong> aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Per nacht</span>
-          <span class="data-block">
-            <span class="data-main">€8.800</span>
-            <span class="data-sub">€110/truck · <span class="pct-good">−43%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Per jaar</span>
-          <span class="data-block">
-            <span class="data-main">€2,2 mln</span>
-            <span class="data-sub">€27.500/truck · <span class="pct-good">−43%</span> vs diesel</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>Over 7 jaar</span>
-          <span class="data-block">
-            <span class="data-main">€15,4 mln</span>
-            <span class="data-sub">€192.500/truck · <span class="pct-good">−43%</span> vs diesel</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Besparing vs Diesel — 7 jaar</div>
-        <div class="card-compare-value">€11,5 mln</div>
-        <div class="card-compare-detail">€1,64 mln/jaar · €143.500/truck (7j) · <strong style="color:var(--accent)">−43%</strong> tov diesel</div>
+        <div class="card-row"><span>Per nacht</span><span>€8.800</span></div>
+        <div class="card-row"><span>Per jaar</span><span>€2,2 mln</span></div>
+        <div class="card-row big"><span>Per truck/jaar</span><span>€27.500</span></div>
       </div>
     </div>
   </div>
@@ -874,135 +588,50 @@
       <span class="card-tag">−30%</span>
       <div class="card-title">€1,15 /L</div>
       <div class="card-sub">Sterke daling — sinds 2009 niet meer gezien</div>
-      <div class="card-ref">Diesel: <strong>€120k</strong>/truck · vs elektrisch: €198k truck + €22,5k lader + €37,5k aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Brandstof 7j</span>
-          <span class="data-block">
-            <span class="data-main">€19,3 mln</span>
-            <span class="data-sub">€241.500/truck</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>TCO diesel 7j</span>
-          <span class="data-block">
-            <span class="data-main">€32,9 mln</span>
-            <span class="data-sub">€411.500/truck</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Voordeel elektrisch — 7 jaar</div>
-        <div class="card-compare-value">+€4,3 mln</div>
-        <div class="card-compare-detail">€0,61 mln/jaar · €54.000/truck (7j) · <span class="pct-warm" style="color:var(--warm);font-weight:600">13%</span> van diesel TCO</div>
+        <div class="card-row"><span>Brandstof 7j</span><span>€241.500</span></div>
+        <div class="card-row"><span>TCO diesel</span><span>€411.500</span></div>
+        <div class="card-row big"><span>Voordeel 80×</span><span>€4,3 mln</span></div>
       </div>
     </div>
     <div class="card warm">
       <span class="card-tag">−15%</span>
       <div class="card-title">€1,40 /L</div>
       <div class="card-sub">Lichte daling — eind 2024 niveau</div>
-      <div class="card-ref">Diesel: <strong>€120k</strong>/truck · vs elektrisch: €198k truck + €22,5k lader + €37,5k aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Brandstof 7j</span>
-          <span class="data-block">
-            <span class="data-main">€23,5 mln</span>
-            <span class="data-sub">€294.000/truck</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>TCO diesel 7j</span>
-          <span class="data-block">
-            <span class="data-main">€37,1 mln</span>
-            <span class="data-sub">€464.000/truck</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Voordeel elektrisch — 7 jaar</div>
-        <div class="card-compare-value">+€8,5 mln</div>
-        <div class="card-compare-detail">€1,21 mln/jaar · €106.500/truck (7j) · <span class="pct-warm" style="color:var(--warm);font-weight:600">23%</span> van diesel TCO</div>
+        <div class="card-row"><span>Brandstof 7j</span><span>€294.000</span></div>
+        <div class="card-row"><span>TCO diesel</span><span>€464.000</span></div>
+        <div class="card-row big"><span>Voordeel 80×</span><span>€8,5 mln</span></div>
       </div>
     </div>
     <div class="card highlight">
       <span class="card-tag">Vandaag</span>
       <div class="card-title">€1,60 /L</div>
       <div class="card-sub">Mei 2026 — professioneel tarief</div>
-      <div class="card-ref">Diesel: <strong>€120k</strong>/truck · vs elektrisch: €198k truck + €22,5k lader + €37,5k aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Brandstof 7j</span>
-          <span class="data-block">
-            <span class="data-main">€26,9 mln</span>
-            <span class="data-sub">€336.000/truck</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>TCO diesel 7j</span>
-          <span class="data-block">
-            <span class="data-main">€40,5 mln</span>
-            <span class="data-sub">€506.000/truck</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Voordeel elektrisch — 7 jaar</div>
-        <div class="card-compare-value">+€11,9 mln</div>
-        <div class="card-compare-detail">€1,70 mln/jaar · €148.500/truck (7j) · <span class="pct-good" style="color:var(--accent);font-weight:600">29%</span> van diesel TCO</div>
+        <div class="card-row"><span>Brandstof 7j</span><span>€336.000</span></div>
+        <div class="card-row"><span>TCO diesel</span><span>€506.000</span></div>
+        <div class="card-row big"><span>Voordeel 80×</span><span>€11,9 mln</span></div>
       </div>
     </div>
     <div class="card">
       <span class="card-tag">+16%</span>
       <div class="card-title">€1,85 /L</div>
       <div class="card-sub">2028 — ETS2 actief</div>
-      <div class="card-ref">Diesel: <strong>€120k</strong>/truck · vs elektrisch: €198k truck + €22,5k lader + €37,5k aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Brandstof 7j</span>
-          <span class="data-block">
-            <span class="data-main">€31,1 mln</span>
-            <span class="data-sub">€388.500/truck</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>TCO diesel 7j</span>
-          <span class="data-block">
-            <span class="data-main">€44,7 mln</span>
-            <span class="data-sub">€558.500/truck</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Voordeel elektrisch — 7 jaar</div>
-        <div class="card-compare-value">+€16,1 mln</div>
-        <div class="card-compare-detail">€2,30 mln/jaar · €201.000/truck (7j) · <span class="pct-good" style="color:var(--accent);font-weight:600">36%</span> van diesel TCO</div>
+        <div class="card-row"><span>Brandstof 7j</span><span>€388.500</span></div>
+        <div class="card-row"><span>TCO diesel</span><span>€558.500</span></div>
+        <div class="card-row big"><span>Voordeel 80×</span><span>€16,1 mln</span></div>
       </div>
     </div>
     <div class="card">
       <span class="card-tag">+34%</span>
       <div class="card-title">€2,15 /L</div>
       <div class="card-sub">2030 — volle CO2-prijs</div>
-      <div class="card-ref">Diesel: <strong>€120k</strong>/truck · vs elektrisch: €198k truck + €22,5k lader + €37,5k aansluiting</div>
       <div class="card-rows">
-        <div class="card-row">
-          <span>Brandstof 7j</span>
-          <span class="data-block">
-            <span class="data-main">€36,1 mln</span>
-            <span class="data-sub">€451.500/truck</span>
-          </span>
-        </div>
-        <div class="card-row">
-          <span>TCO diesel 7j</span>
-          <span class="data-block">
-            <span class="data-main">€49,7 mln</span>
-            <span class="data-sub">€621.500/truck</span>
-          </span>
-        </div>
-      </div>
-      <div class="card-compare">
-        <div class="card-compare-label">Voordeel elektrisch — 7 jaar</div>
-        <div class="card-compare-value">+€21,1 mln</div>
-        <div class="card-compare-detail">€3,01 mln/jaar · €264.000/truck (7j) · <span class="pct-good" style="color:var(--accent);font-weight:600">42%</span> van diesel TCO</div>
+        <div class="card-row"><span>Brandstof 7j</span><span>€451.500</span></div>
+        <div class="card-row"><span>TCO diesel</span><span>€621.500</span></div>
+        <div class="card-row big"><span>Voordeel 80×</span><span>€21,1 mln</span></div>
       </div>
     </div>
   </div>
@@ -1016,68 +645,49 @@
 <section>
   <div class="section-num">03 — Infrastructuur</div>
   <h2 class="section-title">Goedkoopste infra-opzet: <em>€4,5 mln</em></h2>
-  <p class="section-lead">Drie keuzes drukken de kost van €6,0 mln naar €4,5 mln: dual-output 350 kW chargers, directe HS-aansluiting via <em style="color:var(--text);font-style:italic">Zwijnaarde Alinso 36 kV</em> (op ~1 km) of <em style="color:var(--text);font-style:italic">Flora 150/36 kV</em> (op ~3 km, 19 MW hostingcapaciteit), en smart charging om netpiek te beperken.</p>
+  <p class="section-lead">Drie keuzes drukken de kost van €6,0 mln naar €4,5 mln: dual-output 350 kW chargers, directe HS-aansluiting, en smart charging om netpiek te beperken.</p>
 
   <div class="infra-table">
     <div class="infra-row header">
       <span>Component</span>
-      <span class="infra-fleet">Vloot (80)</span>
-      <span class="infra-truck">/ truck</span>
+      <span>Bedrag</span>
     </div>
     <div class="infra-row">
       <span class="label">HS-aansluiting Fluvius (36 kV)</span>
-      <span class="infra-fleet">€800.000</span>
-      <span class="infra-truck">€10.000</span>
+      <span>€800.000</span>
     </div>
     <div class="infra-row">
       <span class="label">Transfocabine + schakelaars</span>
-      <span class="infra-fleet">€700.000</span>
-      <span class="infra-truck">€8.750</span>
+      <span>€700.000</span>
     </div>
     <div class="infra-row">
       <span class="label">40× dual 350 kW chargers</span>
-      <span class="infra-fleet">€1.800.000</span>
-      <span class="infra-truck">€22.500</span>
+      <span>€1.800.000</span>
     </div>
     <div class="infra-row">
       <span class="label">Civiele werken</span>
-      <span class="infra-fleet">€350.000</span>
-      <span class="infra-truck">€4.375</span>
+      <span>€350.000</span>
     </div>
     <div class="infra-row">
       <span class="label">Smart charging + EMS</span>
-      <span class="infra-fleet">€250.000</span>
-      <span class="infra-truck">€3.125</span>
+      <span>€250.000</span>
     </div>
     <div class="infra-row">
       <span class="label">Engineering, vergunningen</span>
-      <span class="infra-fleet">€250.000</span>
-      <span class="infra-truck">€3.125</span>
+      <span>€250.000</span>
     </div>
     <div class="infra-row">
       <span class="label">Reserve (10%)</span>
-      <span class="infra-fleet">€350.000</span>
-      <span class="infra-truck">€4.375</span>
+      <span>€350.000</span>
     </div>
     <div class="infra-row total">
-      <span class="label">TOTAAL bruto</span>
-      <span class="infra-fleet">€4.500.000</span>
-      <span class="infra-truck">€56.250</span>
-    </div>
-    <div class="infra-row">
-      <span class="label">− Subsidies (Ecologiepremie+, IPK, AFIF)</span>
-      <span class="infra-fleet">−€1.500.000</span>
-      <span class="infra-truck">−€18.750</span>
-    </div>
-    <div class="infra-row total">
-      <span class="label">NETTO investering</span>
-      <span class="infra-fleet">€3.000.000</span>
-      <span class="infra-truck">€37.500</span>
+      <span class="label">TOTAAL</span>
+      <span>€4.500.000</span>
     </div>
   </div>
 
   <div class="callout">
-    <strong>Subsidies</strong> aftrekbaar tot <em>€1,5 mln</em> (Vlaamse Ecologiepremie+, federale investeringsaftrek, EU AFIF) — netto infra-investering: <em>€3,0 mln</em> (€37.500/truck).
+    <strong>Subsidies</strong> kunnen tot <em>€1,5 mln</em> aftrekken (Vlaamse Ecologiepremie+, federale investeringsaftrek, EU AFIF). Netto infra: €3,0 mln.
   </div>
 </section>
 
@@ -1088,6 +698,7 @@
   <p class="section-lead">Alle besproken waarden zijn beschikbaar als opties. De berekening hieronder past zich live aan.</p>
 
   <div class="calc-grid">
+
     <div class="calc-field">
       <label>Aantal trucks</label>
       <select id="v_trucks">
@@ -1098,6 +709,7 @@
         <option value="100">100</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Km per truck per jaar</label>
       <select id="v_km">
@@ -1108,6 +720,7 @@
         <option value="150000">150.000 km</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Looptijd (jaar)</label>
       <select id="v_years">
@@ -1116,6 +729,7 @@
         <option value="10">10 jaar</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>E-verbruik kWh/km</label>
       <select id="v_kwh_km">
@@ -1126,6 +740,7 @@
         <option value="1.50">1,50 (winter)</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Diesel L/100 km</label>
       <select id="v_l_km">
@@ -1136,6 +751,7 @@
         <option value="35">35 L</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Energieprijs €/kWh</label>
       <select id="v_e_price">
@@ -1147,6 +763,7 @@
         <option value="0.22">€0,22 (pessimistisch)</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Dieselprijs €/L</label>
       <select id="v_d_price">
@@ -1157,17 +774,18 @@
         <option value="2.15">€2,15 (2030)</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Aankoop e-truck</label>
       <select id="v_e_buy">
-        <option value="180000">€180.000</option>
-        <option value="190000">€190.000</option>
-        <option value="198000" selected>€198.000 (Windrose lijst)</option>
-        <option value="220000">€220.000</option>
-        <option value="250000">€250.000</option>
-        <option value="280000">€280.000</option>
+        <option value="195000" selected>€195.000 (Windrose)</option>
+        <option value="230000">€230.000</option>
+        <option value="270000">€270.000</option>
+        <option value="300000">€300.000</option>
+        <option value="330000">€330.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Aankoop diesel-truck</label>
       <select id="v_d_buy">
@@ -1177,6 +795,7 @@
         <option value="130000">€130.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Onderhoud e-truck (totaal)</label>
       <select id="v_e_maint">
@@ -1186,6 +805,7 @@
         <option value="70000">€70.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Onderhoud diesel (totaal)</label>
       <select id="v_d_maint">
@@ -1195,6 +815,7 @@
         <option value="110000">€110.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Restwaarde e-truck</label>
       <select id="v_e_resid">
@@ -1204,6 +825,7 @@
         <option value="50000">€50.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Restwaarde diesel</label>
       <select id="v_d_resid">
@@ -1213,6 +835,7 @@
         <option value="30000">€30.000</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Infrastructuur totaal</label>
       <select id="v_infra">
@@ -1223,6 +846,7 @@
         <option value="7900000">€7,9 mln (hoog)</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Subsidies</label>
       <select id="v_sub">
@@ -1234,6 +858,7 @@
         <option value="2500000">€2,5 mln</option>
       </select>
     </div>
+
     <div class="calc-field">
       <label>Werkdagen per jaar</label>
       <select id="v_days">
@@ -1242,116 +867,60 @@
         <option value="260">260</option>
       </select>
     </div>
+
   </div>
 
   <div class="calc-results-wrap">
     <div class="calc-results">
-      <div class="result-header">Resultaat — totaal vloot prominent · per truck + % onder</div>
+      <div class="result-header">Resultaat</div>
 
       <div class="result-row">
-        <span class="result-label">Energie per nacht</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_kwh_night">—</span>
-          <span class="result-sub" id="r_kwh_night_sub">—</span>
-        </div>
+        <span class="result-label">Energie per nacht (totaal vloot)</span>
+        <span class="result-value" id="r_kwh_night">—</span>
       </div>
       <div class="result-row">
         <span class="result-label">Gemiddeld vermogen 22u–06u</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_mw">—</span>
-          <span class="result-sub" id="r_mw_sub">—</span>
-        </div>
+        <span class="result-value" id="r_mw">—</span>
       </div>
       <div class="result-row">
         <span class="result-label">Energieverbruik per jaar</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_gwh">—</span>
-          <span class="result-sub" id="r_gwh_sub">—</span>
-        </div>
+        <span class="result-value" id="r_gwh">—</span>
       </div>
       <div class="result-row">
         <span class="result-label">Energiekost per jaar</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_e_year">—</span>
-          <span class="result-sub" id="r_e_year_sub">—</span>
-        </div>
+        <span class="result-value" id="r_e_year">—</span>
       </div>
       <div class="result-row">
         <span class="result-label">Brandstofkost diesel per jaar</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_d_year">—</span>
-          <span class="result-sub" id="r_d_year_sub">—</span>
-        </div>
+        <span class="result-value" id="r_d_year">—</span>
       </div>
       <div class="result-row">
-        <span class="result-label">Besparing per jaar</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_save_year">—</span>
-          <span class="result-sub" id="r_save_year_sub">—</span>
-        </div>
+        <span class="result-label">Besparing per jaar (energie vs diesel)</span>
+        <span class="result-value" id="r_save_year">—</span>
       </div>
       <div class="result-row">
-        <span class="result-label">TCO elektrisch (vloot)</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_tco_e">—</span>
-          <span class="result-sub" id="r_tco_e_sub">—</span>
-        </div>
+        <span class="result-label">TCO elektrisch — per truck</span>
+        <span class="result-value" id="r_tco_e">—</span>
       </div>
       <div class="result-row">
-        <span class="result-label">TCO diesel (vloot)</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_tco_d">—</span>
-          <span class="result-sub" id="r_tco_d_sub">—</span>
-        </div>
+        <span class="result-label">TCO diesel — per truck</span>
+        <span class="result-value" id="r_tco_d">—</span>
       </div>
       <div class="result-row">
-        <span class="result-label">Voordeel</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_diff_truck">—</span>
-          <span class="result-sub" id="r_diff_truck_sub">—</span>
-        </div>
+        <span class="result-label">Voordeel per truck</span>
+        <span class="result-value" id="r_diff_truck">—</span>
       </div>
       <div class="result-row">
         <span class="result-label">Netto investering infra</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_net_infra">—</span>
-          <span class="result-sub" id="r_net_infra_sub">—</span>
-        </div>
+        <span class="result-value" id="r_net_infra">—</span>
       </div>
       <div class="result-row">
-        <span class="result-label">Extra investering trucks (vs diesel)</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_truck_premium">—</span>
-          <span class="result-sub" id="r_truck_premium_sub">—</span>
-        </div>
-      </div>
-      <div class="result-row">
-        <span class="result-label">Totale extra investering</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_total_invest">—</span>
-          <span class="result-sub" id="r_total_invest_sub">—</span>
-        </div>
-      </div>
-      <div class="result-row">
-        <span class="result-label">Payback (operationele winst)</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_payback">—</span>
-          <span class="result-sub" id="r_payback_sub">—</span>
-        </div>
-      </div>
-      <div class="result-row">
-        <span class="result-label">ROI over looptijd</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_roi">—</span>
-          <span class="result-sub"><span class="pct dim">op extra investering</span></span>
-        </div>
+        <span class="result-label">Terugverdientijd infra</span>
+        <span class="result-value" id="r_payback">—</span>
       </div>
       <div class="result-row hero">
         <span class="result-label">Netto resultaat over looptijd</span>
-        <div class="result-value-block">
-          <span class="result-value" id="r_total">—</span>
-          <span class="result-sub" id="r_total_sub">—</span>
-        </div>
+        <span class="result-value" id="r_total">—</span>
       </div>
     </div>
 
@@ -1361,7 +930,7 @@
 
 <footer>
   <p><em>Bronnen</em> — Elia Hosting Capacity Map · Fluvius capaciteitswijzer · CREG · LevelTen Energy Q1 2026 PPA Index · Milence · ITLB · Hoogspanningsnet.com</p>
-  <p style="margin-top:14px;">Beslissingsnota Zwijnaarde — 80 e-trucks elektrificatie</p>
+  <p style="margin-top:14px;">Beslissingsnota Mainfreight Zwijnaarde — 80 e-trucks elektrificatie</p>
 </footer>
 
 <script>
@@ -1384,6 +953,7 @@
     'v_infra','v_sub','v_days'
   ];
 
+  // Save defaults for reset
   const defaults = {};
   inputs.forEach(id => { defaults[id] = document.getElementById(id).value; });
 
@@ -1396,113 +966,64 @@
     const years = v.v_years;
     const days = v.v_days;
 
+    // Energy
     const kwhPerTruckYear = kmYear * v.v_kwh_km;
     const kwhPerTruckNight = kwhPerTruckYear / days;
     const kwhFleetNight = kwhPerTruckNight * trucks;
-    const mwAvg = kwhFleetNight / 8 / 1000;
+    const mwAvg = kwhFleetNight / 8 / 1000; // 8h window, MW
     const gwhYear = (kwhPerTruckYear * trucks) / 1000000;
 
-    const eYearPerTruck = kwhPerTruckYear * v.v_e_price;
-    const dYearPerTruck = (kmYear / 100) * v.v_l_km * v.v_d_price;
-    const eCostYear = eYearPerTruck * trucks;
-    const dCostYear = dYearPerTruck * trucks;
-    const saveYearPerTruck = dYearPerTruck - eYearPerTruck;
-    const saveYear = saveYearPerTruck * trucks;
+    // Costs per year - energy
+    const eCostYear = kwhPerTruckYear * v.v_e_price * trucks;
 
+    // Costs per year - diesel
     const lPerTruckYear = (kmYear / 100) * v.v_l_km;
+    const dCostYear = lPerTruckYear * v.v_d_price * trucks;
 
+    const saveYear = dCostYear - eCostYear;
+
+    // TCO per truck (over 'years')
     const tcoE = v.v_e_buy + (kwhPerTruckYear * v.v_e_price * years) + v.v_e_maint - v.v_e_resid;
     const tcoD = v.v_d_buy + (lPerTruckYear * v.v_d_price * years) + v.v_d_maint - v.v_d_resid;
     const diffTruck = tcoD - tcoE;
 
+    // Infra
     const netInfra = v.v_infra - v.v_sub;
-    const truckPremium = (v.v_e_buy - v.v_d_buy) * trucks;
-    const totalInvest = truckPremium + netInfra;
+    const paybackYears = saveYear > 0 ? netInfra / saveYear : Infinity;
 
-    const dFuelPerTruck = lPerTruckYear * v.v_d_price;
-    const dMaintPerYear = v.v_d_maint / years;
-    const eFuelPerTruck = kwhPerTruckYear * v.v_e_price;
-    const eMaintPerYear = v.v_e_maint / years;
-    const opSavingsPerTruckYear = (dFuelPerTruck + dMaintPerYear) - (eFuelPerTruck + eMaintPerYear);
-    const opSavingsYear = opSavingsPerTruckYear * trucks;
-
-    const paybackYears = opSavingsYear > 0 ? totalInvest / opSavingsYear : Infinity;
-
+    // Total over period
     const totalSavingsTrucks = diffTruck * trucks;
     const totalNet = totalSavingsTrucks - netInfra;
-    const roi = totalInvest > 0 ? (totalNet / totalInvest) * 100 : 0;
 
-    // Percentages
-    const eVsD_pct = ((eCostYear / dCostYear) - 1) * 100;
-    const saveVsD_pct = (saveYear / dCostYear) * 100;
-    const tcoEvsD_pct = ((tcoE / tcoD) - 1) * 100;
-    const diffVsD_pct = (diffTruck / tcoD) * 100;
-
-    // Helpers
-    const pct = (val, opts = {}) => {
-      const sign = val > 0 ? '+' : '';
-      const cls = opts.warmIfPositive && val > 0 ? 'warm' : '';
-      return `<span class="pct ${cls}">${sign}${val.toLocaleString('nl-BE', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}%</span>`;
-    };
-    const dim = (txt) => `<span class="pct dim">${txt}</span>`;
-
-    // RENDER — totals as main; per-truck + % as lighter sub
-
+    // Render
     document.getElementById('r_kwh_night').textContent = fmt(kwhFleetNight) + ' kWh';
-    document.getElementById('r_kwh_night_sub').innerHTML = dim(`${fmt(kwhPerTruckNight)} kWh/truck`);
-
     document.getElementById('r_mw').textContent = mwAvg.toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + ' MW';
-    document.getElementById('r_mw_sub').innerHTML = dim(`piek tot ${(mwAvg * 1.4).toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 1 })} MW zonder smart charging`);
-
     document.getElementById('r_gwh').textContent = gwhYear.toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + ' GWh';
-    document.getElementById('r_gwh_sub').innerHTML = dim(`${(kwhPerTruckYear / 1000).toLocaleString('nl-BE', { maximumFractionDigits: 0 })} MWh/truck/j`);
-
     document.getElementById('r_e_year').textContent = eur(eCostYear, { million: true });
-    document.getElementById('r_e_year_sub').innerHTML = `${dim(eur(eYearPerTruck) + '/truck')} · ${pct(eVsD_pct, { warmIfPositive: true })} vs diesel`;
-
     document.getElementById('r_d_year').textContent = eur(dCostYear, { million: true });
-    document.getElementById('r_d_year_sub').innerHTML = `${dim(eur(dYearPerTruck) + '/truck')} · ${dim('referentie')}`;
-
     document.getElementById('r_save_year').textContent = eur(saveYear, { million: true });
-    document.getElementById('r_save_year_sub').innerHTML = `${dim(eur(saveYearPerTruck) + '/truck')} · ${pct(saveVsD_pct)} besparing`;
-
-    document.getElementById('r_tco_e').textContent = eur(tcoE * trucks, { million: true });
-    document.getElementById('r_tco_e_sub').innerHTML = `${dim(eur(tcoE) + '/truck')} · ${pct(tcoEvsD_pct, { warmIfPositive: true })} vs diesel`;
-
-    document.getElementById('r_tco_d').textContent = eur(tcoD * trucks, { million: true });
-    document.getElementById('r_tco_d_sub').innerHTML = `${dim(eur(tcoD) + '/truck')} · ${dim('referentie')}`;
-
-    document.getElementById('r_diff_truck').textContent = eur(diffTruck * trucks, { million: true });
-    document.getElementById('r_diff_truck_sub').innerHTML = `${dim(eur(diffTruck) + '/truck')} · ${pct(diffVsD_pct)} van diesel TCO`;
-
+    document.getElementById('r_tco_e').textContent = eur(tcoE);
+    document.getElementById('r_tco_d').textContent = eur(tcoD);
+    document.getElementById('r_diff_truck').textContent = eur(diffTruck);
     document.getElementById('r_net_infra').textContent = eur(netInfra, { million: true });
-    document.getElementById('r_net_infra_sub').innerHTML = dim(`${eur(netInfra / trucks)}/truck`);
-
-    document.getElementById('r_truck_premium').textContent = eur(truckPremium, { million: true });
-    document.getElementById('r_truck_premium_sub').innerHTML = dim(`${eur(v.v_e_buy - v.v_d_buy)}/truck`);
-
-    document.getElementById('r_total_invest').textContent = eur(totalInvest, { million: true });
-    document.getElementById('r_total_invest_sub').innerHTML = dim(`${eur(totalInvest / trucks)}/truck`);
-
     document.getElementById('r_payback').textContent = isFinite(paybackYears)
       ? paybackYears.toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' jaar'
       : 'n.v.t.';
-    document.getElementById('r_payback_sub').innerHTML = dim(`besparing/j: ${eur(opSavingsYear, { million: true })}`);
-
-    const roiEl = document.getElementById('r_roi');
-    roiEl.textContent = (roi >= 0 ? '+' : '') + roi.toLocaleString('nl-BE', { minimumFractionDigits: 0, maximumFractionDigits: 0 }) + '%';
 
     const totalEl = document.getElementById('r_total');
     totalEl.textContent = (totalNet >= 0 ? '+' : '−') + '€' + fmt(Math.abs(totalNet), { million: true });
     totalEl.classList.toggle('negative', totalNet < 0);
-    document.getElementById('r_total_sub').innerHTML = dim(`${(totalNet >= 0 ? '+' : '−')}${eur(Math.abs(totalNet / trucks))}/truck`);
   }
 
-  inputs.forEach(id => { document.getElementById(id).addEventListener('change', calc); });
+  inputs.forEach(id => {
+    document.getElementById(id).addEventListener('change', calc);
+  });
+
   document.getElementById('reset').addEventListener('click', () => {
     inputs.forEach(id => { document.getElementById(id).value = defaults[id]; });
     calc();
   });
+
   calc();
 </script>
 
