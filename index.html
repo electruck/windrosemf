@@ -1,1 +1,4239 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Beslissingsnota — 80 e-trucks Zwijnaarde</title>
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --bg-2: #FFFFFF;
+    --bg-3: #F2F0EA;
+    --text: #1A1F2E;
+    --text-dim: #4A5568;
+    --text-muted: #94A3B8;
+    --line: #E5E1D5;
+    --accent: #0F4C81;
+    --accent-soft: rgba(15, 76, 129, 0.07);
+    --accent-strong: #0A3A66;
+    --green: #2D7A4F;
+    --green-soft: rgba(45, 122, 79, 0.08);
+    --warm: #A8542E;
+    --warm-soft: rgba(168, 84, 46, 0.08);
+    --red: #B23A48;
+    --gold: #B8860B;
+    --mono: 'SF Mono', 'Monaco', 'Consolas', monospace;
+    --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
 
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ============ LAYOUT CONTAINER ============ */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 16px 14px 80px;
+  }
+  @media (min-width: 720px) {
+    .container { padding: 24px 28px 100px; }
+  }
+  @media (min-width: 1100px) {
+    .container { max-width: 1040px; padding: 28px 40px 120px; }
+  }
+  @media (min-width: 1400px) {
+    .container { max-width: 1180px; }
+  }
+
+  /* ============ HEADER ============ */
+  header {
+    padding: 20px 0 28px;
+    border-bottom: 2px solid var(--line);
+    margin-bottom: 28px;
+  }
+  .doc-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  h1 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+  @media (min-width: 720px) {
+    h1 { font-size: 32px; }
+  }
+  .doc-sub {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  /* ============ STRATEGY SELECTOR ============ */
+  .strategy-selector {
+    background: var(--bg-2);
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(58, 76, 95, 0.08);
+  }
+  .strategy-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .strategy-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  @media (min-width: 540px) {
+    .strategy-buttons { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  }
+  .strategy-btn {
+    background: var(--bg);
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    font-family: var(--sans);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-height: 56px;
+    justify-content: center;
+  }
+  .strategy-btn:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .strategy-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(58, 76, 95, 0.2);
+  }
+  .strategy-btn-title {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .strategy-btn-sub {
+    font-size: 11px;
+    opacity: 0.75;
+    line-height: 1.2;
+  }
+  .strategy-btn.active .strategy-btn-sub { opacity: 0.85; }
+  .strategy-explain {
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text);
+    padding: 10px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+  }
+  .strategy-explain strong { color: var(--accent); }
+  .hero {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 22px 18px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-intro {
+    margin-bottom: 12px;
+    padding-bottom: 22px;
+  }
+  .hero-stats-wrap {
+    margin-top: 12px;
+    padding: 18px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 5px 12px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .hero-badge::before {
+    content: '★';
+    color: #FCD34D;
+  }
+  .hero-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .hero-explain {
+    font-size: 13px;
+    opacity: 0.85;
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
+  .hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 540px) {
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  }
+  @media (min-width: 720px) {
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  }
+  @media (min-width: 1080px) {
+    .hero-stats { grid-template-columns: repeat(6, 1fr); gap: 12px; }
+  }
+  .hero-stat {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 10px 12px;
+    min-width: 0; /* allow flex children to shrink below content width */
+  }
+  .hero-stat-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 4px;
+    line-height: 1.25;
+    /* allow wrap on narrow tiles, no ellipsis */
+  }
+  .hero-stat-value {
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hero-stat-sub {
+    font-size: 10px;
+    opacity: 0.75;
+    margin-top: 3px;
+    font-family: var(--mono);
+    line-height: 1.3;
+  }
+  @media (min-width: 540px) {
+    .hero-stat { padding: 12px 14px; }
+    .hero-stat-label { font-size: 9.5px; }
+    .hero-stat-sub { font-size: 11px; }
+  }
+  @media (min-width: 1080px) {
+    .hero-stat { padding: 12px 10px; }
+    .hero-stat-label { font-size: 9px; letter-spacing: 0.05em; }
+    .hero-stat-sub { font-size: 10px; }
+  }
+
+  /* ============ SECTIONS ============ */
+  section {
+    margin-bottom: 32px;
+  }
+  .section-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+  .section-lead {
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0 0 16px;
+  }
+
+  /* ============ FINANCE TOGGLES (the heart of the page) ============ */
+  .finance-block {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .finance-block.fleet-basics {
+    background: var(--bg);
+    border-style: dashed;
+    margin-top: 4px;
+  }
+  .finance-block-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .finance-best-badge {
+    background: var(--green-soft);
+    color: var(--green);
+    border-radius: 100px;
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+  }
+  .finance-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  @media (min-width: 540px) {
+    .finance-options { grid-template-columns: repeat(3, 1fr); }
+  }
+  .finance-option {
+    background: var(--bg-3);
+    border: 2px solid transparent;
+    border-radius: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    position: relative;
+  }
+  .finance-option:hover {
+    background: var(--bg-2);
+    border-color: var(--line);
+  }
+  .finance-option.active {
+    background: var(--bg-2);
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(15, 76, 129, 0.08);
+  }
+  .finance-option-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .finance-option-sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .finance-option .recommend-star {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    color: var(--gold);
+    font-size: 12px;
+    display: none;
+  }
+  .finance-option.recommended .recommend-star { display: block; }
+
+  /* ============ STICKY SUMMARY BAR ============ */
+  .summary-bar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin: 24px 0;
+    padding: 8px 4px;
+    box-shadow: 0 4px 16px rgba(15, 31, 51, 0.06);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    transition: box-shadow 0.2s ease;
+  }
+  .summary-bar.is-stuck {
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 6px 20px rgba(15, 31, 51, 0.1);
+  }
+  .summary-stat {
+    text-align: center;
+    padding: 2px 3px;
+    border-right: 1px solid var(--line);
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .summary-stat:last-child { border-right: none; }
+  .summary-label {
+    font-family: var(--mono);
+    font-size: 8px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 3px;
+    /* allow wrap to 2 lines */
+    overflow: hidden;
+    word-break: break-word;
+    max-width: 100%;
+  }
+  .summary-value {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .summary-value.neg { color: var(--red); }
+  .summary-value.pos { color: var(--green); }
+  @media (min-width: 420px) {
+    .summary-bar { padding: 10px 6px; }
+    .summary-label { font-size: 9px; }
+    .summary-value { font-size: 14px; }
+  }
+  @media (min-width: 540px) {
+    .summary-bar { padding: 12px 14px; gap: 4px; }
+    .summary-label { font-size: 10px; }
+    .summary-value { font-size: 17px; }
+    .summary-stat { padding: 4px 8px; }
+  }
+  @media (min-width: 720px) {
+    .summary-value { font-size: 19px; }
+  }
+
+  /* ============ KEY VARIABLES GRID ============ */
+  .vars-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .vars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (min-width: 540px) {
+    .vars-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (min-width: 760px) {
+    .vars-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+  .var-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .var-field label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .var-field select,
+  .var-field input[type="number"] {
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 9px 11px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text);
+    min-height: 38px;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394A3B8' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+  }
+  .var-field input[type="number"] { background-image: none; padding-right: 11px; }
+  .var-field select:focus,
+  .var-field input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+
+  /* ============ MODE TOGGLE for sub-calculators ============ */
+  .calc-block {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .calc-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .calc-block-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    font-weight: 600;
+    flex: 1;
+    min-width: 200px;
+  }
+  .mode-toggle {
+    display: inline-flex;
+    background: var(--bg-3);
+    border-radius: 8px;
+    padding: 3px;
+    gap: 2px;
+  }
+  .mode-toggle button {
+    background: transparent;
+    border: none;
+    padding: 6px 11px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-height: 30px;
+    font-weight: 600;
+  }
+  .mode-toggle button.active {
+    background: var(--bg-2);
+    color: var(--accent);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+
+  .calc-summary {
+    background: var(--accent-soft);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--text);
+    margin-bottom: 0;
+  }
+  .calc-summary strong { color: var(--accent); font-weight: 700; }
+
+  .sub-calc {
+    margin-top: 12px;
+    padding: 14px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    display: none;
+  }
+  .sub-calc.active { display: block; }
+  .sub-calc-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin: 4px 0 10px;
+  }
+  .sub-calc-title:first-child { margin-top: 0; }
+  .sub-calc-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-dim);
+    line-height: 1.5;
+    margin-top: 8px;
+    font-style: italic;
+  }
+  .sub-calc-warning {
+    background: var(--warm-soft);
+    border-left: 3px solid var(--warm);
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.5;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .sub-calc-warning strong { color: var(--warm); }
+  .sub-calc-info {
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin: 4px 0 12px 0;
+    padding: 8px 10px;
+    background: rgba(229, 225, 213, 0.4);
+    border-radius: 6px;
+    border-left: 2px solid var(--line);
+  }
+  .sub-calc-info a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dotted var(--accent);
+  }
+  .sub-calc-info a:hover {
+    border-bottom-style: solid;
+  }
+  .sub-calc-info strong { color: var(--text); }
+  .sub-calc-info em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  /* ============ COLLAPSIBLE BLOCKS — UNIFIED ============ */
+  .collapsible-block {
+    margin-top: 16px;
+    border: 1.5px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .collapsible-block[data-state="inactive"] {
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(229, 225, 213, 0.25),
+      rgba(229, 225, 213, 0.25) 8px,
+      rgba(229, 225, 213, 0.10) 8px,
+      rgba(229, 225, 213, 0.10) 16px
+    );
+    border-style: dashed;
+    border-color: rgba(157, 144, 119, 0.4);
+  }
+  .collapsible-block[data-state="active"][open] {
+    border-color: var(--accent);
+    box-shadow: 0 2px 12px rgba(58, 76, 95, 0.08);
+  }
+  .collapsible-summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 13px 14px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+    min-height: 48px;
+  }
+  .collapsible-summary::-webkit-details-marker { display: none; }
+  .collapsible-summary:hover { background: rgba(58, 76, 95, 0.04); }
+  .collapsible-summary .collapsible-icon,
+  .collapsible-summary .collapsible-chevron { user-select: none; }
+  .collapsible-summary .collapsible-title,
+  .collapsible-summary .collapsible-status {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+  .collapsible-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .collapsible-block[data-state="inactive"] .collapsible-icon {
+    background: rgba(157, 144, 119, 0.2);
+    color: var(--text-muted);
+  }
+  .collapsible-block[data-state="active"] .collapsible-icon {
+    background: var(--accent);
+    color: white;
+  }
+  .collapsible-block[data-state="warning"] .collapsible-icon {
+    background: var(--warm);
+    color: white;
+  }
+  .collapsible-title {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+  .collapsible-block[data-state="inactive"] .collapsible-title {
+    color: var(--text-muted);
+  }
+  .collapsible-block[data-state="inactive"] .collapsible-status {
+    display: block;
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-style: italic;
+    font-family: var(--sans);
+    margin-top: 2px;
+    letter-spacing: 0;
+    text-transform: none;
+    font-weight: 400;
+  }
+  .collapsible-block[data-state="active"] .collapsible-status,
+  .collapsible-block[data-state="warning"] .collapsible-status {
+    display: inline-block;
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 8px;
+    padding: 2px 8px;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-family: var(--sans);
+  }
+  .collapsible-block[data-state="warning"] .collapsible-status {
+    color: var(--warm);
+    background: var(--warm-soft);
+  }
+  .collapsible-chevron {
+    color: var(--text-muted);
+    font-size: 14px;
+    transition: transform 0.25s ease;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .collapsible-block[open] .collapsible-chevron { transform: rotate(180deg); }
+  .collapsible-body {
+    padding: 4px 14px 16px 14px;
+    border-top: 1px solid var(--line);
+  }
+  .collapsible-block[data-state="inactive"] .collapsible-body {
+    border-top: 1px dashed rgba(157, 144, 119, 0.4);
+  }
+  .collapsible-na-notice {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    padding: 12px 14px;
+    margin: 12px 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--text);
+    border-radius: 6px;
+  }
+  .collapsible-na-notice strong { color: var(--accent); display: block; margin-bottom: 4px; }
+  .collapsible-na-notice em { font-style: normal; font-weight: 600; color: var(--accent); }
+
+  /* Section-level N.v.t. banner */
+  .section-nvt-banner {
+    margin-top: 8px;
+    margin-bottom: 0;
+  }
+
+  /* Audit-card variant of collapsible: tighter integration */
+  .audit-collapsible {
+    margin-top: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .audit-collapsible:last-child { border-bottom: none; }
+  .audit-collapsible[data-state="active"][open] {
+    box-shadow: none;
+    border-color: var(--line);
+  }
+  .audit-collapsible[data-state="inactive"] {
+    border-style: solid;
+    border-color: var(--line);
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(229, 225, 213, 0.20),
+      rgba(229, 225, 213, 0.20) 8px,
+      rgba(229, 225, 213, 0.08) 8px,
+      rgba(229, 225, 213, 0.08) 16px
+    );
+  }
+  .audit-collapsible[data-state="inactive"] .collapsible-summary {
+    padding: 16px 14px;
+  }
+  .audit-collapsible .collapsible-summary {
+    border-bottom: 0;
+  }
+  .audit-collapsible[open] .collapsible-summary {
+    border-bottom: 1px dashed var(--line);
+    margin-bottom: 0;
+  }
+
+  /* Section-level collapsible: applies to entire <section> wrappers */
+  section.section-collapsible {
+    padding: 0;
+    margin-top: 0;
+  }
+  section.section-collapsible > details.collapsible-block {
+    margin-top: 24px;
+  }
+  section.section-collapsible[data-state="inactive"] .section-num,
+  section.section-collapsible[data-state="inactive"] .section-title,
+  section.section-collapsible[data-state="inactive"] .section-lead { display: none; }
+  .sub-calc-result {
+    background: var(--bg-2);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .sub-calc-result-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 0;
+  }
+  .sub-calc-result-row.total {
+    border-top: 1px dashed var(--line);
+    padding-top: 8px;
+    margin-top: 4px;
+    font-weight: 700;
+  }
+  .sub-calc-result-row strong { color: var(--accent); }
+
+  /* ============ ROUTE VALIDATION BANNER ============ */
+  .route-validation {
+    margin-top: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--green-soft);
+    border-left: 3px solid var(--green);
+    font-family: var(--mono);
+    font-size: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+    transition: all 0.15s ease;
+  }
+  .route-validation.error {
+    background: rgba(178, 58, 72, 0.08);
+    border-left-color: var(--red);
+  }
+  .route-validation-label {
+    color: var(--text-dim);
+    font-weight: 600;
+  }
+  .route-validation-value {
+    color: var(--green);
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .route-validation.error .route-validation-value {
+    color: var(--red);
+  }
+  .route-validation-hint {
+    color: var(--text-muted);
+    font-style: italic;
+    flex-basis: 100%;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .route-validation.error .route-validation-hint {
+    color: var(--red);
+  }
+
+  /* ============ INFRA TABLE ============ */
+  .infra-table {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .infra-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.9fr;
+    gap: 8px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 13px;
+    align-items: center;
+  }
+  .infra-row:last-child { border-bottom: none; }
+  .infra-row.header {
+    background: var(--bg-3);
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .infra-row .label { color: var(--text); }
+  .infra-row .label small { color: var(--text-muted); font-size: 11px; font-weight: normal; }
+  .infra-row .value-fleet,
+  .infra-row .value-truck {
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text);
+  }
+  .infra-row.subtotal {
+    background: var(--bg-3);
+    font-weight: 600;
+  }
+  .infra-row.residual { color: var(--green); }
+  .infra-row.clawback { color: var(--warm); }
+  .infra-row.effective {
+    background: var(--accent-soft);
+    border-top: 2px solid var(--accent);
+    font-weight: 700;
+  }
+  .infra-row.effective .label,
+  .infra-row.effective .value-fleet,
+  .infra-row.effective .value-truck {
+    color: var(--accent);
+    font-size: 14px;
+  }
+
+  /* ============ RESULT BANNER ============ */
+  .result-banner {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+  }
+  .result-banner.negative { border-left-color: var(--red); }
+  .result-banner-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .result-banner-text {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text);
+  }
+  .result-banner-text strong { color: var(--accent); font-weight: 700; }
+
+  /* Strategy context — uitleg onder de cijfers per gekozen strategie */
+  .strategy-context {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .strategy-context-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+    font-weight: 700;
+  }
+  .strategy-context-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--text);
+  }
+  .strategy-context-text em { font-style: italic; color: var(--accent); }
+
+  /* ============ CALLOUT ============ */
+  .callout {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    margin: 16px 0;
+    color: var(--text);
+  }
+  .callout strong { color: var(--accent); font-weight: 700; }
+  .callout em { font-style: normal; font-weight: 600; color: var(--text); }
+
+  /* ============ AUDIT SECTION ============ */
+  .audit-card {
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .audit-block {
+    border-bottom: 1px solid var(--line);
+    padding: 14px 14px 12px;
+  }
+  .audit-block:last-child { border-bottom: none; }
+  .audit-block-title {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .audit-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .audit-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    padding: 4px 0;
+    font-family: var(--mono);
+    font-size: 11.5px;
+    line-height: 1.45;
+    border-bottom: 1px dotted rgba(229, 225, 213, 0.5);
+    align-items: baseline;
+  }
+  .audit-row:last-child { border-bottom: none; }
+  .audit-row.total {
+    border-top: 1px solid var(--line);
+    border-bottom: none;
+    margin-top: 4px;
+    padding-top: 7px;
+    font-weight: 700;
+  }
+  .audit-row.total .audit-label,
+  .audit-row.total .audit-value { color: var(--accent); }
+  .audit-row.headline {
+    background: var(--accent-soft);
+    margin: 6px -8px 0;
+    padding: 7px 8px;
+    border-radius: 6px;
+    border: none;
+  }
+  .audit-row.headline .audit-label,
+  .audit-row.headline .audit-value {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 12.5px;
+  }
+  .audit-label {
+    color: var(--text-dim);
+    overflow-wrap: anywhere;
+  }
+  .audit-formula {
+    color: var(--text-muted);
+    font-size: 10.5px;
+    font-style: italic;
+    display: block;
+    margin-top: 1px;
+  }
+  .audit-value {
+    color: var(--text);
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .audit-value.pos { color: var(--green); }
+  .audit-value.neg { color: var(--red); }
+  .audit-row.audit-link {
+    cursor: pointer;
+    transition: background 0.15s ease;
+    border-radius: 4px;
+    margin: 0 -4px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .audit-row.audit-link:hover {
+    background: var(--accent-soft);
+  }
+  .audit-link-icon {
+    color: var(--accent);
+    font-size: 11px;
+    margin-left: 4px;
+    opacity: 0.6;
+  }
+  .audit-row.audit-link:hover .audit-link-icon {
+    opacity: 1;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    margin-top: 40px;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    text-align: center;
+  }
+  footer em { font-style: normal; color: var(--text-dim); }
+
+  /* ============ MISC ============ */
+  .stat-positive { color: var(--green); }
+  .stat-negative { color: var(--red); }
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    color: var(--bg-2);
+    font-size: 9px;
+    font-weight: 700;
+    margin-left: 4px;
+    cursor: help;
+  }
+  /* ============ PRINT / PDF EXPORT ============ */
+  @media print {
+    @page { size: A4; margin: 14mm 12mm; }
+    html, body { background: #fff !important; font-size: 11pt; }
+    .container { max-width: none !important; padding: 0 !important; }
+    /* Hide interactive controls that don't make sense in print */
+    .strategy-selector,
+    .summary-bar,
+    .audit-link-icon { display: none !important; }
+    /* Sections should not break across pages where possible */
+    section, .hero, .strategy-context, .result-banner,
+    .finance-block, .vars-card, .calc-block, .sub-calc {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+    section { margin-bottom: 14pt; }
+    h1, h2, .section-title { break-after: avoid; page-break-after: avoid; }
+    /* Keep hero readable in print */
+    .hero {
+      background: var(--accent) !important;
+      color: #fff !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /* Force backgrounds for badges */
+    .hero-badge, .finance-best-badge, .recommended,
+    .finance-option.active, .strategy-context, .result-banner {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    /* Audit section open by default in print */
+    details, details > summary { display: block; }
+    details > * { display: block !important; }
+    /* Make dropdowns readable as static labels in print */
+    select {
+      border: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      font-weight: 600;
+      color: var(--text) !important;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    /* Hyperlinks blue but not underlined obnoxiously */
+    a { color: var(--accent); text-decoration: none; }
+    /* No sticky behaviour */
+    .summary-bar { position: static !important; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="doc-tag">Beslissingsnota · Mei 2026</div>
+  <h1 id="doc_h1">80 e-trucks elektrificatie</h1>
+  <div class="doc-sub">Bertha De Vriesestraat 2, 9052 Zwijnaarde · Windrose R700 Gen 2 · 705 kWh · 670 km · €198k</div>
+</header>
+
+<!-- ============ HERO INTRO (statisch — altijd de aanbeveling) ============ -->
+<div class="hero hero-intro">
+  <div class="hero-badge">Aanbevolen scenario</div>
+  <div class="hero-title">Aankoop trucks + Aankoop laders + Alinso 36 kV</div>
+  <div class="hero-explain" id="hero_explain_static">
+    Aankoop biedt het laagste TCO bij beide assets — eigendom + restwaarde. Alinso vermijdt de Vlaamse netcongestie-wachtrij van 650+ bedrijven. Laders-leasing en operationele lease zijn duurder over de looptijd.
+  </div>
+</div>
+
+<!-- ============ STRATEGY SELECTOR ============ -->
+<div class="strategy-selector">
+  <div class="strategy-label">Welke strategie past bij u?</div>
+  <div class="strategy-buttons">
+    <button type="button" class="strategy-btn" data-strategy="zekerheid">
+      <span class="strategy-btn-title">Max zekerheid</span>
+      <span class="strategy-btn-sub">Conservatief, laag risico</span>
+    </button>
+    <button type="button" class="strategy-btn active" data-strategy="besparing">
+      <span class="strategy-btn-title">Max besparing</span>
+      <span class="strategy-btn-sub">Realistische marktcurves</span>
+    </button>
+    <button type="button" class="strategy-btn" data-strategy="zoals_diesel">
+      <span class="strategy-btn-title">Zoals diesel</span>
+      <span class="strategy-btn-sub">Extern laden + publiek</span>
+    </button>
+  </div>
+</div>
+
+<!-- ============ HERO STATS (cijfers) ============ -->
+<div class="hero hero-stats-wrap">
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-label">Netto voordeel</div>
+      <div class="hero-stat-value" id="hero_net">€25,7M</div>
+      <div class="hero-stat-sub" id="hero_net_sub">over 7 jaar</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">Payback</div>
+      <div class="hero-stat-value" id="hero_payback">1,5j</div>
+      <div class="hero-stat-sub" id="hero_payback_sub">operationele besparingen</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">ROI</div>
+      <div class="hero-stat-value" id="hero_roi">389%</div>
+      <div class="hero-stat-sub" id="hero_roi_sub">op €6,6M investering</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">Per truck (netto)</div>
+      <div class="hero-stat-value" id="hero_per_truck">€322k</div>
+      <div class="hero-stat-sub" id="hero_per_truck_sub">netto over levensduur</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">TCO / truck / jaar</div>
+      <div class="hero-stat-value" id="hero_tco">€43k</div>
+      <div class="hero-stat-sub" id="hero_tco_sub">fuel+tol+maint+infra</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-label">vs Diesel</div>
+      <div class="hero-stat-value" id="hero_vs_diesel">−52%</div>
+      <div class="hero-stat-sub" id="hero_vs_diesel_sub">TCO-vergelijking</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ STRATEGY CONTEXT (per keuze, onder cijfers) ============ -->
+<div class="strategy-context" id="strategy_context">
+  <div class="strategy-context-label" id="strategy_context_title">Max besparing — wat houdt deze strategie in?</div>
+  <div class="strategy-context-text" id="strategy_context_text">
+    Eigen depot-infrastructuur Alinso 36 kV met realistische marktcurves voor restwaardes (e-truck 27%, diesel 33%, infra €2,1 mln). Volle investeringsaftrek 40% op trucks én laadinfra (€2,03 mln). Weekend-flex laden met PPA voor goedkoper grid-tarief. Geeft het hoogste netto voordeel maar vereist actieve uitvoering.
+  </div>
+</div>
+
+<div class="result-banner" id="result_banner">
+  <div class="result-banner-label" id="result_label">Conclusie</div>
+  <div class="result-banner-text" id="result_text">
+    Elektrificatie levert <strong>€25,7 mln netto voordeel</strong> over 7 jaar (€322k per truck, 389% ROI). Payback in <strong>1,5 jaar</strong>. Windrose R700 Gen 2 met 1,05 kWh/km efficiency en 20% gegarandeerde buyback. Inclusief <strong>€10,8 mln</strong> tol-besparing en <strong>€2,03 mln</strong> investeringsaftrek 40%.
+  </div>
+</div>
+
+<!-- ============ SECTION 01: FINANCE CHOICES ============ -->
+<section id="section-01">
+  <div class="section-num">01 — Financieringsvorm</div>
+  <h2 class="section-title">Hoe financieren?</h2>
+  <p class="section-lead">Trucks en laders kunnen onafhankelijk gefinancierd worden. Op basis van de TCO-analyse is <em>aankoop bij beide</em> het meest voordelig.</p>
+
+  <!-- Truck financing -->
+  <div class="finance-block">
+    <div class="finance-block-title">
+      <span id="trucks_block_title">🚛 Trucks (80 × Windrose R700)</span>
+      <span class="finance-best-badge">Aankoop = best</span>
+    </div>
+    <div class="finance-options" id="truck_finance_options">
+      <button type="button" class="finance-option recommended active" data-truck-fin="buy">
+        <span class="recommend-star">★</span>
+        <span class="finance-option-label">Aankoop</span>
+        <span class="finance-option-sub" id="truck_buy_sub">€198k · restwaarde €53k</span>
+      </button>
+      <button type="button" class="finance-option" data-truck-fin="buyback">
+        <span class="finance-option-label">Buy-back</span>
+        <span class="finance-option-sub" id="truck_buyback_sub">€208k · 20% gegarandeerd €39,6k (Windrose)</span>
+      </button>
+      <button type="button" class="finance-option" data-truck-fin="lease">
+        <span class="finance-option-label">Op. lease</span>
+        <span class="finance-option-sub" id="truck_lease_sub">€2.800/mnd</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Charger financing -->
+  <div class="finance-block">
+    <div class="finance-block-title">
+      <span id="chargers_block_title">⚡ Laders (40× dual 350 kW)</span>
+      <span class="finance-best-badge">Aankoop = best</span>
+    </div>
+    <div class="finance-options" id="charger_finance_options">
+      <button type="button" class="finance-option recommended active" data-charger-fin="buy">
+        <span class="recommend-star">★</span>
+        <span class="finance-option-label">Aankoop</span>
+        <span class="finance-option-sub" id="charger_buy_sub">€45k · restwaarde 30%</span>
+      </button>
+      <button type="button" class="finance-option" data-charger-fin="buyback">
+        <span class="finance-option-label">Buy-back</span>
+        <span class="finance-option-sub" id="charger_buyback_sub">€45k · garantie 25%</span>
+      </button>
+      <button type="button" class="finance-option" data-charger-fin="lease">
+        <span class="finance-option-label">Laders-leasing</span>
+        <span class="finance-option-sub" id="charger_lease_sub">€900/mnd/unit</span>
+      </button>
+      <button type="button" class="finance-option" data-charger-fin="none">
+        <span class="finance-option-label">Geen laders</span>
+        <span class="finance-option-sub">Publiek laden bij Milence / leveranciers</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Fleet basics: aantal trucks + km + looptijd (essentiële schalingsparameters) -->
+  <div class="finance-block fleet-basics">
+    <div class="finance-block-title">
+      <span>📊 Vloot-parameters</span>
+    </div>
+    <div class="vars-grid">
+      <div class="var-field">
+        <label>Aantal trucks</label>
+        <select id="v_trucks">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+          <option value="60">60</option>
+          <option value="80" selected>80 (vloot)</option>
+          <option value="100">100</option>
+          <option value="120">120</option>
+          <option value="160">160</option>
+          <option value="200">200</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>km / truck / jaar</label>
+        <select id="v_km">
+          <option value="40000">40.000</option>
+          <option value="60000">60.000</option>
+          <option value="80000">80.000</option>
+          <option value="100000" selected>100.000</option>
+          <option value="120000">120.000</option>
+          <option value="140000">140.000</option>
+          <option value="160000">160.000</option>
+          <option value="180000">180.000</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>Looptijd (jaar)</label>
+        <select id="v_years">
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7" selected>7 (optimaal — balans afschrijving + restwaarde)</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="12">12</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STICKY SUMMARY BAR ============ -->
+<div class="summary-bar" id="summary_bar">
+  <div class="summary-stat">
+    <div class="summary-label">Netto</div>
+    <div class="summary-value" id="sum_net">€26M</div>
+  </div>
+  <div class="summary-stat">
+    <div class="summary-label">Payback</div>
+    <div class="summary-value" id="sum_payback">1,5j</div>
+  </div>
+  <div class="summary-stat">
+    <div class="summary-label">ROI</div>
+    <div class="summary-value" id="sum_roi">389%</div>
+  </div>
+  <div class="summary-stat">
+    <div class="summary-label">€/tr/jr</div>
+    <div class="summary-value" id="sum_tco">€43k</div>
+  </div>
+  <div class="summary-stat">
+    <div class="summary-label">vs D</div>
+    <div class="summary-value pos" id="sum_vs_diesel">−52%</div>
+  </div>
+</div>
+
+<!-- ============ SECTION 02: KEY VARIABLES ============ -->
+<section id="section-02">
+  <div class="section-num">02 — Kernvariabelen</div>
+  <h2 class="section-title">De parameters</h2>
+  <p class="section-lead">Optimale waardes met zo min mogelijk risico — conservatief gekozen op basis van marktdata 2026 en site-specifieke context. Wijzig om scenarios te testen.</p>
+
+  <div class="vars-card">
+    <div class="vars-grid">
+      <div class="var-field">
+        <label>Aansluiting</label>
+        <select id="v_grid_type">
+          <option value="public_only">Geen depot-infra — publiek laden bij Milence/leveranciers</option>
+          <option value="alinso" selected>Alinso 36 kV · 12-18 mnd (optimaal — vermijdt wachtrij)</option>
+          <option value="flora">Flora 150/36 kV · 18-24 mnd</option>
+          <option value="mv_own">Eigen MV Fluvius · 24-48 mnd</option>
+          <option value="hs_new">Nieuw hoogspanningsstation · 5-7j</option>
+          <option value="shared">Gedeeld buur · 6-12 mnd</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>Lader-type</label>
+        <select id="v_charger_type">
+          <option value="none">Geen eigen laders — alleen publiek laden</option>
+          <option value="dual350" selected>Dual 350 kW DC (40×) — optimaal voor depot</option>
+          <option value="single400">Single 400 kW (80×)</option>
+          <option value="mcs1000">MCS 1 MW dual (40×)</option>
+          <option value="ac22">AC 22 kW (80×, traag)</option>
+          <option value="mixed">Mix dual + MCS</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label id="v_sub_label">Subsidies (@ 80 trucks)</label>
+        <select id="v_sub">
+          <option value="0">€0 (geen subsidie aanvragen)</option>
+          <option value="315000">€315k (laders-lease, leverancier geeft 70% korting)</option>
+          <option value="450000" selected>€450k (optimaal — alleen laadinfra-aftrek, laag risico)</option>
+          <option value="1106000">€1,11 mln (trucks-lease + laders-aankoop, 70% korting)</option>
+          <option value="1421000">€1,42 mln (beide op lease, 70% korting via leveranciers)</option>
+          <option value="1556000">€1,56 mln (trucks-lease + laders-aankoop)</option>
+          <option value="1895000">€1,90 mln (trucks-aankoop + laders-lease)</option>
+          <option value="2030000">€2,03 mln (beide aankoop, volle aftrek)</option>
+          <option value="3500000">€3,5 mln (max realistisch met combinatie)</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>€/kWh (depot of publiek)</label>
+        <select id="v_e_price">
+          <option value="0.10">€0,10 (PPA solar, depot)</option>
+          <option value="0.12">€0,12 (PPA wind, depot)</option>
+          <option value="0.15">€0,15 (PPA + grid mix, depot)</option>
+          <option value="0.18">€0,18 (grid 2026 realistisch, depot)</option>
+          <option value="0.22" selected>€0,22 (optimaal — pessimistisch grid depot)</option>
+          <option value="0.26">€0,26 (volatiel)</option>
+          <option value="0.30">€0,30 (worst case depot)</option>
+          <option value="0.40">€0,40 (publiek laden — Milence corporate)</option>
+          <option value="0.49">€0,49 (publiek snelladen — Milence Gent retail)</option>
+          <option value="0.60">€0,60 (publiek snelladen — Allego/IONITY)</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>Laad-profiel (weekend-flex)</label>
+        <select id="v_charge_profile">
+          <option value="none" selected>Geen flex (optimaal — alleen weeknacht, geen PPA-afhankelijkheid)</option>
+          <option value="limited">Beperkt off-peak weekend (−5%)</option>
+          <option value="standard">PPA solar+wind Vr–Zo (−13%)</option>
+          <option value="aggressive">Maximaal Vr–Ma + spot (−25%)</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>€/L diesel (netto pro)</label>
+        <select id="v_d_price">
+          <option value="0.95" selected>€0,95 (optimaal — pomp-prijs minus accijns 2026)</option>
+          <option value="1.15">€1,15</option>
+          <option value="1.35">€1,35</option>
+          <option value="1.50">€1,50</option>
+          <option value="1.60">€1,60 (mid-range scenario)</option>
+          <option value="1.75">€1,75</option>
+          <option value="1.90">€1,90</option>
+          <option value="2.10">€2,10</option>
+          <option value="2.40">€2,40 (energie-shock)</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>kWh / km e-truck</label>
+        <select id="v_kwh_km">
+          <option value="0.96">0,96 (Windrose 2030 target)</option>
+          <option value="1.05">1,05 (Windrose R700 Gen 2 — officieel)</option>
+          <option value="1.15" selected>1,15 (optimaal — zware lading / heuvels realistisch)</option>
+          <option value="1.25">1,25 (zware lading + winter)</option>
+          <option value="1.40">1,40 (worst case)</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>L / 100km diesel</label>
+        <select id="v_l_km">
+          <option value="22">22 (modern Euro VI)</option>
+          <option value="26">26</option>
+          <option value="30" selected>30 (optimaal — typisch heavy duty)</option>
+          <option value="34">34</option>
+          <option value="38">38 (heavy duty)</option>
+          <option value="40">40</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>€/truck e (aankoop)</label>
+        <select id="v_e_buy">
+          <option value="170000">€170k</option>
+          <option value="185000">€185k</option>
+          <option value="198000" selected>€198k Windrose R700 (optimaal — bevestigde CEO-prijs)</option>
+          <option value="215000">€215k</option>
+          <option value="240000">€240k Volvo FH</option>
+          <option value="280000">€280k Daimler eActros</option>
+          <option value="340000">€340k MAN eTGX</option>
+        </select>
+      </div>
+      <div class="var-field">
+        <label>€/truck diesel</label>
+        <select id="v_d_buy">
+          <option value="90000">€90k</option>
+          <option value="105000">€105k</option>
+          <option value="120000" selected>€120k (optimaal — typische marktprijs DAF/Volvo)</option>
+          <option value="135000">€135k</option>
+          <option value="155000">€155k premium</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Energie-aanname (alle scenarios):</strong> baseline €/kWh is depot-<em>weeknacht</em> tarief (Ma–Vr, 20:00–06:00, vlak tarief). <strong>Weekend-flex</strong> verschuift een deel van de laadcyclus naar Vrijdag-Zondag wanneer <em>zonne- en windPPA-tarieven</em> goedkoper zijn én spot-prijzen vaak laag/negatief zijn (lagere grid-demand). Effectieve gemiddelde €/kWh: <strong id="effective_kwh">€0,157</strong> (baseline × profiel-factor). Past bij dit operationeel profiel: trucks parkeren typisch vr-avond, weekend volledig beschikbaar voor flex-laden.
+  </div>
+</section>
+
+<!-- ============ SECTION 03: SUBSIDIES ============ -->
+<section>
+  <div class="section-num">03 — Subsidies & fiscale voordelen</div>
+  <h2 class="section-title">Welke steun toepassen?</h2>
+  <p class="section-lead">Het Belgische subsidielandschap is begin 2026 fundamenteel veranderd. Vlaamse Ecologiepremie+ voor wegtransport is geschrapt, maar de federale verhoogde investeringsaftrek werd verhoogd naar 40%. Selecteer een scenario uit voorgekalibreerde keuzes of bereken zelf op basis van regelgeving.</p>
+
+  <div class="callout" style="border-left-color: var(--green); background: var(--green-soft);">
+    <strong>🎯 Strategische locatie Zwijnaarde — kansen voor AFIF-financiering</strong><br>
+    Het depot ligt aan <strong>Knooppunt Zwijnaarde</strong>, het kruispunt van <strong>E40 + E17</strong> — beide onderdeel van het <a href="https://transport.ec.europa.eu/transport-themes/infrastructure-and-investment/trans-european-transport-network-ten-t/north-sea-rhine-mediterranean-corridor_en" target="_blank">TEN-T North Sea–Mediterranean Corridor</a>. <a href="https://kempower.com/afir/" target="_blank">AFIR-regelgeving</a> vereist publieke 350+ kW snellaadhubs elke 60 km op het core netwerk vanaf 2025, met volledige dekking tegen 2030.
+    <ul style="margin: 8px 0 0 0; padding-left: 18px; font-size: 13px; line-height: 1.6;">
+      <li>📍 <strong>Locatievoordeel:</strong> Milence opende op 4 maart 2026 al een publieke laadhub op 8 km afstand (Volvo-fabriek aan Schansakker R4). Het bewijst dat Gent een prioriteitslocatie is voor publieke laadinfra.</li>
+      <li>💰 <strong>AFIF-gap in België:</strong> <a href="https://theicct.org/publication/charging-needs-battery-electric-trucks-europe-oct25/" target="_blank">ICCT-onderzoek</a> toont dat AFIR in België slechts <strong>30-50% van de publieke laadbehoefte</strong> dekt — er is dus aanzienlijke ruimte voor extra publieke hubs met financiering.</li>
+      <li>⚡ <strong>Hybride model mogelijk:</strong> 2-4 laders aan de depot-buitenrand publiek maken → activeert AFIF-grant (30-50% op eligible costs), behoudt depot-functionaliteit voor de vloot.</li>
+      <li>⏰ <strong>Cut-off 4 maart 2026:</strong> dit was de laatste reguliere AFIF call, maar er wordt momenteel onderhandeld over een nieuw funding-programma 2026-2027 om de gap te dichten.</li>
+    </ul>
+  </div>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Subsidie-bedrag toepassen</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-sub-mode="current">Optimaal</button>
+        <button type="button" data-sub-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>Geselecteerd scenario</span><span id="sub_scenario_label">Laadinfra-aftrek (optimaal — laag risico)</span></div>
+      <div class="sub-calc-result-row"><span>Subsidie / fiscaal voordeel</span><strong id="sub_total_summary">€2,03 mln</strong></div>
+      <div class="sub-calc-result-row"><span>Geschaald naar fleet-grootte</span><span id="sub_scaled_summary">€2,03 mln</span></div>
+      <div class="sub-calc-result-row"><span>Impact lease-financiering</span><span id="sub_lease_impact">−</span></div>
+      <div class="sub-calc-result-row total"><strong>Effectief toegepast (na 40% cap)</strong><strong id="sub_effective_summary">€2,03 mln</strong></div>
+    </div>
+    <div class="sub-calc" id="sub_custom_calc">
+      <div class="sub-calc-warning">
+        <strong>Belangrijk 2026:</strong> Vlaamse Ecologiepremie+ voor wegtransport is <strong>geschrapt per 01/01/2026</strong> (Ministerieel Besluit 22 dec 2025). De federale verhoogde investeringsaftrek is verhoogd naar <strong>40% voor zowel kmo's als grote ondernemingen</strong> (AJ 2027). Deze nieuwe sectie modelleert alle resterende regelingen + impact van lease.
+      </div>
+
+      <div class="sub-calc-title">A · Federaal — Verhoogde investeringsaftrek 40% (AJ 2027)</div>
+      <p class="sub-calc-info">
+        Geen subsidie maar fiscaal voordeel: <strong>aftrek% × investering × belastingtarief = netto cash-equivalent</strong>. Voor trucks (lijst Koolstofemissievrij vervoer Groep 2 Cat 3) en laadinfra (Groep 4). Max €60 mln aftrek per belastingplichtige. Geldt enkel als de onderneming <em>economisch eigenaar</em> is — bij operationele lease gaat de aftrek naar de lessor (zie blok D).
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/investeringsaftrek" target="_blank">VLAIO Investeringsaftrek</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/laadpalen-steun" target="_blank">VLAIO Laadpalen Groep 4</a>.
+      </p>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Aftrek-% trucks</label>
+          <select id="v_sub_iva_pct_trucks">
+            <option value="0">0% (niet aanvragen)</option>
+            <option value="20">20% (partial)</option>
+            <option value="40" selected>40% (verhoogd thematisch, 2026)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Aftrek-% laadinfra</label>
+          <select id="v_sub_iva_pct_infra">
+            <option value="0">0% (niet aanvragen)</option>
+            <option value="13.5">13,5% (technologie-aftrek)</option>
+            <option value="40" selected>40% (verhoogd thematisch, 2026)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Vennootschapsbelasting</label>
+          <select id="v_sub_vpb">
+            <option value="20">20% (kleine onderneming verlaagd)</option>
+            <option value="25" selected>25% (optimaal — standaard Belgisch tarief)</option>
+            <option value="30">30% (incl. crisisbijdrage)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sub-calc-title">B · Vlaams — GREEN of Strategische ecologiesteun</div>
+      <p class="sub-calc-info">
+        <strong>GREEN</strong>: 20-55% op ecologische meerkost (min €50k investering, max €1 mln/onderneming/3j). Vraagt om bedrijfsspecifiek "uniek of innovatief karakter".<br>
+        <strong>Strategische ecologiesteun</strong>: 20-55% op meerkost, projecten ≥€1,5 mln, max €500k per 3 jaar.<br>
+        Sinds 2025 is het federale cumulverbod geschrapt — maar VLAIO-regelgeving stelt nog steeds beperkingen.
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/green-steun-voor-groener-en-efficienter-energiegebruik" target="_blank">VLAIO GREEN</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/strategische-ecologiesteun" target="_blank">VLAIO Strat. Eco</a>.
+      </p>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Regeling</label>
+          <select id="v_sub_vl_type">
+            <option value="none" selected>Geen Vlaamse subsidie</option>
+            <option value="green">GREEN (max €1 mln/3j)</option>
+            <option value="strateco">Strategische eco. steun (max €500k/3j)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Steun-% op meerkost</label>
+          <select id="v_sub_vl_pct">
+            <option value="20">20% (ecoklasse B, grote ond.)</option>
+            <option value="30">30% (ecoklasse A, grote ond.)</option>
+            <option value="40" selected>40% (ecoklasse A, midden)</option>
+            <option value="55">55% (ecoklasse A, kmo)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Ecologische meerkost (basis)</label>
+          <select id="v_sub_vl_basis">
+            <option value="1000000">€1 mln meerkost</option>
+            <option value="2000000" selected>€2 mln meerkost</option>
+            <option value="3500000">€3,5 mln meerkost</option>
+            <option value="5000000">€5 mln meerkost</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Cumulatie federale aftrek</label>
+          <select id="v_sub_cumul">
+            <option value="allow" selected>Cumuleerbaar (federaal 2025+)</option>
+            <option value="exclusive">Niet cumuleerbaar (VLAIO regel)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sub-calc-title">C · EU — AFIF (Alternative Fuels Infrastructure Facility)</div>
+      <p class="sub-calc-info">
+        <strong>Goed nieuws voor Zwijnaarde:</strong> het depot ligt direct aan het <em>Knooppunt Zwijnaarde</em>, het kruispunt van E40 en E17, beide onderdeel van het <strong>TEN-T North Sea–Mediterranean Corridor</strong>. AFIR-regelgeving (2025+) vereist publieke 350+ kW snellaadhubs elke 60 km op het TEN-T core netwerk. Milence opende op 4 maart 2026 al een publieke laadhub aan de Volvo-fabriek (Schansakker R4, 8 km van het depot). Steunpercentage 30-50% op eligible costs. Laatste call cut-off: 4 maart 2026.
+        <a href="https://transport.ec.europa.eu/transport-themes/infrastructure-and-investment/trans-european-transport-network-ten-t/north-sea-rhine-mediterranean-corridor_en" target="_blank">TEN-T Corridor</a> ·
+        <a href="https://kempower.com/afir/" target="_blank">AFIR/AFIF specs</a> ·
+        <a href="https://theicct.org/publication/charging-needs-battery-electric-trucks-europe-oct25/" target="_blank">ICCT BE-gap</a>.
+      </p>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Eligible publieke laadinvestering</label>
+          <select id="v_sub_afif_invest">
+            <option value="0" selected>€0 (alleen depot privé)</option>
+            <option value="800000">€800k (1-2 publieke laders aan toegang)</option>
+            <option value="2000000">€2 mln (4 publieke laders hybride)</option>
+            <option value="4000000">€4 mln (mini-hub langs E40/E17)</option>
+            <option value="8000000">€8 mln (volledig publieke laadhub)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>AFIF steun-%</label>
+          <select id="v_sub_afif_pct">
+            <option value="30">30% (basis CEF)</option>
+            <option value="40" selected>40% (TEN-T prioriteit)</option>
+            <option value="50">50% (max cohesion envelope)</option>
+          </select>
+        </div>
+      </div>
+
+      <details class="collapsible-block" id="block_d_lease_impact" data-state="inactive">
+        <summary class="collapsible-summary">
+          <span class="collapsible-icon">—</span>
+          <span>
+            <span class="collapsible-title">D · Lease-impact op investeringsaftrek</span>
+            <span class="collapsible-status">—</span>
+          </span>
+          <span class="collapsible-chevron">▾</span>
+        </summary>
+        <div class="collapsible-body">
+          <div class="collapsible-notice-slot"></div>
+          <p class="sub-calc-info">
+            <strong>Hoe werkt het?</strong> Bij <em>operationele lease</em> is de leasingmaatschappij eigenaar van het materieel — niet uw bedrijf. Daardoor verliest uw bedrijf het recht op investeringsaftrek. De leasingmaatschappij krijgt dat fiscaal voordeel zelf, en geeft het meestal deels terug via een <em>lagere leaseprijs</em>. Hoeveel terug komt, hangt af van uw onderhandelingspositie:
+            in een open markt typisch 70% (de standaard), bij sterke concurrentie tot 90-100%. Bij <em>financiële lease</em> blijft uw bedrijf economisch eigenaar — u behoudt dan het volle aftrekrecht (niet gemodelleerd hier).
+            <a href="https://blv-abl.be/nl/over-leasing/soorten-leasing" target="_blank">Belgische Leasingvereniging</a>.
+          </p>
+          <div class="vars-grid">
+            <div class="var-field">
+              <label>Korting op truck-leaseprijs</label>
+              <select id="v_sub_lease_passthrough_truck">
+                <option value="0">0% (leverancier houdt voordeel zelf)</option>
+                <option value="50">50% (helft korting in leaseprijs)</option>
+                <option value="70" selected>70% (typische markt)</option>
+                <option value="90">90% (sterk onderhandelde deal)</option>
+                <option value="100">100% (volledig in leaseprijs verrekend)</option>
+              </select>
+            </div>
+            <div class="var-field">
+              <label>Korting op laders-leaseprijs</label>
+              <select id="v_sub_lease_passthrough_charger">
+                <option value="0">0% (leverancier houdt voordeel zelf)</option>
+                <option value="50">50% (helft korting in leaseprijs)</option>
+                <option value="70" selected>70% (typische markt)</option>
+                <option value="90">90% (sterk onderhandelde deal)</option>
+                <option value="100">100% (volledig in leaseprijs verrekend)</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row">
+          <span>Investeringsaftrek trucks (na vpb)<br><small id="sub_calc_iva_trucks_formula" style="color:var(--text-muted); font-size:11px;">40% × €15.840.000 × 25%</small></span>
+          <span id="sub_calc_iva_trucks">€1.584.000</span>
+        </div>
+        <div class="sub-calc-result-row">
+          <span>Investeringsaftrek laadinfra (na vpb)<br><small id="sub_calc_iva_infra_formula" style="color:var(--text-muted); font-size:11px;">40% × €4.500.000 × 25%</small></span>
+          <span id="sub_calc_iva_infra">€450.000</span>
+        </div>
+        <div class="sub-calc-result-row">
+          <span>Vlaamse subsidie (GREEN / Strat. eco)<br><small id="sub_calc_vlaams_formula" style="color:var(--text-muted); font-size:11px;">geen geselecteerd</small></span>
+          <span id="sub_calc_vlaams">€0</span>
+        </div>
+        <div class="sub-calc-result-row">
+          <span>AFIF (publiek)<br><small id="sub_calc_afif_formula" style="color:var(--text-muted); font-size:11px;">geen publieke investering</small></span>
+          <span id="sub_calc_afif">€0</span>
+        </div>
+        <div class="sub-calc-result-row" id="sub_lease_effect_row" style="display:none"><span>− Verloren aan leasingmaatschappij</span><span id="sub_calc_lease_loss" class="stat-negative">−€0</span></div>
+        <div class="sub-calc-result-row" id="sub_lease_passthrough_row" style="display:none"><span>+ Korting op leaseprijs</span><span id="sub_calc_lease_gain" class="stat-positive">+€0</span></div>
+        <div class="sub-calc-result-row total"><strong>Totaal subsidie / fiscaal voordeel</strong><strong id="sub_calc_total">€2.034.000</strong></div>
+      </div>
+
+      <div class="sub-calc-note">
+        <strong>Volledige bronnen:</strong><br>
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/investeringsaftrek" target="_blank">VLAIO Investeringsaftrek 2026</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/laadpalen-steun" target="_blank">VLAIO Laadpalen steun</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/emissievrije-voertuigen-steun" target="_blank">VLAIO Emissievrije voertuigen</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/maatregelen/green-steun-voor-groener-en-efficienter-energiegebruik" target="_blank">VLAIO GREEN</a> ·
+        <a href="https://www.vlaio.be/nl/subsidies-financiering/subsidiedatabank/ecologiepremie" target="_blank">VLAIO Ecologiepremie+ (geschrapt)</a> ·
+        <a href="https://cinea.ec.europa.eu/funding-opportunities/calls-proposals/cef-transport-alternative-fuels-infrastructure-facility-afif-call-proposal_en" target="_blank">CINEA AFIF</a> ·
+        <a href="https://blv-abl.be/nl/over-leasing/soorten-leasing" target="_blank">Belgische Leasingvereniging (BLV)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 04: ACCIJNS ============ -->
+<section id="section-04">
+  <div class="section-num">04 — Accijns diesel</div>
+  <h2 class="section-title">Professionele dieselaccijns</h2>
+  <p class="section-lead">Federale terugbetaling van bijzondere accijns voor goederenvervoer MTM ≥ 7,5 ton.</p>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Accijns-terugbetaling toepassen</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-acc-mode="current">Optimaal</button>
+        <button type="button" data-acc-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>Pomp-prijs B2C</span><span id="pro_diesel_pump">€1,79 /L</span></div>
+      <div class="sub-calc-result-row"><span id="pro_diesel_accijns_label">Accijns-terugbetaling (2026)</span><span id="pro_diesel_accijns">−€0,1913 /L</span></div>
+      <div class="sub-calc-result-row total"><strong>Netto pro-prijs</strong><strong id="pro_diesel_net">€1,60 /L</strong></div>
+    </div>
+    <div class="sub-calc" id="acc_custom_calc">
+      <div class="sub-calc-note" id="pro_diesel_note_dynamic">Officieel afbouwpad (FOD Financiën / UPTR): 2024: €0,1935 → 2025: €0,1924 → 2026: €0,1913. Tempo −€0,0011/jaar.</div>
+      <div class="sub-calc-title">Afbouw-trajectorie</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Afbouwscenario</label>
+          <select id="v_acc_scenario">
+            <option value="none">Geen afbouw</option>
+            <option value="official" selected>Officieel tempo (−€0,0011/j)</option>
+            <option value="moderate">Versneld (−€0,01/j)</option>
+            <option value="aggressive">Agressief (−€0,025/j)</option>
+            <option value="phaseout5">Uitfasering 2031</option>
+            <option value="phaseout10">Uitfasering 2036</option>
+            <option value="target">Naar eindwaarde (interpoleer)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Startwaarde 2026</label>
+          <select id="v_acc_start">
+            <option value="0.1913" selected>€0,1913 (officieel)</option>
+            <option value="0.1924">€0,1924 (2025)</option>
+            <option value="0.1800">€0,1800</option>
+            <option value="0.1500">€0,1500</option>
+            <option value="0.1200">€0,1200</option>
+            <option value="0.1000">€0,1000</option>
+            <option value="0.0700">€0,0700</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Eindwaarde 2035 (target)</label>
+          <select id="v_acc_target">
+            <option value="0.00">€0,00 (volledig weg)</option>
+            <option value="0.05">€0,05 (gedeeltelijk)</option>
+            <option value="0.10" selected>€0,10 (geleidelijk)</option>
+            <option value="0.15">€0,15 (zwak)</option>
+            <option value="0.1913">€0,1913 (geen afbouw)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Aanvullende belastingen & kosten</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Carbon-tax surcharge (€/L)</label>
+          <select id="v_carbon_tax">
+            <option value="0" selected>€0 (geen surcharge)</option>
+            <option value="0.02">€0,02/L (CBAM-light)</option>
+            <option value="0.05">€0,05/L (gemiddeld EU)</option>
+            <option value="0.10">€0,10/L (zwaar)</option>
+            <option value="0.15">€0,15/L (extreme transitie)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Compliance & admin kost</label>
+          <select id="v_acc_admin">
+            <option value="0" selected>€0 (in-house)</option>
+            <option value="1500">€1.500/jaar (basis)</option>
+            <option value="3000">€3.000/jaar (uitgebreid)</option>
+            <option value="5000">€5.000/jaar (fiscalist + audit)</option>
+            <option value="8000">€8.000/jaar (multi-jurisdictie)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>BTW-status diesel</label>
+          <select id="v_btw_status">
+            <option value="full" selected>Volledig aftrekbaar (21%)</option>
+            <option value="partial">50% beperking (gemengd gebruik)</option>
+            <option value="none">Niet aftrekbaar</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row"><span>Startwaarde 2026</span><span id="acc_calc_start">€0,1913 /L</span></div>
+        <div class="sub-calc-result-row"><span>Eindjaar (jaar <span id="acc_calc_endyr">7</span>)</span><span id="acc_calc_end">€0,1836 /L</span></div>
+        <div class="sub-calc-result-row"><span>Carbon-tax effect</span><span id="acc_calc_carbon">€0,00 /L</span></div>
+        <div class="sub-calc-result-row"><span>Compliance jaarlijks</span><span id="acc_calc_admin">€0/jaar</span></div>
+        <div class="sub-calc-result-row total"><strong>Netto pro-prijs gem.</strong><strong id="acc_calc_avg">€1,60 /L</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 04: TOL ============ -->
+<section id="section-05">
+  <div class="section-num">05 — Tolkortingen e-truck</div>
+  <h2 class="section-title">Tol-besparing</h2>
+  <p class="section-lead">E-trucks krijgen substantiële kortingen op tol in BE/DE/NL. Standaard 2026: BE/DE 100%, NL 79%.</p>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Tolkorting toepassen</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-toll-mode="current">Optimaal</button>
+        <button type="button" data-toll-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>Gewogen korting (huidig)</span><strong id="toll_discount_avg">96%</strong></div>
+      <div class="sub-calc-result-row"><span>Diesel-tol per truck/jaar</span><span id="toll_diesel_year">€19.712</span></div>
+      <div class="sub-calc-result-row"><span>E-truck-tol per truck/jaar</span><span id="toll_etruck_year">€469</span></div>
+      <div class="sub-calc-result-row"><span>→ Besparing per truck/jaar</span><span id="toll_save_per_truck" class="stat-positive">€19.243</span></div>
+      <div class="sub-calc-result-row total"><strong>Cumulatief fleet (<span id="toll_period_trucks_2">80</span> × <span id="toll_period_years_2">7</span>j)</strong><strong id="toll_save_fleet_total">€10,8 mln</strong></div>
+    </div>
+    <div class="sub-calc-note" style="margin-top:6px;">
+      Deze tol-besparing is <strong>al verrekend</strong> in de hoofdcijfers (Netto, ROI, Payback) — niet apart bij te tellen.
+    </div>
+    <div class="sub-calc" id="toll_custom_calc">
+      <div class="sub-calc-warning">
+        <strong>Bronnen 2026:</strong> BE-Vl/Br 100% korting (Viapass, permanent) · DE 100% tot mid-2031 (Bundestag nov 2025) · NL 79% vanaf 01/07/2026 (€0,036 vs €0,175 - evofenedex).
+      </div>
+      <div class="sub-calc-title">Route-mix (% km per land)</div>
+      <div class="vars-grid cols-4">
+        <div class="var-field">
+          <label>🇧🇪 BE %</label>
+          <input type="number" id="v_route_be" min="0" max="100" step="5" value="75">
+        </div>
+        <div class="var-field">
+          <label>🇳🇱 NL %</label>
+          <input type="number" id="v_route_nl" min="0" max="100" step="5" value="15">
+        </div>
+        <div class="var-field">
+          <label>🇩🇪 DE %</label>
+          <input type="number" id="v_route_de" min="0" max="100" step="5" value="10">
+        </div>
+        <div class="var-field">
+          <label>🇫🇷 FR %</label>
+          <input type="number" id="v_route_fr" min="0" max="100" step="5" value="0">
+        </div>
+      </div>
+      <div class="route-validation" id="route_validation">
+        <span class="route-validation-label">Som route-mix:</span>
+        <span class="route-validation-value" id="route_sum">100%</span>
+        <span class="route-validation-hint" id="route_hint"></span>
+      </div>
+      <div class="sub-calc-title">Tolvrije wegen (% per land)</div>
+      <div class="vars-grid cols-4">
+        <div class="var-field">
+          <label>BE tolvrij</label>
+          <select id="v_tollfree_be">
+            <option value="0">0%</option>
+            <option value="10" selected>10%</option>
+            <option value="20">20%</option>
+            <option value="30">30%</option>
+            <option value="50">50%</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>NL tolvrij</label>
+          <select id="v_tollfree_nl">
+            <option value="0">0%</option>
+            <option value="15" selected>15%</option>
+            <option value="25">25%</option>
+            <option value="40">40%</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>DE tolvrij</label>
+          <select id="v_tollfree_de">
+            <option value="0">0%</option>
+            <option value="5" selected>5%</option>
+            <option value="15">15%</option>
+            <option value="30">30%</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>FR tolvrij</label>
+          <select id="v_tollfree_fr">
+            <option value="0" selected>0%</option>
+            <option value="20">20%</option>
+            <option value="50">50%</option>
+            <option value="100">100%</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Afbouw-scenario tolkorting per land</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>🇧🇪 BE afbouw</label>
+          <select id="v_tolldecay_be">
+            <option value="none" selected>Geen afbouw</option>
+            <option value="slow">Traag vanaf 2031</option>
+            <option value="moderate">→ 70% in 2040</option>
+            <option value="fast">→ 50% in 2035</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>🇩🇪 DE afbouw</label>
+          <select id="v_tolldecay_de">
+            <option value="none">Geen afbouw</option>
+            <option value="planned" selected>100% → 75% in 2031</option>
+            <option value="moderate">→ 50% in 2035</option>
+            <option value="fast">→ 25% in 2031</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>🇳🇱 NL afbouw</label>
+          <select id="v_tolldecay_nl">
+            <option value="none" selected>Geen afbouw</option>
+            <option value="slow">→ 60% in 2032</option>
+            <option value="moderate">→ 50% in 2032</option>
+            <option value="fast">→ 30% in 2030</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Tarieven en evolutie (advanced)</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>NL-tarief diesel (€/km)</label>
+          <select id="v_nl_rate">
+            <option value="0.155">€0,155 (lager scenario)</option>
+            <option value="0.175" selected>€0,175 (vrachtwagenheffing 2026)</option>
+            <option value="0.195">€0,195 (hoger)</option>
+            <option value="0.220">€0,220 (max scenario)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>BE-Wallonië aandeel</label>
+          <select id="v_wal_share">
+            <option value="0" selected>0% (alleen VL/Brussel)</option>
+            <option value="20">20% (gemengd)</option>
+            <option value="40">40% (zuid-gericht)</option>
+            <option value="60">60% (Wallonië-heavy)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>FR CO₂-tol start</label>
+          <select id="v_fr_start">
+            <option value="2031" selected>2031 (huidige verwacht)</option>
+            <option value="2033">2033 (vertraging)</option>
+            <option value="2035">2035 (laat)</option>
+            <option value="2040">2040 (zeer laat)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Inflatie tol-tarieven</label>
+          <select id="v_toll_inflation">
+            <option value="0" selected>0% (vast)</option>
+            <option value="2">2%/jaar (gematigd)</option>
+            <option value="3">3%/jaar (gemiddeld EU)</option>
+            <option value="5">5%/jaar (hoog)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row"><span>Gewogen diesel-tol</span><span id="toll_calc_d_rate">€0,1971/km</span></div>
+        <div class="sub-calc-result-row"><span>Gewogen e-tol (gem. <span id="toll_calc_yrs">7j</span>)</span><span id="toll_calc_e_rate">€0,0047/km</span></div>
+        <div class="sub-calc-result-row total"><strong>Tolkorting toegepast</strong><strong id="toll_calc_discount">96%</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 05: RESTWAARDE TRUCKS ============ -->
+<section id="section-06">
+  <div class="section-num">06 — Restwaarde trucks</div>
+  <h2 class="section-title">Tweedehands-waarde</h2>
+  <p class="section-lead">Heavy-duty trucks behouden waarde via export-markt. E-trucks degraderen sneller dan diesel (batterij-cyclus, technologie).</p>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Restwaarde e-truck en diesel</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-truckresid-mode="current">Optimaal</button>
+        <button type="button" data-truckresid-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>E-truck na <span class="resid-years">7</span>j (Windrose R700)</span><span id="resid_e_summary">€53k (27%)</span></div>
+      <div class="sub-calc-result-row"><span>Diesel na <span class="resid-years">7</span>j</span><span id="resid_d_summary">€40k (33%)</span></div>
+      <div class="sub-calc-result-row total"><strong>Voordeel diesel-restwaarde</strong><strong id="resid_d_advantage">+6pp absoluut</strong></div>
+    </div>
+    <div class="sub-calc" id="truckresid_custom_calc">
+      <div class="sub-calc-note">Restwaarde wordt automatisch berekend op basis van km-gebruik, batterij-SOH, merk-premium en marktcurves.</div>
+      <div class="sub-calc-title">Basiscurves per voertuigtype</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label id="v_e_resid_label">Restwaarde e-truck (% van €198k bij 7j)</label>
+          <select id="v_e_resid_curve">
+            <option value="conservative" selected>15% — optimaal (laag risico: batterij-risico, zwakke 2e hands markt)</option>
+            <option value="standard">27% — marktcurve</option>
+            <option value="optimistic">38% — sterke e-export groei</option>
+            <option value="custom">Vaste waarde in euro — zelf instellen</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label id="v_d_resid_label">Restwaarde diesel (% van €120k bij 7j)</label>
+          <select id="v_d_resid_curve">
+            <option value="conservative" selected>22% — optimaal (laag risico: milieuzone-risico)</option>
+            <option value="standard">33% — export-markt</option>
+            <option value="optimistic">42% — sterke Afrika/Oost-Europa export</option>
+            <option value="custom">Vaste waarde in euro — zelf instellen</option>
+          </select>
+        </div>
+      </div>
+      <div class="vars-grid" id="custom_resid_inputs">
+        <div class="var-field" id="e_custom_field" style="display:none">
+          <label>Vaste restwaarde e-truck</label>
+          <select id="v_e_resid_fixed">
+            <option value="20000">€20k (10%)</option>
+            <option value="30000" selected>€30k (15% optimaal)</option>
+            <option value="40000">€40k (20%)</option>
+            <option value="53000">€53k (27%)</option>
+            <option value="70000">€70k (35%)</option>
+            <option value="90000">€90k (45%)</option>
+          </select>
+        </div>
+        <div class="var-field" id="d_custom_field" style="display:none">
+          <label>Vaste restwaarde diesel</label>
+          <select id="v_d_resid_fixed">
+            <option value="20000">€20k (17%)</option>
+            <option value="26000" selected>€26k (22% optimaal)</option>
+            <option value="30000">€30k (25%)</option>
+            <option value="40000">€40k (33%)</option>
+            <option value="55000">€55k (46%)</option>
+            <option value="70000">€70k (58%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">E-truck specifieke factoren</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Batterij SOH eindjaar</label>
+          <select id="v_battery_soh">
+            <option value="50">50% (zware degradatie, −10pp)</option>
+            <option value="65" selected>65% (optimaal — laag risico: gemiddeld, −5pp)</option>
+            <option value="75">75% (typisch LFP, 0)</option>
+            <option value="85">85% (licht gebruik, +5pp)</option>
+            <option value="92">92% (premium LFP, +10pp)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Merk-premium e-truck</label>
+          <select id="v_brand_premium">
+            <option value="-15">Chinese new entrant (−15pp)</option>
+            <option value="-5" selected>Mainstream EU (optimaal — laag risico, −5pp)</option>
+            <option value="0">Markt (0)</option>
+            <option value="5">Premium OEM (+5pp)</option>
+            <option value="10">Top-tier Volvo/Daimler (+10pp)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Export-markt sterkte</label>
+          <select id="v_export_strength">
+            <option value="-10" selected>Geen export (optimaal — laag risico: NL/BE only, −10pp)</option>
+            <option value="-3">EU-binnen alleen (−3pp)</option>
+            <option value="0">Maghreb + EU (0)</option>
+            <option value="5">Sterke Maghreb-vraag (+5pp)</option>
+            <option value="10">Premium Afrika-pijplijn (+10pp)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Mileage-stress factor</label>
+          <select id="v_mileage_stress">
+            <option value="8">Licht &lt;80k/jaar (+8pp)</option>
+            <option value="0" selected>100k/jaar (optimaal — matched aan input, 0)</option>
+            <option value="-5">Zwaar 130k (−5pp)</option>
+            <option value="-10">Extreem 160k+ (−10pp)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row"><span>E-truck restwaarde</span><span id="resid_e_detail">€53.460 (27%)</span></div>
+        <div class="sub-calc-result-row"><span>Diesel restwaarde</span><span id="resid_d_detail">€39.600 (33%)</span></div>
+        <div class="sub-calc-result-row total"><strong>Verschil per truck</strong><strong id="resid_diff_detail">+€13.860 voor e-truck</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 06: RESTWAARDE INFRA ============ -->
+<section>
+  <div class="section-num">07 — Restwaarde infrastructuur</div>
+  <h2 class="section-title">Aansluiting + cabine + civiel</h2>
+  <p class="section-lead">Netaansluiting (80%), transfocabine (75%) en civiele werken (75%) behouden substantiële waarde over 25-40 jaar levensduur.</p>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Restwaarde infrastructuur</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-infraresid-mode="current">Optimaal</button>
+        <button type="button" data-infraresid-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>Netto investering (na subsidies)</span><span id="callout_net_inline">€3,0 mln</span></div>
+      <div class="sub-calc-result-row"><span>− Restwaarde jaar <span id="infra_resid_year">7</span></span><span id="resid_infra_value" class="stat-positive">−€2,1 mln</span></div>
+      <div class="sub-calc-result-row" id="summary_lease_row" style="display:none"><span>+ Lader-lease cumulatief</span><span id="summary_lease_value">+€0</span></div>
+      <div class="sub-calc-result-row" id="summary_maint_row" style="display:none"><span>+ Lader-onderhoud cumulatief</span><span id="summary_maint_value">+€0</span></div>
+      <div class="sub-calc-result-row" id="summary_clawback_row" style="display:none"><span>+ Subsidie-clawback</span><span id="summary_clawback_value">+€0</span></div>
+      <div class="sub-calc-result-row total"><strong>Effectieve infra-kost (alles inbegrepen)</strong><strong id="callout_effective_inline">€0,9 mln</strong></div>
+    </div>
+    <div class="sub-calc" id="infraresid_custom_calc">
+      <div class="sub-calc-note">Percentages schaalbaar met looptijd: +15pp bij 4j, 0 bij 7j, −10pp bij 10j, −15pp bij 12j. Override per component mogelijk.</div>
+      <div class="sub-calc-title">Basis curve restwaarde</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Restwaarde infra bij 7j</label>
+          <select id="v_infra_resid_curve">
+            <option value="none">€0 — volledig afschrijven (meest conservatief)</option>
+            <option value="conservative" selected>€1,2 mln — optimaal (laag risico: hoogspanning 65%, cabine 60%)</option>
+            <option value="standard">€2,1 mln — marktcurve (hoogspanning 80%, cabine 75%, civiel 75%)</option>
+            <option value="optimistic">€2,4 mln — hoogspanning 90%, cabine 85%, civiel 85%</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Override per component (optioneel)</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Hoogspanningsaansluiting %</label>
+          <select id="v_resid_connect">
+            <option value="40">40% (zeer zwak)</option>
+            <option value="50">50% (zwakke markt)</option>
+            <option value="65" selected>65% (optimaal — laag risico)</option>
+            <option value="80">80% (marktcurve)</option>
+            <option value="90">90% (schaarse capaciteit)</option>
+            <option value="100">100% (volledig overdraagbaar)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Transfocabine %</label>
+          <select id="v_resid_cabine">
+            <option value="40">40% (oud, slechte staat)</option>
+            <option value="50">50%</option>
+            <option value="60" selected>60% (optimaal — laag risico)</option>
+            <option value="75">75% (marktcurve)</option>
+            <option value="85">85% (recent gebouwd)</option>
+            <option value="95">95% (premium)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Civiele werken %</label>
+          <select id="v_resid_civil">
+            <option value="30">30% (zwakke fundering)</option>
+            <option value="40">40% (beperkte overdracht)</option>
+            <option value="60" selected>60% (optimaal — laag risico)</option>
+            <option value="75">75% (marktcurve)</option>
+            <option value="85">85% (premium fundering)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Afbouw-risico's en bijkomende kosten</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Decommissioning-kost</label>
+          <select id="v_decommission">
+            <option value="0" selected>€0 (optimaal — asset blijft staan)</option>
+            <option value="50000">€50k (lichte ontmanteling)</option>
+            <option value="150000">€150k (volledige sloop)</option>
+            <option value="300000">€300k (saneringsverplichting)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Capaciteitsrechten overdraagbaar</label>
+          <select id="v_capacity_rights">
+            <option value="full" selected>Volledig overdraagbaar (+0pp, optimaal)</option>
+            <option value="partial">Beperkt overdraagbaar (−10pp connect)</option>
+            <option value="none">Niet overdraagbaar (−25pp connect)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Subsidie-clawback regel</label>
+          <select id="v_clawback_rule">
+            <option value="5" selected>5j drempel (optimaal — EU baseline)</option>
+            <option value="3">3j drempel (mild)</option>
+            <option value="7">7j drempel (streng)</option>
+            <option value="0">Geen clawback (gunstig)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row"><span>Netto investering (na subsidies)</span><span id="resid_infra_net">€3,0 mln</span></div>
+        <div class="sub-calc-result-row"><span>− Bruto restwaarde components</span><span id="resid_infra_gross">−€2,09 mln</span></div>
+        <div class="sub-calc-result-row" id="custom_decommission_row" style="display:none"><span>+ Decommissioning-kost</span><span id="resid_decommission">+€0</span></div>
+        <div class="sub-calc-result-row" id="custom_lease_row" style="display:none"><span>+ Lader-lease cumulatief</span><span id="custom_lease_value">+€0</span></div>
+        <div class="sub-calc-result-row" id="custom_maint_row" style="display:none"><span>+ Lader-onderhoud cumulatief</span><span id="custom_maint_value">+€0</span></div>
+        <div class="sub-calc-result-row" id="custom_clawback_row" style="display:none"><span>+ Subsidie-clawback (looptijd &lt; drempel)</span><span id="resid_clawback_show">+€0</span></div>
+        <div class="sub-calc-result-row total"><strong>Effectieve infra-kost (alles inbegrepen)</strong><strong id="resid_infra_effective">€0,91 mln</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 07: RESTWAARDE LADERS ============ -->
+<section id="section_charger_residual">
+  <div class="section-num">08 — Restwaarde laders</div>
+  <h2 class="section-title">Tweedehands-laders</h2>
+  <p class="section-lead">Laders degraderen sneller dan netaansluiting wegens MCS-technologiecyclus en vermogenselektronica-slijtage.</p>
+
+  <div class="calc-block">
+    <div class="calc-block-header">
+      <span class="calc-block-title">Restwaarde laders</span>
+      <div class="mode-toggle">
+        <button type="button" class="active" data-charger-resid-mode="current">Optimaal</button>
+        <button type="button" data-charger-resid-mode="custom">Bereken zelf</button>
+      </div>
+    </div>
+    <div class="calc-summary">
+      <div class="sub-calc-result-row"><span>Lader-investering bruto</span><span id="charger_gross_summary">€1,80 mln</span></div>
+      <div class="sub-calc-result-row"><span>Restwaarde jaar <span class="resid-years">7</span> (30%)</span><span id="charger_resid_summary" class="stat-positive">−€540k</span></div>
+      <div class="sub-calc-result-row total"><strong>Netto charger-kost</strong><strong id="charger_net_summary">€1,26 mln</strong></div>
+    </div>
+    <div class="sub-calc" id="chargerresid_custom_calc">
+      <div class="sub-calc-note">Per lader-type verschillen restwaardes: MCS 40%, Dual 30%, Single 25%, AC 20%. Pas aan voor merk + gebruiksintensiteit + financiering.</div>
+      <div class="sub-calc-title">Restwaarde-curve en gebruiksprofiel</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label id="v_charger_resid_label">Restwaarde laders bij 7j (% van €1,8 mln)</label>
+          <select id="v_charger_resid_curve">
+            <option value="zero">€0 — volledig afschrijven (meest conservatief)</option>
+            <option value="conservative" selected>20% — optimaal (laag risico: slijtage, oude technologie)</option>
+            <option value="standard">30% — Dual 350 kW marktwaarde</option>
+            <option value="optimistic">35% — premium hardware</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>OEM-merk impact op restwaarde</label>
+          <select id="v_charger_brand">
+            <option value="-8">−8pp — SinExcel / Chinese merken</option>
+            <option value="-3">−3pp — Generieke EU</option>
+            <option value="0" selected>0 — ABB / Siemens / Kempower (optimaal — geen risico-toeslag)</option>
+            <option value="5">+5pp — Alpitronic / Premium</option>
+            <option value="8">Top-tier (Kempower modular, +8pp)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>Laadcycli per dag</label>
+          <select id="v_charger_cycles">
+            <option value="5">1× (zeer licht, +5pp)</option>
+            <option value="0" selected>2× (optimaal — typisch depot-profiel, 0)</option>
+            <option value="-5">3× (intensief, −5pp)</option>
+            <option value="-10">4×+ (24/7 zware slijtage, −10pp)</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Technologie-evolutie en hardware-pad</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>MCS upgrade-pad</label>
+          <select id="v_mcs_path">
+            <option value="10">Hardware-upgradeable (+10pp)</option>
+            <option value="0" selected>Niet relevant (optimaal — huidige aanname, 0)</option>
+            <option value="-8">Vervanging nodig bij MCS (−8pp)</option>
+            <option value="-15">Snel obsolete (−15pp)</option>
+          </select>
+        </div>
+        <div class="var-field">
+          <label>OEM-buyback garantie</label>
+          <select id="v_charger_buyback_oem">
+            <option value="0" selected>Geen garantie (optimaal — geen overcompensatie)</option>
+            <option value="15">15% garantie na 5j</option>
+            <option value="25">25% garantie na 5j</option>
+            <option value="35">35% premium garantie</option>
+          </select>
+        </div>
+      </div>
+      <div class="sub-calc-title">Onderhoud (alle financieringen)</div>
+      <div class="vars-grid">
+        <div class="var-field">
+          <label>Onderhoudscontract per unit/jaar</label>
+          <select id="v_charger_maint">
+            <option value="0">€0 / in-house</option>
+            <option value="3000" selected>€3k/jaar/unit (optimaal — basis SLA, dekt risico)</option>
+            <option value="6000">€6k/jaar/unit (24/7 SLA)</option>
+            <option value="10000">€10k/jaar/unit (premium, vervanging gratis)</option>
+          </select>
+        </div>
+      </div>
+      <div id="charger_lease_block" style="display:none">
+        <div class="sub-calc-title">Lease-parameters voor laders</div>
+        <div class="vars-grid">
+          <div class="var-field">
+            <label>Lease-factor / maand</label>
+            <select id="v_caas_monthly">
+              <option value="1.5">1,5%/mo (7j+, lange termijn)</option>
+              <option value="2.0" selected>2,0%/mo (optimaal — 5j marktconform)</option>
+              <option value="2.5">2,5%/mo (3j flexibel)</option>
+              <option value="3.0">3,0%/mo (premium)</option>
+            </select>
+          </div>
+          <div class="var-field">
+            <label>Lease-contractduur</label>
+            <select id="v_caas_term">
+              <option value="3">3 jaar</option>
+              <option value="5" selected>5 jaar</option>
+              <option value="7">7 jaar</option>
+              <option value="10">10 jaar</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="sub-calc-result">
+        <div class="sub-calc-result-row"><span>Bruto investering laders</span><span id="charger_gross_detail">€1,80 mln</span></div>
+        <div class="sub-calc-result-row"><span>Restwaarde % toegepast</span><span id="charger_resid_pct">30%</span></div>
+        <div class="sub-calc-result-row"><span>OEM-buyback override</span><span id="charger_buyback_show">Geen</span></div>
+        <div class="sub-calc-result-row" id="charger_lease_row" style="display:none"><span>Lease-kost cumulatief</span><span id="charger_lease_detail">€36.000/mnd</span></div>
+        <div class="sub-calc-result-row" id="charger_maint_row"><span>Onderhoud cumulatief</span><span id="charger_maint_detail">€0</span></div>
+        <div class="sub-calc-result-row total"><strong>Netto charger-kost</strong><strong id="charger_net_detail">€1,26 mln</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 08: INFRA TABLE ============ -->
+<section id="section-09">
+  <div class="section-num">09 — Infrastructuur breakdown</div>
+  <h2 class="section-title">Volledige infra-kost</h2>
+  <p class="section-lead">Specificatie van de €<span id="infra_title_amount">4,5</span> mln infra-investering verdeeld over componenten.</p>
+
+  <div class="infra-table">
+    <div class="infra-row header">
+      <span>Component</span>
+      <span class="value-fleet">Vloot (<span id="infra_truck_count">80</span>)</span>
+      <span class="value-truck">/ truck</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Hoogspanningsaansluiting Fluvius (36 kV)</span>
+      <span class="value-fleet" data-infra="connect-fleet">€800.000</span>
+      <span class="value-truck" data-infra="connect-truck">€10.000</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Transfocabine + schakelaars</span>
+      <span class="value-fleet" data-infra="cabine-fleet">€700.000</span>
+      <span class="value-truck" data-infra="cabine-truck">€8.750</span>
+    </div>
+    <div class="infra-row">
+      <span class="label"><span id="infra_charger_count">40</span>× dual 350 kW chargers</span>
+      <span class="value-fleet" data-infra="chargers-fleet">€1.800.000</span>
+      <span class="value-truck" data-infra="chargers-truck">€22.500</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Civiele werken <small>(fundering, bekabeling)</small></span>
+      <span class="value-fleet" data-infra="civil-fleet">€350.000</span>
+      <span class="value-truck" data-infra="civil-truck">€4.375</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Smart charging + EMS</span>
+      <span class="value-fleet" data-infra="ems-fleet">€250.000</span>
+      <span class="value-truck" data-infra="ems-truck">€3.125</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Engineering + vergunningen</span>
+      <span class="value-fleet" data-infra="eng-fleet">€250.000</span>
+      <span class="value-truck" data-infra="eng-truck">€3.125</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">Reserve</span>
+      <span class="value-fleet" data-infra="reserve-fleet">€350.000</span>
+      <span class="value-truck" data-infra="reserve-truck">€4.375</span>
+    </div>
+    <div class="infra-row subtotal">
+      <span class="label">TOTAAL bruto</span>
+      <span class="value-fleet" data-infra="gross-fleet">€4.500.000</span>
+      <span class="value-truck" data-infra="gross-truck">€56.250</span>
+    </div>
+    <div class="infra-row">
+      <span class="label">− Subsidies <small>(investeringsaftrek + AFIF indien publiek)</small></span>
+      <span class="value-fleet" data-infra="sub-fleet">€0</span>
+      <span class="value-truck" data-infra="sub-truck">−€18.750</span>
+    </div>
+    <div class="infra-row subtotal">
+      <span class="label">NETTO investering</span>
+      <span class="value-fleet" data-infra="net-fleet">€3.000.000</span>
+      <span class="value-truck" data-infra="net-truck">€37.500</span>
+    </div>
+    <div class="infra-row residual">
+      <span class="label">− Restwaarde infra (jaar <span class="resid-years">7</span>)</span>
+      <span class="value-fleet" data-infra="resid-fleet">−€2.092.541</span>
+      <span class="value-truck" data-infra="resid-truck">−€26.157</span>
+    </div>
+    <div class="infra-row clawback" id="infra_lease_row" style="display:none">
+      <span class="label">+ Lader-lease cumulatief <small>(over looptijd)</small></span>
+      <span class="value-fleet" data-infra="lease-fleet">+€0</span>
+      <span class="value-truck" data-infra="lease-truck">+€0</span>
+    </div>
+    <div class="infra-row clawback" id="infra_maint_row" style="display:none">
+      <span class="label">+ Lader-onderhoud cumulatief</span>
+      <span class="value-fleet" data-infra="maint-fleet">+€0</span>
+      <span class="value-truck" data-infra="maint-truck">+€0</span>
+    </div>
+    <div class="infra-row clawback" id="infra_clawback_row" style="display:none">
+      <span class="label">+ Subsidie-clawback <small>(looptijd &lt; drempel)</small></span>
+      <span class="value-fleet" data-infra="clawback-fleet">+€0</span>
+      <span class="value-truck" data-infra="clawback-truck">+€0</span>
+    </div>
+    <div class="infra-row effective">
+      <span class="label">EFFECTIEVE infra-kost <small>(over looptijd, alles inbegrepen)</small></span>
+      <span class="value-fleet" data-infra="effective-fleet">€907.460</span>
+      <span class="value-truck" data-infra="effective-truck">€11.343</span>
+    </div>
+  </div>
+
+  <div class="sub-calc-note" style="margin-top:8px;">
+    <strong>Onderste lijn = netto investering − restwaarde + lease + onderhoud + clawback.</strong> Dit is de échte infra-kost over de volledige looptijd, reeds verrekend in de netto-cijfers hierboven.
+  </div>
+
+  <div class="callout">
+    <strong>Netcongestie 2026:</strong> de Vlaamse wachtrij telt 650+ bedrijven (mrt 2026). Alinso 36 kV vermijdt de wachtrij door de bestaande hoogspanningsaansluiting te hergebruiken. Een nieuw hoogspanningsstation kost €2,4M maar heeft 5-7 jaar wachttijd — onverenigbaar met 2026-2027 uitrol.
+  </div>
+</section>
+
+<!-- ============ SECTION 09: AUDIT / FULL CALCULATION ============ -->
+<section>
+  <div class="section-num">10 — Audit & berekening</div>
+  <h2 class="section-title">Volledige berekening</h2>
+  <p class="section-lead">Alle inputs en tussenresultaten op één plek — voor controle en debugging. Update live met elke wijziging.</p>
+
+  <div class="audit-card">
+    <div class="audit-block">
+      <div class="audit-block-title">A · Inputs</div>
+      <div class="audit-rows" id="audit_inputs"></div>
+    </div>
+    <div class="audit-block">
+      <div class="audit-block-title">B · Energie & brandstof</div>
+      <div class="audit-rows" id="audit_energy"></div>
+    </div>
+    <div class="audit-block">
+      <div class="audit-block-title">C · Tol-berekening</div>
+      <div class="audit-rows" id="audit_toll"></div>
+    </div>
+    <details class="collapsible-block audit-collapsible" id="audit_truck_resid_block" data-state="active">
+      <summary class="collapsible-summary">
+        <span class="collapsible-icon">✓</span>
+        <span>
+          <span class="collapsible-title">D · Restwaarde trucks</span>
+          <span class="collapsible-status"></span>
+        </span>
+        <span class="collapsible-chevron">▾</span>
+      </summary>
+      <div class="collapsible-body">
+        <div class="collapsible-notice-slot"></div>
+        <div class="audit-rows" id="audit_truck_resid"></div>
+      </div>
+    </details>
+    <details class="collapsible-block audit-collapsible" id="audit_infra_block" data-state="active" open>
+      <summary class="collapsible-summary">
+        <span class="collapsible-icon">✓</span>
+        <span>
+          <span class="collapsible-title">E · Infrastructuur</span>
+          <span class="collapsible-status"></span>
+        </span>
+        <span class="collapsible-chevron">▾</span>
+      </summary>
+      <div class="collapsible-body">
+        <div class="collapsible-notice-slot"></div>
+        <div class="audit-rows" id="audit_infra"></div>
+      </div>
+    </details>
+    <div class="audit-block">
+      <div class="audit-block-title">F · TCO opbouw per truck</div>
+      <div class="audit-rows" id="audit_tco"></div>
+    </div>
+    <div class="audit-block">
+      <div class="audit-block-title">G · Fleet totalen & ROI</div>
+      <div class="audit-rows" id="audit_fleet"></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <strong>Hoe te lezen:</strong> elke rij toont één berekening met de exacte formule en getallen. Wijzigingen aan variabelen of "Bereken zelf"-velden propageren direct door alle blokken. Onverwacht resultaat? Loop blokken A→G af om te zien waar de afwijking zit.
+  </div>
+</section>
+
+<footer>
+  <p><em>Bronnen</em></p>
+  <p>Elia Hosting Capacity Map · Elia/Fluvius netcongestie dec 2025 + mrt 2026 · Synergrid · CREG · LevelTen Energy Q1 2026 PPA Index · Milence · Voltera CapEx benchmarks · ITLB · Hoogspanningsnet.com · Viapass · Toll Collect · evofenedex · FOD Financiën / UPTR · Opcharge / DLL / BNP Paribas Leasing</p>
+  <p style="margin-top:14px;" id="doc_footer">Beslissingsnota Zwijnaarde — 80 e-trucks elektrificatie</p>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+// ============ HELPERS ============
+const $ = id => document.getElementById(id);
+const setText = (id, val) => { const el = $(id); if (el) el.textContent = val; };
+const setHTML = (id, val) => { const el = $(id); if (el) el.innerHTML = val; };
+const setAll = (sel, val) => document.querySelectorAll(sel).forEach(el => el.textContent = val);
+const eurMln = n => (isFinite(n) && !isNaN(n)) ? '€' + (n / 1000000).toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + ' mln' : '—';
+const eurK = n => (isFinite(n) && !isNaN(n)) ? '€' + Math.round(n / 1000).toLocaleString('nl-BE') + 'k' : '—';
+
+// ============ STATE ============
+window._truckFin = 'buy';
+window._chargerFin = 'buy';
+window._accMode = 'current';
+window._tollMode = 'current';
+window._truckResidMode = 'current';
+window._infraResidMode = 'current';
+window._chargerResidMode = 'current';
+window._subMode = 'current';
+
+// ============ RESIDUAL VALUE CURVE for trucks ============
+function residualValueTruck(price, years, kmPerYear, isElectric, curve) {
+  const yBase = [0,1,2,3,4,5,6,7,8,9,10,11,12,15];
+  const pctElectric = [100,78,65,54,45,38,32,27,22,18,14,11,8,4];
+  const pctDiesel   = [100,82,70,60,52,45,39,33,28,24,20,17,14,8];
+  const pcts = isElectric ? pctElectric : pctDiesel;
+  function interp(y) {
+    if (y <= 0) return 100;
+    if (y >= yBase[yBase.length-1]) return pcts[pcts.length-1];
+    for (let i = 0; i < yBase.length-1; i++) {
+      if (y >= yBase[i] && y <= yBase[i+1]) {
+        const t = (y - yBase[i]) / (yBase[i+1] - yBase[i]);
+        return pcts[i] + (pcts[i+1] - pcts[i]) * t;
+      }
+    }
+    return pcts[pcts.length-1];
+  }
+  let pct = interp(years);
+  // Mileage adjustment: each 100k above default reduces residual by 4pp
+  pct += ((kmPerYear - 100000) / 100000) * -4;
+  if (curve === 'conservative') pct -= 5;
+  if (curve === 'optimistic') pct += 5;
+  pct = Math.max(3, Math.min(95, pct));
+  return price * pct / 100;
+}
+
+// ============ ACCIJNS scenarios ============
+function accijnsForYear(yearOffset, scenario, startValue) {
+  const start = startValue !== undefined ? startValue : 0.1913;
+  if (scenario === 'none') return start;
+  if (scenario === 'official') return Math.max(0, start - 0.0011 * yearOffset);
+  if (scenario === 'moderate') return Math.max(0, start - 0.01 * yearOffset);
+  if (scenario === 'aggressive') return Math.max(0, start - 0.025 * yearOffset);
+  if (scenario === 'phaseout5') return Math.max(0, start * (1 - yearOffset / 5));
+  if (scenario === 'phaseout10') return Math.max(0, start * (1 - yearOffset / 10));
+  return start;
+}
+
+// ============ TOLL discount per country per year ============
+function tollDiscountCountry(country, yearOffset, decay) {
+  const base = { be: 100, de: 100, nl: 79, fr: 0 };
+  const baseDisc = base[country] || 0;
+  if (decay === 'none') return baseDisc;
+  if (country === 'be') {
+    if (decay === 'slow') { if (yearOffset <= 4) return 100; return Math.max(50, 100 - (yearOffset-4)*3); }
+    if (decay === 'moderate') { if (yearOffset <= 4) return 100; return Math.max(70, 100 - (yearOffset-4)*3); }
+    if (decay === 'fast') { if (yearOffset <= 2) return 100; return Math.max(50, 100 - (yearOffset-2)*7.14); }
+  }
+  if (country === 'de') {
+    if (decay === 'planned') return yearOffset <= 4 ? 100 : 75;
+    if (decay === 'moderate') { if (yearOffset <= 4) return 100; return Math.max(50, 75 - (yearOffset-5)*6.25); }
+    if (decay === 'fast') return yearOffset <= 4 ? 100 : 25;
+  }
+  if (country === 'nl') {
+    if (decay === 'slow') { if (yearOffset <= 5) return 79; return Math.max(60, 79 - (yearOffset-5)*19); }
+    if (decay === 'moderate') { if (yearOffset <= 5) return 79; return Math.max(50, 79 - (yearOffset-5)*29); }
+    if (decay === 'fast') { if (yearOffset <= 3) return 79; return Math.max(30, 79 - (yearOffset-3)*49); }
+  }
+  return baseDisc;
+}
+
+// ============ INFRA RESIDUAL: looptijd adjustment ============
+function looptijdAdjustment(yrs) {
+  if (yrs <= 4) return 15;
+  if (yrs <= 7) return 15 - (yrs - 4) * 5;
+  if (yrs <= 10) return -(yrs - 7) * (10/3);
+  if (yrs <= 12) return -10 - (yrs - 10) * 2.5;
+  return -15 - (yrs - 12);
+}
+
+// ============ CONFIGS for connection + charger types ============
+// Cost values are baseline at 80 trucks. Scale dynamically with fleet size.
+const connectionTypes = {
+  public_only: { connect: 0,    cabine: 0,   civil: 0,   ems: 0,   eng: 0,   reserve: 0,   label: 'Geen depot-infra (publiek)' },
+  alinso:   { connect: 800,  cabine: 700, civil: 350, ems: 250, eng: 250, reserve: 350, label: 'Alinso 36 kV' },
+  flora:    { connect: 1150, cabine: 700, civil: 450, ems: 280, eng: 280, reserve: 400, label: 'Flora 150/36 kV' },
+  mv_own:   { connect: 450,  cabine: 650, civil: 300, ems: 220, eng: 280, reserve: 300, label: 'Eigen MV Fluvius' },
+  hs_new:   { connect: 2400, cabine: 850, civil: 600, ems: 300, eng: 400, reserve: 500, label: 'Nieuw hoogspanningsstation' },
+  shared:   { connect: 350,  cabine: 550, civil: 250, ems: 250, eng: 300, reserve: 300, label: 'Gedeeld buur' }
+};
+
+// Charger types now use ratio (chargers per truck) instead of fixed count
+const chargerTypes = {
+  none:       { unitCost: 0,     ratio: 0,    perUnitResid: 0,  label: 'Geen eigen laders' },
+  dual350:    { unitCost: 45000, ratio: 0.5,  perUnitResid: 30, label: 'Dual 350 kW DC' },
+  single400:  { unitCost: 38000, ratio: 1.0,  perUnitResid: 25, label: 'Single 400 kW' },
+  mcs1000:    { unitCost: 85000, ratio: 0.5,  perUnitResid: 40, label: 'MCS 1 MW dual' },
+  ac22:       { unitCost: 8000,  ratio: 1.0,  perUnitResid: 20, label: 'AC 22 kW' },
+  mixed:      { unitCost: 0,     ratio: 0.5,  perUnitResid: 33, label: 'Mix dual + MCS' }
+};
+
+// ============ SCALING FUNCTION for infrastructure ============
+// Each component has a different "fixed share" (rest scales linearly with trucks)
+// Higher fixed share = more scale economies (e.g. hoogspanningsaansluiting)
+const componentFixedShare = {
+  connect: 0.45,  // Hoogspanningsaansluiting: 45% fixed costs (cable, transformer minimum), 55% scales
+  cabine:  0.60,  // Transfocabine: mostly fixed (1 building regardless of size)
+  civil:   0.15,  // Civil works: scale with chargers (per-pad cost dominates)
+  ems:     0.70,  // EMS / software: mostly fixed (licenses, integration)
+  eng:     0.50,  // Engineering: half fixed, half variable
+  reserve: 0.40   // Reserve: proportional with fleet
+};
+// Scale a baseline value (calibrated at 80 trucks) to actual fleet size
+function scaleComponent(key, baseValue, trucks, chargerCount) {
+  const fixed = componentFixedShare[key] !== undefined ? componentFixedShare[key] : 0.5;
+  const variable = 1 - fixed;
+  // Civil works scale with charger count (chargers/40 = baseline ratio)
+  const scaleRatio = key === 'civil' ? (chargerCount / 40) : (trucks / 80);
+  return baseValue * (fixed + variable * scaleRatio);
+}
+
+// ============ MAIN CALC ============
+function calc() {
+  // Read inputs
+  const trucks = parseInt($('v_trucks').value);
+  const kmYear = parseInt($('v_km').value);
+  const years = parseInt($('v_years').value);
+  const ePrice = parseFloat($('v_e_price').value);
+  // Weekend-flex charging profile reduces effective €/kWh by shifting load to renewable peaks
+  const chargeProfile = $('v_charge_profile')?.value || 'none';
+  const chargeMultipliers = {
+    none: 1.00,         // alleen weeknacht
+    limited: 0.95,      // beperkt weekend off-peak (-5%)
+    standard: 0.87,     // PPA solar+wind Vr-Zo (-13%)
+    aggressive: 0.75    // volledige flex + spot (-25%)
+  };
+  const chargeMul = chargeMultipliers[chargeProfile] || 1.0;
+  const effectiveEPrice = ePrice * chargeMul;
+  // Render in callout (formatted nl-BE)
+  setText('effective_kwh', '€' + effectiveEPrice.toLocaleString('nl-BE', { minimumFractionDigits: 3, maximumFractionDigits: 3 }));
+  const dPrice = parseFloat($('v_d_price').value);
+  const kwhKm = parseFloat($('v_kwh_km').value);
+  const lKm = parseFloat($('v_l_km').value);
+  const eBuy = parseFloat($('v_e_buy').value);
+  const dBuy = parseFloat($('v_d_buy').value);
+  const gridType = $('v_grid_type').value;
+  const chargerType = $('v_charger_type').value;
+  const truckFin = window._truckFin;
+  const chargerFin = window._chargerFin;
+  // Subsidy is computed below — first we need infra component values
+
+  // Maintenance over looptijd (scale linear with years)
+  const eMaintTotal = 35000 * (years / 7);
+  const dMaintTotal = 70000 * (years / 7);
+
+  // Energy and fuel per truck per year (basis - may be adjusted by accijns calc later)
+  const kwhPerTruckYear = kmYear * kwhKm;
+  const lPerTruckYear = (kmYear / 100) * lKm;
+  const eFuelPerTruck = kwhPerTruckYear * effectiveEPrice;
+  let dFuelPerTruck = lPerTruckYear * dPrice;
+
+  // ============ INFRASTRUCTURE COMPUTATION (with scaling) ============
+  const conn = connectionTypes[gridType];
+  const ct = chargerTypes[chargerType];
+
+  // Charger count scales with truck count (preserving the per-type ratio)
+  let chargerHardwareCost, chargerCount;
+  if (chargerType === 'mixed') {
+    chargerCount = Math.max(2, Math.ceil(trucks * 0.5));
+    chargerHardwareCost = 1700000 * (trucks / 80); // scale baseline mix-bundle linearly
+  } else {
+    chargerCount = Math.max(2, Math.ceil(trucks * ct.ratio));
+    chargerHardwareCost = ct.unitCost * chargerCount;
+  }
+
+  // Apply scaling to connection components based on fleet size + charger count
+  const scaledConnect = scaleComponent('connect', conn.connect, trucks, chargerCount);
+  const scaledCabine  = scaleComponent('cabine',  conn.cabine,  trucks, chargerCount);
+  const scaledCivil   = scaleComponent('civil',   conn.civil,   trucks, chargerCount);
+  const scaledEms     = scaleComponent('ems',     conn.ems,     trucks, chargerCount);
+  const scaledEng     = scaleComponent('eng',     conn.eng,     trucks, chargerCount);
+  const scaledReserve = scaleComponent('reserve', conn.reserve, trucks, chargerCount);
+  const connSubtotal = (scaledConnect + scaledCabine + scaledCivil + scaledEms + scaledEng + scaledReserve) * 1000;
+
+  // Charger finance applied
+  let chargerLeaseCumul = 0, chargerCapex = chargerHardwareCost;
+  if (chargerFin === 'none') {
+    // Geen laders — geen capex, geen lease
+    chargerCapex = 0;
+    chargerLeaseCumul = 0;
+  } else if (chargerFin === 'lease') {
+    const leaseFactor = parseFloat($('v_caas_monthly').value) / 100;
+    const leaseTerm = parseInt($('v_caas_term').value);
+    const leaseYears = Math.min(leaseTerm, years);
+    chargerLeaseCumul = chargerHardwareCost * leaseFactor * 12 * leaseYears;
+    chargerCapex = 0;
+  } else if (chargerFin === 'buyback') {
+    chargerCapex = chargerHardwareCost * 1.05;
+  }
+
+  // Total infra cost before subsidies
+  const infraEffectiveGross = connSubtotal + chargerCapex;
+
+  // Component breakdown (using scaled values)
+  const infra = {
+    connect: scaledConnect * 1000,
+    cabine: scaledCabine * 1000,
+    chargers: chargerCapex,
+    civil: scaledCivil * 1000,
+    ems: scaledEms * 1000,
+    eng: scaledEng * 1000,
+    reserve: scaledReserve * 1000
+  };
+
+  // ============ SUBSIDY COMPUTATION (now infra is available) ============
+  let subsidy;
+  let subsidyBreakdown = { ivaT: 0, ivaI: 0, vlaams: 0, afif: 0, leaseLossT: 0, leaseLossI: 0, leaseGainT: 0, leaseGainI: 0 };
+  if (window._subMode === 'custom') {
+    // === A · Federale investeringsaftrek ===
+    const ivaPctT = parseFloat($('v_sub_iva_pct_trucks')?.value || 40) / 100;
+    const ivaPctI = parseFloat($('v_sub_iva_pct_infra')?.value || 40) / 100;
+    const vpb = parseFloat($('v_sub_vpb')?.value || 25) / 100;
+    const truckInvestment = eBuy * trucks;
+    const infraInvestmentForIva = Object.values(infra).reduce((a, b) => a + b, 0);
+    let ivaT = truckInvestment * ivaPctT * vpb;
+    let ivaI = infraInvestmentForIva * ivaPctI * vpb;
+    const maxAftrek = 60000000;
+    const maxIvaT = maxAftrek * vpb;
+    const maxIvaI = maxAftrek * vpb;
+    if (ivaT > maxIvaT) ivaT = maxIvaT;
+    if (ivaI > maxIvaI) ivaI = maxIvaI;
+
+    // === Lease-impact ===
+    const leasePassthroughTruck = parseFloat($('v_sub_lease_passthrough_truck')?.value || 70) / 100;
+    const leasePassthroughCharger = parseFloat($('v_sub_lease_passthrough_charger')?.value || 70) / 100;
+    if (truckFin === 'lease' && ivaT > 0) {
+      subsidyBreakdown.leaseLossT = ivaT * (1 - leasePassthroughTruck);
+      subsidyBreakdown.leaseGainT = ivaT * leasePassthroughTruck;
+      ivaT = ivaT * leasePassthroughTruck;
+    }
+    if (chargerFin === 'lease' && ivaI > 0) {
+      subsidyBreakdown.leaseLossI = ivaI * (1 - leasePassthroughCharger);
+      subsidyBreakdown.leaseGainI = ivaI * leasePassthroughCharger;
+      ivaI = ivaI * leasePassthroughCharger;
+    }
+    subsidyBreakdown.ivaT = ivaT;
+    subsidyBreakdown.ivaI = ivaI;
+
+    // === B · Vlaamse subsidie ===
+    const vlType = $('v_sub_vl_type')?.value || 'none';
+    const vlPct = parseFloat($('v_sub_vl_pct')?.value || 40) / 100;
+    const vlBasis = parseFloat($('v_sub_vl_basis')?.value || 2000000);
+    let vlaamsAmount = 0;
+    if (vlType === 'green') {
+      vlaamsAmount = Math.min(vlBasis * vlPct, 1000000);
+    } else if (vlType === 'strateco') {
+      vlaamsAmount = Math.min(vlBasis * vlPct, 500000);
+    }
+    const cumul = $('v_sub_cumul')?.value || 'allow';
+    if (cumul === 'exclusive' && vlaamsAmount > 0) {
+      subsidyBreakdown.ivaT = 0;
+      subsidyBreakdown.ivaI = 0;
+      subsidyBreakdown.vlaams = vlaamsAmount;
+    } else {
+      subsidyBreakdown.vlaams = vlaamsAmount;
+    }
+
+    // === C · AFIF ===
+    const afifInvest = parseFloat($('v_sub_afif_invest')?.value || 0);
+    const afifPct = parseFloat($('v_sub_afif_pct')?.value || 40) / 100;
+    subsidyBreakdown.afif = afifInvest * afifPct;
+
+    subsidy = subsidyBreakdown.ivaT + subsidyBreakdown.ivaI + subsidyBreakdown.vlaams + subsidyBreakdown.afif;
+  } else {
+    subsidy = parseFloat($('v_sub').value);
+  }
+
+  // Apply scaling & 40% cap (whether subsidy came from dropdown or custom builder)
+  const scaledSubsidy = subsidy * (trucks / 80);
+  const totalEligibleInvest = infraEffectiveGross + (eBuy * trucks);
+  const effectiveSubsidy = Math.min(scaledSubsidy, totalEligibleInvest * 0.4);
+  const netInfra = infraEffectiveGross - effectiveSubsidy;
+  const infraGross = infraEffectiveGross;
+  const subsidyRatio = infraGross > 0 ? effectiveSubsidy / infraGross : 0;
+
+  // Charger residual based on type and finance + curve choice + custom modifiers
+  const infraResidCurve = $('v_infra_resid_curve')?.value || 'standard';
+  const chargerResidCurve = $('v_charger_resid_curve')?.value || 'standard';
+
+  // Custom charger residual modifiers
+  let chargerBrandAdj = 0, chargerCyclesAdj = 0, mcsPathAdj = 0;
+  let chargerBuybackOEM = 0, chargerMaintPerUnit = 0;
+  if (window._chargerResidMode === 'custom') {
+    chargerBrandAdj = parseFloat($('v_charger_brand')?.value || 0);
+    chargerCyclesAdj = parseFloat($('v_charger_cycles')?.value || 0);
+    mcsPathAdj = parseFloat($('v_mcs_path')?.value || 0);
+    chargerBuybackOEM = parseFloat($('v_charger_buyback_oem')?.value || 0);
+    chargerMaintPerUnit = parseFloat($('v_charger_maint')?.value || 0);
+  }
+
+  const infraResidBase = {
+    connect: 80, cabine: 75, chargers: ct.perUnitResid,
+    civil: 75, ems: 15, eng: 35, reserve: 0
+  };
+
+  // Adjust charger residual: finance type first, then curve, then custom adjustments
+  if (chargerFin === 'none') infraResidBase.chargers = 0;
+  else if (chargerFin === 'lease') infraResidBase.chargers = 0;
+  else if (chargerFin === 'buyback') infraResidBase.chargers = 25;
+
+  if (chargerResidCurve === 'conservative') infraResidBase.chargers = Math.max(0, infraResidBase.chargers - 10);
+  else if (chargerResidCurve === 'optimistic') infraResidBase.chargers = Math.min(90, infraResidBase.chargers + 5);
+  else if (chargerResidCurve === 'zero') infraResidBase.chargers = 0;
+
+  // Apply custom modifiers (brand + cycles + MCS path)
+  if (chargerFin !== 'lease') {
+    infraResidBase.chargers = Math.max(0, Math.min(90, infraResidBase.chargers + chargerBrandAdj + chargerCyclesAdj + mcsPathAdj));
+  }
+
+  // OEM buyback overrides residual if set (replaces curve calc)
+  if (chargerBuybackOEM > 0 && chargerFin !== 'lease') {
+    infraResidBase.chargers = chargerBuybackOEM;
+  }
+
+  // Total maintenance cost over looptijd (additional to lease)
+  const chargerMaintTotal = chargerMaintPerUnit * chargerCount * years;
+
+  const looptijdAdj = looptijdAdjustment(years);
+  let curveAdj = 0;
+  if (infraResidCurve === 'conservative') curveAdj = -15;
+  else if (infraResidCurve === 'optimistic') curveAdj = 10;
+  else if (infraResidCurve === 'none') curveAdj = -200;
+
+  // Component-level overrides (only in custom infra-residual mode)
+  // In custom mode: all three component dropdowns hold explicit % (no "auto")
+  let overrideConnect = null, overrideCabine = null, overrideCivil = null;
+  let decommissionCost = 0, capacityRights = 'full', clawbackYears = 5;
+  if (window._infraResidMode === 'custom') {
+    overrideConnect = parseFloat($('v_resid_connect')?.value || 80);
+    overrideCabine = parseFloat($('v_resid_cabine')?.value || 75);
+    overrideCivil = parseFloat($('v_resid_civil')?.value || 75);
+    decommissionCost = parseFloat($('v_decommission')?.value || 0);
+    capacityRights = $('v_capacity_rights')?.value || 'full';
+    clawbackYears = parseInt($('v_clawback_rule')?.value || 5);
+  }
+  // Capacity rights adjustment on 'connect' component
+  let capacityAdj = 0;
+  if (capacityRights === 'partial') capacityAdj = -10;
+  else if (capacityRights === 'none') capacityAdj = -25;
+
+  let infraResidGross = 0;
+  // Special case: 'none' curve means full write-off — everything goes to 0%, no exceptions
+  if (infraResidCurve === 'none') {
+    infraResidGross = 0;
+  } else {
+    for (const k in infraResidBase) {
+      let pct;
+      if (k === 'chargers') {
+        // Charger residual: use base directly, only looptijdAdj
+        pct = Math.max(0, Math.min(90, infraResidBase[k] + looptijdAdj));
+      } else if (window._infraResidMode === 'custom') {
+        // In custom mode: use explicit % override when component has a dropdown
+        if (k === 'connect') pct = overrideConnect;
+        else if (k === 'cabine') pct = overrideCabine;
+        else if (k === 'civil') pct = overrideCivil;
+        else pct = Math.max(0, Math.min(90, infraResidBase[k] + looptijdAdj + curveAdj));
+        // Capacity rights only impacts connect
+        if (k === 'connect') pct = Math.max(0, Math.min(90, pct + capacityAdj));
+        pct = Math.max(0, Math.min(90, pct));
+      } else {
+        pct = Math.max(0, Math.min(90, infraResidBase[k] + looptijdAdj + curveAdj));
+      }
+      infraResidGross += infra[k] * pct / 100;
+    }
+  }
+  // Subtract decommissioning cost (asset removal expense)
+  infraResidGross = Math.max(0, infraResidGross - decommissionCost);
+  const infraResidNet = infraResidGross; // owner keeps full residual
+
+  // Subsidy clawback (configurable threshold)
+  let subsidyClawback = 0;
+  if (clawbackYears > 0 && years < clawbackYears && effectiveSubsidy > 0) {
+    subsidyClawback = effectiveSubsidy * (clawbackYears - years) / clawbackYears;
+  }
+
+  // Effective infra = net - residual + clawback + lease cumul
+  const infraEffectiveNet = netInfra - infraResidNet + subsidyClawback + chargerLeaseCumul + chargerMaintTotal;
+
+  // ============ ACCIJNS computation ============
+  const accScenario = window._accMode === 'custom' ? ($('v_acc_scenario')?.value || 'official') : 'official';
+  const accStart = window._accMode === 'custom' ? parseFloat($('v_acc_start')?.value || 0.1913) : 0.1913;
+  const accTarget = parseFloat($('v_acc_target')?.value || 0.10);
+  const carbonTax = window._accMode === 'custom' ? parseFloat($('v_carbon_tax')?.value || 0) : 0;
+  const accAdmin = window._accMode === 'custom' ? parseFloat($('v_acc_admin')?.value || 0) : 0;
+  const btwStatus = window._accMode === 'custom' ? ($('v_btw_status')?.value || 'full') : 'full';
+
+  // Special scenario: linear to target by 2035 (= 2026 + 9 years)
+  function accijnsCustomTarget(yo, start, target) {
+    const yearsToTarget = 9; // 2026 -> 2035
+    if (yo >= yearsToTarget) return target;
+    return start + (target - start) * (yo / yearsToTarget);
+  }
+
+  let accijnsAvg;
+  if (window._accMode === 'current') {
+    accijnsAvg = 0.1913;
+  } else {
+    let sum = 0;
+    for (let y = 0; y < years; y++) {
+      if (accScenario === 'target') sum += accijnsCustomTarget(y, accStart, accTarget);
+      else sum += accijnsForYear(y, accScenario, accStart);
+    }
+    accijnsAvg = sum / years;
+  }
+  const accijnsFinal = accScenario === 'target' ? accijnsCustomTarget(years - 1, accStart, accTarget) : accijnsForYear(years - 1, accScenario, accStart);
+
+  // Effective diesel price: pump price + carbon tax - accijns + admin (per year amortized over fuel)
+  // BTW status: 'full' = no extra cost (recoverable), 'partial' = 10.5% extra, 'none' = 21% extra on pump
+  let btwSurcharge = 0;
+  if (btwStatus === 'partial') btwSurcharge = (dPrice + accijnsAvg) * 0.105;
+  else if (btwStatus === 'none') btwSurcharge = (dPrice + accijnsAvg) * 0.21;
+
+  // Admin cost converted to per-liter equivalent (divided by yearly fuel consumption of full fleet)
+  const totalFleetLitersYr = lPerTruckYear * trucks;
+  const adminPerLiter = totalFleetLitersYr > 0 ? accAdmin / totalFleetLitersYr : 0;
+
+  // Apply accijns adjustments to diesel fuel cost
+  // dPrice was set as the "netto pro" price. In custom mode we re-derive it including:
+  //   + carbon tax surcharge (extra cost per liter)
+  //   + admin per liter (overhead spread across consumption)
+  //   + BTW non-recoverable portion
+  // (accijns refund is already implicit in dPrice as netto-pro)
+  if (window._accMode === 'custom') {
+    const adjustedDPrice = dPrice + carbonTax + adminPerLiter + (btwSurcharge / 1);
+    dFuelPerTruck = lPerTruckYear * adjustedDPrice;
+  }
+
+  // ============ TOLL computation ============
+  let routeBE = 75, routeNL = 15, routeDE = 10, routeFR = 0;
+  let tollfreeBE = 10, tollfreeNL = 15, tollfreeDE = 5, tollfreeFR = 0;
+  let decayBE = 'none', decayDE = 'planned', decayNL = 'none';
+  let nlRate = 0.175, walShare = 0, frStart = 2031, tollInflation = 0;
+  if (window._tollMode === 'custom') {
+    routeBE = parseFloat($('v_route_be')?.value || 75);
+    routeNL = parseFloat($('v_route_nl')?.value || 15);
+    routeDE = parseFloat($('v_route_de')?.value || 10);
+    routeFR = parseFloat($('v_route_fr')?.value || 0);
+    // Route-mix validation: must sum to 100%
+    const routeSum = routeBE + routeNL + routeDE + routeFR;
+    const routeBanner = $('route_validation');
+    const routeSumEl = $('route_sum');
+    const routeHintEl = $('route_hint');
+    if (routeBanner && routeSumEl) {
+      routeSumEl.textContent = routeSum + '%';
+      if (Math.abs(routeSum - 100) < 0.01) {
+        routeBanner.classList.remove('error');
+        if (routeHintEl) routeHintEl.textContent = '';
+      } else {
+        routeBanner.classList.add('error');
+        if (routeHintEl) {
+          const diff = routeSum - 100;
+          const action = diff > 0 ? `verlaag met ${diff}` : `verhoog met ${Math.abs(diff)}`;
+          routeHintEl.textContent = `⚠ Som moet 100% zijn — ${action} om correct te rekenen.`;
+        }
+      }
+    }
+    tollfreeBE = parseFloat($('v_tollfree_be')?.value || 10);
+    tollfreeNL = parseFloat($('v_tollfree_nl')?.value || 15);
+    tollfreeDE = parseFloat($('v_tollfree_de')?.value || 5);
+    tollfreeFR = parseFloat($('v_tollfree_fr')?.value || 0);
+    decayBE = $('v_tolldecay_be')?.value || 'none';
+    decayDE = $('v_tolldecay_de')?.value || 'planned';
+    decayNL = $('v_tolldecay_nl')?.value || 'none';
+    nlRate = parseFloat($('v_nl_rate')?.value || 0.175);
+    walShare = parseFloat($('v_wal_share')?.value || 0);
+    frStart = parseInt($('v_fr_start')?.value || 2031);
+    tollInflation = parseFloat($('v_toll_inflation')?.value || 0);
+  }
+
+  // Country rates — diesel-tol (BE blended from VL/Brussel + Wallonië if applicable)
+  // Wallonië has Euro VI tariff for non-ZEV (~€0,15/km lower for ZEV)
+  // FR: only active when frStart year is reached
+  const frYearOffset = Math.max(0, frStart - 2026);
+  const dRates = {
+    be: 0.21 * (1 - walShare/100) + 0.18 * (walShare/100), // VL/Br avg 0.21, Wal avg 0.18
+    nl: nlRate,
+    de: 0.348,
+    fr: 0.20
+  };
+
+  function avgTollDiscount(country, decay) {
+    if (window._tollMode === 'current') return tollDiscountCountry(country, 0, 'none');
+    let sum = 0;
+    for (let y = 0; y < years; y++) {
+      // FR special: 0% discount until frStart year
+      if (country === 'fr' && y < frYearOffset) { sum += 0; continue; }
+      sum += tollDiscountCountry(country, y, decay);
+    }
+    return sum / years;
+  }
+  const discBE = avgTollDiscount('be', decayBE);
+  const discDE = avgTollDiscount('de', decayDE);
+  const discNL = avgTollDiscount('nl', decayNL);
+  const discFR = 0; // FR untouched in current scenario
+
+  // Inflation factor: average over looptijd (inflation grows tarieven for both diesel and e-truck)
+  let inflationFactor = 1.0;
+  if (tollInflation > 0) {
+    // Avg compound factor over years (geometric mean approximation)
+    let sum = 0;
+    for (let y = 0; y < years; y++) sum += Math.pow(1 + tollInflation/100, y);
+    inflationFactor = sum / years;
+  }
+
+  let weightedDRate = 0, weightedERate = 0;
+  const countries = [
+    { k: 'be', share: routeBE, tf: tollfreeBE, disc: discBE },
+    { k: 'nl', share: routeNL, tf: tollfreeNL, disc: discNL },
+    { k: 'de', share: routeDE, tf: tollfreeDE, disc: discDE },
+    { k: 'fr', share: routeFR, tf: tollfreeFR, disc: discFR }
+  ];
+  countries.forEach(c => {
+    const tolledShare = c.share * (1 - c.tf / 100) / 100;
+    weightedDRate += tolledShare * dRates[c.k] * inflationFactor;
+    weightedERate += tolledShare * dRates[c.k] * inflationFactor * (1 - c.disc / 100);
+  });
+  const overallTollDiscount = weightedDRate > 0 ? (1 - weightedERate / weightedDRate) * 100 : 0;
+  const tollSavePerTruckYear = (weightedDRate - weightedERate) * kmYear;
+  const tollSaveFleetTotal = tollSavePerTruckYear * trucks * years;
+
+  // ============ TRUCK TCO COMPUTATION ============
+  // Truck residual values
+  const eCurve = $('v_e_resid_curve')?.value || 'standard';
+  const dCurve = $('v_d_resid_curve')?.value || 'standard';
+
+  // E-truck extra factors (only active in custom mode)
+  let batterySOHAdj = 0, brandPremium = 0, exportStrength = 0, mileageStress = 0;
+  if (window._truckResidMode === 'custom') {
+    // Battery SOH: 75% = 0 baseline, every 10pp deviation = ~5pp residual shift
+    const sohValue = parseFloat($('v_battery_soh')?.value || 75);
+    batterySOHAdj = ((sohValue - 75) / 10) * 5; // 50%->−12.5pp, 92%->+8.5pp
+    brandPremium = parseFloat($('v_brand_premium')?.value || 0);
+    exportStrength = parseFloat($('v_export_strength')?.value || 0);
+    mileageStress = parseFloat($('v_mileage_stress')?.value || 0);
+  }
+  // Combined adjustment (pp on top of curve)
+  const eExtraAdjPP = batterySOHAdj + brandPremium + exportStrength + mileageStress;
+
+  let eResid, dResid;
+  if (eCurve === 'custom' && window._truckResidMode === 'custom') {
+    eResid = parseFloat($('v_e_resid_fixed')?.value || 53000);
+  } else {
+    // Get base curve value, then apply extra adjustments
+    const baseEResid = residualValueTruck(eBuy, years, kmYear, true, eCurve);
+    const baseEPct = eBuy > 0 ? (baseEResid / eBuy) * 100 : 0;
+    const adjustedPct = Math.max(3, Math.min(95, baseEPct + eExtraAdjPP));
+    eResid = eBuy * adjustedPct / 100;
+  }
+  if (dCurve === 'custom' && window._truckResidMode === 'custom') {
+    dResid = parseFloat($('v_d_resid_fixed')?.value || 40000);
+  } else {
+    dResid = residualValueTruck(dBuy, years, kmYear, false, dCurve);
+  }
+
+  // Tol costs per truck per year (added to TCO, reflects real operational cost)
+  const eTollPerTruckYr = weightedERate * kmYear;
+  const dTollPerTruckYr = weightedDRate * kmYear;
+
+  // Truck finance methods (TCO includes fuel + toll + maintenance)
+  let tcoE, tcoD, truckPremium;
+  if (truckFin === 'lease') {
+    const eLease = 2800; // €/maand default
+    const dLease = 1800;
+    tcoE = (eLease * 12 * years) + (eFuelPerTruck * years) + (eTollPerTruckYr * years);
+    tcoD = (dLease * 12 * years) + (dFuelPerTruck * years) + (dTollPerTruckYr * years);
+    truckPremium = (eLease - dLease) * 12 * years * trucks;
+  } else if (truckFin === 'buyback') {
+    const premium = 0.05; // 5% premium for OEM buyback contract
+    const eBuyEff = eBuy * (1 + premium);
+    const dBuyEff = dBuy * (1 + premium);
+    const eBuybackPct = 0.20; // Windrose: 20% guaranteed buyback (officieel CEO Wen Han, 2026)
+    const dBuybackPct = 0.30; // Diesel: typical 30% OEM buyback
+    const eBuybackVal = eBuyEff * eBuybackPct;
+    const dBuybackVal = dBuyEff * dBuybackPct;
+    tcoE = eBuyEff * 1.05 + (eFuelPerTruck * years) + (eTollPerTruckYr * years) - eBuybackVal;
+    tcoD = dBuyEff * 1.05 + (dFuelPerTruck * years) + (dTollPerTruckYr * years) - dBuybackVal;
+    truckPremium = (eBuyEff - dBuyEff) * trucks;
+    eResid = eBuybackVal;
+    dResid = dBuybackVal;
+  } else { // buy
+    tcoE = eBuy + (eFuelPerTruck * years) + (eTollPerTruckYr * years) + eMaintTotal - eResid;
+    tcoD = dBuy + (dFuelPerTruck * years) + (dTollPerTruckYr * years) + dMaintTotal - dResid;
+    truckPremium = (eBuy - dBuy) * trucks;
+  }
+
+  const diffTruck = tcoD - tcoE;
+  const totalInvest = truckPremium + infraEffectiveNet;
+  const totalSavingsTrucks = diffTruck * trucks;
+  const totalNet = totalSavingsTrucks - infraEffectiveNet;
+  const roi = totalInvest > 0 ? (totalNet / totalInvest) * 100 : 0;
+
+  // Operational savings per year (fuel + maintenance + toll delta)
+  let opSavingsYear;
+  if (truckFin === 'lease') {
+    const eLease = 2800, dLease = 1800;
+    const leaseDeltaYr = (dLease - eLease) * 12;
+    opSavingsYear = ((dFuelPerTruck - eFuelPerTruck) + leaseDeltaYr + tollSavePerTruckYear) * trucks;
+  } else {
+    const dMaintYr = dMaintTotal / years;
+    const eMaintYr = eMaintTotal / years;
+    opSavingsYear = ((dFuelPerTruck + dMaintYr) - (eFuelPerTruck + eMaintYr) + tollSavePerTruckYear) * trucks;
+  }
+  const paybackYears = opSavingsYear > 0 ? totalInvest / opSavingsYear : Infinity;
+
+  const isNegative = totalNet < 0;
+
+  // ============ RENDER HERO + STICKY BAR ============
+  // First compute fixed metrics (used by both hero and sticky bar)
+  // TCO per truck per year INCLUDES infra share — this is the real per-truck operational cost,
+  // so vs Diesel scales correctly with fleet size (more trucks = lower infra share per truck)
+  const infraSharePerTruck = trucks > 0 ? infraEffectiveNet / trucks : 0;
+  const tcoEPerTruckYr = (tcoE + infraSharePerTruck) / years;
+  const tcoDPerTruckYr = tcoD / years;
+  const savingsPctVsDiesel = tcoDPerTruckYr > 0 ? ((tcoEPerTruckYr - tcoDPerTruckYr) / tcoDPerTruckYr) * 100 : 0;
+  // Compact format for mobile
+  const eurCompact = (n) => {
+    const abs = Math.abs(n);
+    const sign = n < 0 ? '−' : '';
+    if (abs >= 1000000) {
+      const m = abs / 1000000;
+      const formatted = m >= 100 ? Math.round(m) : m.toFixed(1).replace('.', ',');
+      return sign + '€' + formatted + 'M';
+    }
+    if (abs >= 1000) return sign + '€' + Math.round(abs / 1000) + 'k';
+    return sign + '€' + Math.round(abs);
+  };
+  const formatVs = (pct) => {
+    if (pct < 0) return '−' + Math.abs(Math.round(pct)) + '%';
+    return '+' + Math.round(pct) + '%';
+  };
+
+  // Hero rendering (6 stats) — with human-readable fallback for non-viable scenarios
+
+  // ============ DYNAMIC STATIC LABELS — update everything that references trucks/km/years ============
+  // This makes the whole site re-renderable at any fleet size (printable as PDF brochure)
+  const chargerLabelMap = {
+    dual350: 'dual 350 kW',
+    single400: 'single 400 kW',
+    mcs1000: 'MCS 1 MW',
+    ac22: 'AC 22 kW',
+    mixed: 'mix dual + MCS',
+    none: 'publiek laden'
+  };
+  const chargerLabel = chargerLabelMap[chargerType] || chargerType;
+  const eBuyK = Math.round(eBuy / 1000);
+  const dBuyK = Math.round(dBuy / 1000);
+  const chargerHwMln = (chargerHardwareCost / 1e6).toFixed(1).replace('.', ',');
+
+  setText('doc_h1', `${trucks} e-trucks elektrificatie`);
+  setText('doc_footer', `Beslissingsnota Zwijnaarde — ${trucks} e-trucks elektrificatie`);
+  setText('trucks_block_title', `🚛 Trucks (${trucks} × Windrose R700)`);
+  setText('chargers_block_title',
+    chargerType === 'none'
+      ? '⚡ Laders — extern (publiek)'
+      : `⚡ Laders (${chargerCount}× ${chargerLabel})`);
+  setText('v_sub_label', `Subsidies (@ ${trucks} trucks)`);
+  setText('v_e_resid_label', `Restwaarde e-truck (% van €${eBuyK}k bij ${years}j)`);
+  setText('v_d_resid_label', `Restwaarde diesel (% van €${dBuyK}k bij ${years}j)`);
+  setText('v_charger_resid_label',
+    chargerType === 'none'
+      ? `Restwaarde laders bij ${years}j — n.v.t.`
+      : `Restwaarde laders bij ${years}j (% van €${chargerHwMln} mln)`);
+
+  // Update browser title
+  document.title = `Beslissingsnota — ${trucks} e-trucks Zwijnaarde`;
+  const safeNum = (n) => isFinite(n) && !isNaN(n) ? n : null;
+  const renderNet = safeNum(totalNet);
+  const renderRoi = safeNum(roi);
+  const renderPerTruck = safeNum(totalNet / trucks);
+  const renderTco = safeNum(tcoEPerTruckYr);
+  const renderVs = safeNum(savingsPctVsDiesel);
+
+  setText('hero_net', renderNet !== null ? eurMln(renderNet) : 'In gelijke run');
+  setText('hero_net_sub', renderNet !== null ? `over ${years} jaar` : 'gelijk aan diesel-baseline');
+
+  if (!isFinite(paybackYears)) {
+    setText('hero_payback', 'Direct');
+    setText('hero_payback_sub', 'geen meerinvestering');
+  } else if (paybackYears > years * 3) {
+    setText('hero_payback', '> ' + (years * 3) + 'j');
+    setText('hero_payback_sub', 'buiten looptijd');
+  } else {
+    setText('hero_payback', paybackYears.toFixed(1).replace('.', ',') + 'j');
+    setText('hero_payback_sub', 'operationele besparingen');
+  }
+
+  setText('hero_roi', renderRoi !== null ? Math.round(renderRoi) + '%' : 'Break-even');
+  setText('hero_roi_sub', renderRoi !== null ? 'op ' + eurMln(totalInvest) + ' investering' : 'gelijke kosten als diesel');
+  setText('hero_per_truck', renderPerTruck !== null ? eurK(renderPerTruck) : 'Vergelijkbaar');
+  setText('hero_per_truck_sub', renderPerTruck !== null ? `netto over ${years}j` : 'met diesel-vloot');
+  setText('hero_tco', renderTco !== null ? eurK(renderTco) : '—');
+  setText('hero_tco_sub', 'fuel+tol+maint+infra');
+  setText('hero_vs_diesel', renderVs !== null ? formatVs(renderVs) : 'Gelijk');
+  setText('hero_vs_diesel_sub', renderVs !== null ? 'TCO-vergelijking' : 'aan diesel');
+  setText('hero_vs_diesel_sub', 'TCO-vergelijking');
+
+  // Sticky summary bar (compact)
+  setText('sum_net', eurCompact(totalNet));
+  const sumPayback = isFinite(paybackYears) && paybackYears > 0
+    ? (paybackYears > years * 3 ? '> ' + (years * 3) + 'j' : paybackYears.toFixed(1).replace('.', ',') + 'j')
+    : 'Direct';
+  setText('sum_payback', sumPayback);
+  setText('sum_roi', isFinite(roi) ? Math.round(roi) + '%' : '—');
+  setText('sum_tco', isFinite(tcoEPerTruckYr) ? eurCompact(tcoEPerTruckYr) : '—');
+  const sumVs = $('sum_vs_diesel');
+  if (sumVs) {
+    sumVs.textContent = isFinite(savingsPctVsDiesel) ? formatVs(savingsPctVsDiesel) : 'Gelijk';
+    sumVs.className = savingsPctVsDiesel < 0 ? 'summary-value pos' : 'summary-value neg';
+  }
+  const sumNet = $('sum_net');
+  if (sumNet) sumNet.className = totalNet < 0 ? 'summary-value neg' : 'summary-value';
+
+  // Result banner — three states: positive, negative, near-break-even
+  const banner = $('result_banner');
+  if (isNegative) {
+    if (banner) banner.classList.add('negative');
+    setText('result_label', 'Conclusie — diesel komt beter uit');
+    setHTML('result_text', `Bij deze instellingen kost elektrisch <strong>€${Math.abs(totalNet / 1000000).toFixed(1).replace('.', ',')} mln</strong> méér dan diesel over ${years} jaar. Pas variabelen aan voor break-even, of kies een andere strategie hierboven.`);
+  } else if (!isFinite(totalNet) || isNaN(totalNet) || Math.abs(totalNet) < 100000) {
+    if (banner) banner.classList.remove('negative');
+    setText('result_label', 'Conclusie — vergelijkbaar met diesel');
+    setHTML('result_text', `Bij deze instellingen is het netto kostenplaatje van elektrisch <strong>nagenoeg gelijk</strong> aan diesel over ${years} jaar. Voordelen zoals duurzaamheid, geluidsemissie en toekomstbestendigheid wegen op tegen de meerinvestering. Inclusief <strong>€${(tollSaveFleetTotal / 1e6).toFixed(1).replace('.', ',')} mln</strong> tol-besparing.`);
+  } else {
+    if (banner) banner.classList.remove('negative');
+    setText('result_label', 'Conclusie — elektrisch is voordeliger');
+    const tollMln = (tollSaveFleetTotal / 1e6).toFixed(1).replace('.', ',');
+    const paybackTxt = isFinite(paybackYears) && paybackYears > 0
+      ? (paybackYears > years * 3 ? 'buiten de looptijd' : `<strong>${paybackYears.toFixed(1).replace('.', ',')} jaar</strong>`)
+      : '<strong>direct</strong>';
+    setHTML('result_text', `Elektrificatie levert <strong>${eurMln(totalNet)} netto voordeel</strong> over ${years} jaar (${eurK(totalNet / trucks)} per truck, ${Math.round(roi)}% ROI). Payback in ${paybackTxt}. Inclusief <strong>€${tollMln} mln</strong> tol-besparing.`);
+  }
+
+  // ============ RENDER FINANCE OPTION SUBS ============
+  setText('truck_buy_sub', `€${(eBuy/1000).toFixed(0)}k · restwaarde ${eurK(residualValueTruck(eBuy, years, kmYear, true, 'standard'))}`);
+  setText('truck_buyback_sub', `€${(eBuy*1.05/1000).toFixed(0)}k · garantie ${eurK(eBuy*1.05*0.25)}`);
+  setText('truck_lease_sub', `€2.800/mnd`);
+  setText('charger_buy_sub', `€${(ct.unitCost/1000).toFixed(0)}k · restwaarde ${ct.perUnitResid}%`);
+  setText('charger_buyback_sub', `€${(ct.unitCost*1.05/1000).toFixed(0)}k · garantie 25%`);
+  const leaseMonthly = ct.unitCost * 0.02;
+  setText('charger_lease_sub', `€${Math.round(leaseMonthly)}/mnd/unit`);
+
+  // ============ RENDER ACCIJNS PANEL ============
+  setText('pro_diesel_pump', `€${(dPrice + accijnsAvg).toLocaleString('nl-BE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} /L`);
+  setText('pro_diesel_accijns', `−€${accijnsAvg.toLocaleString('nl-BE', { minimumFractionDigits: 4, maximumFractionDigits: 4 })} /L`);
+  setText('pro_diesel_net', `€${dPrice.toLocaleString('nl-BE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} /L`);
+  if (window._accMode === 'current') {
+    setText('pro_diesel_accijns_label', 'Accijns-terugbetaling (2026 officieel)');
+    setHTML('pro_diesel_note_dynamic', `Officieel afbouwpad (FOD/UPTR): 2024: €0,1935 → 2025: €0,1924 → 2026: €0,1913. Tempo −€0,0011/jaar. Bij optimaal toepassen we 2026-tarief.`);
+  } else {
+    setText('pro_diesel_accijns_label', `Accijns gemiddeld over ${years}j (2026–${2025+years})`);
+    setHTML('pro_diesel_note_dynamic', `Aangepast: start €${accStart.toFixed(4)} → eind jaar ${years} (${2025+years}): €${accijnsFinal.toFixed(4)}. Gemiddeld: <strong>€${accijnsAvg.toFixed(4)}/L</strong>.`);
+    setText('acc_calc_start', `€${accStart.toLocaleString('nl-BE', { minimumFractionDigits: 4, maximumFractionDigits: 4 })} /L`);
+    setText('acc_calc_end', `€${accijnsFinal.toLocaleString('nl-BE', { minimumFractionDigits: 4, maximumFractionDigits: 4 })} /L`);
+    setText('acc_calc_avg', `€${accijnsAvg.toLocaleString('nl-BE', { minimumFractionDigits: 4, maximumFractionDigits: 4 })} /L`);
+    setText('acc_calc_endyr', `${years}`);
+  }
+
+  // ============ RENDER TOLL PANEL ============
+  setText('toll_discount_avg', `${Math.round(overallTollDiscount)}%`);
+  setText('toll_diesel_year', '€' + Math.round(weightedDRate * kmYear).toLocaleString('nl-BE'));
+  setText('toll_etruck_year', '€' + Math.round(weightedERate * kmYear).toLocaleString('nl-BE'));
+  setText('toll_save_fleet_total', eurMln(tollSaveFleetTotal));
+  setText('toll_period_years_2', `${years}`);
+  if (window._tollMode === 'custom') {
+    setText('toll_calc_d_rate', `€${weightedDRate.toFixed(4)}/km`);
+    setText('toll_calc_e_rate', `€${weightedERate.toFixed(4)}/km`);
+    setText('toll_calc_discount', `${Math.round(overallTollDiscount)}%`);
+    setText('toll_calc_yrs', `${years}j`);
+  }
+
+  // ============ RENDER TRUCK RESIDUAL PANEL ============
+  setAll('.resid-years', `${years}`);
+  const eResidPct = eBuy > 0 ? (eResid / eBuy * 100) : 0;
+  const dResidPct = dBuy > 0 ? (dResid / dBuy * 100) : 0;
+  setText('resid_e_summary', `${eurK(eResid)} (${eResidPct.toFixed(0)}%)`);
+  setText('resid_d_summary', `${eurK(dResid)} (${dResidPct.toFixed(0)}%)`);
+  setText('resid_d_advantage', `${(dResidPct - eResidPct).toFixed(0)}pp meer diesel`);
+  if (window._truckResidMode === 'custom') {
+    setText('resid_e_detail', `€${Math.round(eResid).toLocaleString('nl-BE')} (${eResidPct.toFixed(0)}%)`);
+    setText('resid_d_detail', `€${Math.round(dResid).toLocaleString('nl-BE')} (${dResidPct.toFixed(0)}%)`);
+    setText('resid_diff_detail', `${dResid > eResid ? '+' : ''}${eurK(dResid - eResid)} ${dResid > eResid ? 'voor diesel' : 'voor e-truck'}`);
+  }
+  // Show/hide custom field for trucks
+  const eCustomField = $('e_custom_field');
+  const dCustomField = $('d_custom_field');
+  if (eCustomField) eCustomField.style.display = (eCurve === 'custom' && window._truckResidMode === 'custom') ? '' : 'none';
+  if (dCustomField) dCustomField.style.display = (dCurve === 'custom' && window._truckResidMode === 'custom') ? '' : 'none';
+
+  // ============ RENDER INFRA RESIDUAL PANEL ============
+  // Standaard summary view
+  setText('callout_net_inline', eurMln(netInfra));
+  setText('resid_infra_value', '−' + eurMln(infraResidNet));
+  setText('callout_effective_inline', eurMln(infraEffectiveNet));
+  setText('infra_resid_year', `${years}`);
+
+  // Lease + maintenance + clawback rows in standaard summary
+  const sumLeaseRow = $('summary_lease_row');
+  const sumMaintRow = $('summary_maint_row');
+  const sumClawbackRow = $('summary_clawback_row');
+  if (sumLeaseRow) {
+    if (chargerLeaseCumul > 0) {
+      sumLeaseRow.style.display = '';
+      setText('summary_lease_value', '+' + eurMln(chargerLeaseCumul));
+    } else sumLeaseRow.style.display = 'none';
+  }
+  if (sumMaintRow) {
+    if (chargerMaintTotal > 0) {
+      sumMaintRow.style.display = '';
+      setText('summary_maint_value', '+' + eurMln(chargerMaintTotal));
+    } else sumMaintRow.style.display = 'none';
+  }
+  if (sumClawbackRow) {
+    if (subsidyClawback > 0) {
+      sumClawbackRow.style.display = '';
+      setText('summary_clawback_value', '+' + eurMln(subsidyClawback));
+    } else sumClawbackRow.style.display = 'none';
+  }
+
+  // Bereken-zelf detailed view
+  if (window._infraResidMode === 'custom') {
+    setText('resid_infra_net', eurMln(netInfra));
+    setText('resid_infra_gross', '−' + eurMln(infraResidGross));
+    setText('resid_infra_effective', eurMln(infraEffectiveNet));
+
+    const cDecomRow = $('custom_decommission_row');
+    if (cDecomRow) {
+      if (decommissionCost > 0) {
+        cDecomRow.style.display = '';
+        setText('resid_decommission', '+€' + Math.round(decommissionCost).toLocaleString('nl-BE'));
+      } else cDecomRow.style.display = 'none';
+    }
+    const cLeaseRow = $('custom_lease_row');
+    if (cLeaseRow) {
+      if (chargerLeaseCumul > 0) {
+        cLeaseRow.style.display = '';
+        setText('custom_lease_value', '+' + eurMln(chargerLeaseCumul));
+      } else cLeaseRow.style.display = 'none';
+    }
+    const cMaintRow = $('custom_maint_row');
+    if (cMaintRow) {
+      if (chargerMaintTotal > 0) {
+        cMaintRow.style.display = '';
+        setText('custom_maint_value', '+' + eurMln(chargerMaintTotal));
+      } else cMaintRow.style.display = 'none';
+    }
+    const cClawbackRow = $('custom_clawback_row');
+    if (cClawbackRow) {
+      if (subsidyClawback > 0) {
+        cClawbackRow.style.display = '';
+        setText('resid_clawback_show', '+' + eurMln(subsidyClawback));
+      } else cClawbackRow.style.display = 'none';
+    }
+  }
+
+  // ============ RENDER CHARGER RESIDUAL PANEL ============
+  const chargerGross = chargerCapex;
+  const chargerResidVal = chargerGross * (infraResidBase.chargers + (window._chargerResidMode === 'custom' ? looptijdAdj : 0)) / 100;
+  const chargerResidActual = chargerGross * Math.max(0, Math.min(90, infraResidBase.chargers + looptijdAdj)) / 100;
+  setText('charger_gross_summary', eurMln(chargerHardwareCost));
+  if (chargerFin === 'lease') {
+    setText('charger_resid_summary', `Geen (geleased)`);
+    setText('charger_net_summary', `+${eurMln(chargerLeaseCumul)} OpEx`);
+  } else {
+    setText('charger_resid_summary', '−' + eurK(chargerResidActual));
+    setText('charger_net_summary', eurMln(chargerHardwareCost - chargerResidActual));
+  }
+  if (window._chargerResidMode === 'custom') {
+    setText('charger_gross_detail', eurMln(chargerHardwareCost));
+    setText('charger_resid_pct', `${Math.max(0, Math.min(90, infraResidBase.chargers + looptijdAdj)).toFixed(0)}%`);
+    const leaseMonthlyAll = chargerHardwareCost * (parseFloat($('v_caas_monthly')?.value || 2.0) / 100);
+    setText('charger_lease_detail', `€${Math.round(leaseMonthlyAll).toLocaleString('nl-BE')}/mnd`);
+    setText('charger_net_detail', chargerFin === 'lease' ? '+' + eurMln(chargerLeaseCumul) + ' OpEx' : eurMln(chargerHardwareCost - chargerResidActual));
+  }
+
+  // ============ RENDER INFRA TABLE ============
+  const setInfraRow = (key, fleet) => {
+    const f = document.querySelector(`[data-infra="${key}-fleet"]`);
+    const t = document.querySelector(`[data-infra="${key}-truck"]`);
+    if (f) f.textContent = '€' + Math.round(fleet).toLocaleString('nl-BE');
+    if (t) t.textContent = '€' + Math.round(fleet / trucks).toLocaleString('nl-BE');
+  };
+  setInfraRow('connect', infra.connect);
+  setInfraRow('cabine', infra.cabine);
+  setInfraRow('chargers', infra.chargers);
+  setInfraRow('civil', infra.civil);
+  setInfraRow('ems', infra.ems);
+  setInfraRow('eng', infra.eng);
+  setInfraRow('reserve', infra.reserve);
+  setInfraRow('gross', infraGross);
+  setInfraRow('net', netInfra);
+
+  const subF = document.querySelector('[data-infra="sub-fleet"]');
+  const subT = document.querySelector('[data-infra="sub-truck"]');
+  if (subF) subF.textContent = '−€' + Math.round(effectiveSubsidy).toLocaleString('nl-BE');
+  if (subT) subT.textContent = '−€' + Math.round(effectiveSubsidy / trucks).toLocaleString('nl-BE');
+
+  const residF = document.querySelector('[data-infra="resid-fleet"]');
+  const residT = document.querySelector('[data-infra="resid-truck"]');
+  if (residF) residF.textContent = '−€' + Math.round(infraResidNet).toLocaleString('nl-BE');
+  if (residT) residT.textContent = '−€' + Math.round(infraResidNet / trucks).toLocaleString('nl-BE');
+
+  // Lader-lease cumulatief row (visible only when lease)
+  const leaseRow = $('infra_lease_row');
+  if (leaseRow) {
+    if (chargerLeaseCumul > 0) {
+      leaseRow.style.display = '';
+      const lF = document.querySelector('[data-infra="lease-fleet"]');
+      const lT = document.querySelector('[data-infra="lease-truck"]');
+      if (lF) lF.textContent = '+€' + Math.round(chargerLeaseCumul).toLocaleString('nl-BE');
+      if (lT) lT.textContent = '+€' + Math.round(chargerLeaseCumul / trucks).toLocaleString('nl-BE');
+    } else {
+      leaseRow.style.display = 'none';
+    }
+  }
+  // Lader-onderhoud cumulatief row (visible only when > 0)
+  const maintRow = $('infra_maint_row');
+  if (maintRow) {
+    if (chargerMaintTotal > 0) {
+      maintRow.style.display = '';
+      const mF = document.querySelector('[data-infra="maint-fleet"]');
+      const mT = document.querySelector('[data-infra="maint-truck"]');
+      if (mF) mF.textContent = '+€' + Math.round(chargerMaintTotal).toLocaleString('nl-BE');
+      if (mT) mT.textContent = '+€' + Math.round(chargerMaintTotal / trucks).toLocaleString('nl-BE');
+    } else {
+      maintRow.style.display = 'none';
+    }
+  }
+
+  const clawbackRow = $('infra_clawback_row');
+  if (clawbackRow) {
+    if (subsidyClawback > 0) {
+      clawbackRow.style.display = '';
+      const cF = document.querySelector('[data-infra="clawback-fleet"]');
+      const cT = document.querySelector('[data-infra="clawback-truck"]');
+      if (cF) cF.textContent = '+€' + Math.round(subsidyClawback).toLocaleString('nl-BE');
+      if (cT) cT.textContent = '+€' + Math.round(subsidyClawback / trucks).toLocaleString('nl-BE');
+    } else {
+      clawbackRow.style.display = 'none';
+    }
+  }
+
+  const effF = document.querySelector('[data-infra="effective-fleet"]');
+  const effT = document.querySelector('[data-infra="effective-truck"]');
+  if (effF) effF.textContent = '€' + Math.round(infraEffectiveNet).toLocaleString('nl-BE');
+  if (effT) effT.textContent = '€' + Math.round(infraEffectiveNet / trucks).toLocaleString('nl-BE');
+
+  setText('infra_truck_count', trucks);
+  setText('infra_charger_count', chargerCount);
+  setText('infra_title_amount', (infraGross / 1000000).toLocaleString('nl-BE', { minimumFractionDigits: 1, maximumFractionDigits: 1 }));
+
+  // ============ RENDER AUDIT SECTION ============
+  const eurFull = n => '€' + Math.round(n).toLocaleString('nl-BE');
+  const eurDec = (n, d=2) => '€' + n.toLocaleString('nl-BE', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const num = (n, d=2) => n.toLocaleString('nl-BE', { minimumFractionDigits: d, maximumFractionDigits: d });
+  const pct = n => num(n, 1) + '%';
+
+  // Helper to build audit rows
+  function auditRow(label, value, formula, opts={}) {
+    const cls = opts.total ? 'total' : opts.headline ? 'headline' : '';
+    const valCls = opts.pos ? 'pos' : opts.neg ? 'neg' : '';
+    const formulaHtml = formula ? `<span class="audit-formula">${formula}</span>` : '';
+    if (opts.linkTo) {
+      return `<div class="audit-row audit-link ${cls}" onclick="document.getElementById('${opts.linkTo}')?.scrollIntoView({behavior:'smooth',block:'start'})"><div class="audit-label">${label}<span class="audit-link-icon">↗</span>${formulaHtml}</div><div class="audit-value ${valCls}">${value}</div></div>`;
+    }
+    return `<div class="audit-row ${cls}"><div class="audit-label">${label}${formulaHtml}</div><div class="audit-value ${valCls}">${value}</div></div>`;
+  }
+
+  // ============ RENDER SUBSIDY PANEL ============
+  const subLabelMap = {
+    '0': 'Geen subsidie aanvragen',
+    '315000': 'Laders-lease (laders 70% korting via leverancier)',
+    '450000': 'Alleen laadinfra-aftrek (optimaal — laag risico)',
+    '1106000': 'Trucks-lease + laders-aankoop (70% korting)',
+    '1421000': 'Beide op lease (70% korting via leveranciers)',
+    '1556000': 'Trucks-lease + laders-aankoop',
+    '1895000': 'Trucks-aankoop + laders-lease',
+    '2030000': 'Trucks + laadinfra (beide aankoop, volle aftrek)',
+    '3500000': 'Max realistisch (combinatie)'
+  };
+  const subKey = String(parseFloat($('v_sub').value));
+  const subLabel = window._subMode === 'custom' ? 'Aangepaste combinatie' : (subLabelMap[subKey] || 'Aangepast');
+  setText('sub_scenario_label', subLabel);
+  setText('sub_total_summary', eurMln(subsidy));
+  setText('sub_scaled_summary', eurMln(scaledSubsidy));
+  setText('sub_effective_summary', eurMln(effectiveSubsidy));
+
+  // Lease impact note in standaard summary
+  const leaseImpactEl = $('sub_lease_impact');
+  if (leaseImpactEl) {
+    let impactText = '—';
+    if (truckFin === 'lease' && chargerFin === 'lease') {
+      impactText = 'Beide op lease (verlies + doorrekening)';
+    } else if (truckFin === 'lease') {
+      impactText = 'Trucks op lease (verlies + doorrekening)';
+    } else if (chargerFin === 'lease') {
+      impactText = 'Laders op lease (verlies + doorrekening)';
+    } else {
+      impactText = 'Aankoop → volle aftrek';
+    }
+    setText('sub_lease_impact', impactText);
+  }
+
+  // Custom mode detailed breakdown
+  if (window._subMode === 'custom') {
+    setText('sub_calc_iva_trucks', eurFull(subsidyBreakdown.ivaT));
+    setText('sub_calc_iva_infra', eurFull(subsidyBreakdown.ivaI));
+    setText('sub_calc_vlaams', eurFull(subsidyBreakdown.vlaams));
+    setText('sub_calc_afif', eurFull(subsidyBreakdown.afif));
+    setText('sub_calc_total', eurFull(subsidy));
+
+    // Formula breakdowns
+    const ivaPctT = parseFloat($('v_sub_iva_pct_trucks')?.value || 40);
+    const ivaPctI = parseFloat($('v_sub_iva_pct_infra')?.value || 40);
+    const vpb = parseFloat($('v_sub_vpb')?.value || 25);
+    const truckInv = eBuy * trucks;
+    const infraInvForIva = Object.values(infra).reduce((a, b) => a + b, 0);
+    setText('sub_calc_iva_trucks_formula', `${ivaPctT}% × ${eurFull(truckInv)} × ${vpb}% vpb`);
+    setText('sub_calc_iva_infra_formula', `${ivaPctI}% × ${eurFull(infraInvForIva)} × ${vpb}% vpb`);
+
+    const vlType = $('v_sub_vl_type')?.value || 'none';
+    const vlPct = parseFloat($('v_sub_vl_pct')?.value || 40);
+    const vlBasis = parseFloat($('v_sub_vl_basis')?.value || 2000000);
+    let vlFormula = 'geen geselecteerd';
+    if (vlType === 'green') vlFormula = `min(${vlPct}% × ${eurFull(vlBasis)}, €1 mln cap)`;
+    else if (vlType === 'strateco') vlFormula = `min(${vlPct}% × ${eurFull(vlBasis)}, €500k cap)`;
+    setText('sub_calc_vlaams_formula', vlFormula);
+
+    const afifInvest = parseFloat($('v_sub_afif_invest')?.value || 0);
+    const afifPct = parseFloat($('v_sub_afif_pct')?.value || 40);
+    setText('sub_calc_afif_formula', afifInvest === 0 ? 'geen publieke investering' : `${afifPct}% × ${eurFull(afifInvest)}`);
+
+    // Lease loss/gain rows (unchanged logic, same structure)
+    const totalLeaseLoss = subsidyBreakdown.leaseLossT + subsidyBreakdown.leaseLossI;
+    const totalLeaseGain = subsidyBreakdown.leaseGainT + subsidyBreakdown.leaseGainI;
+    const leaseEffectRow = $('sub_lease_effect_row');
+    const leasePassRow = $('sub_lease_passthrough_row');
+    if (leaseEffectRow) {
+      if (totalLeaseLoss > 0) {
+        leaseEffectRow.style.display = '';
+        setText('sub_calc_lease_loss', '−' + eurFull(totalLeaseLoss));
+      } else leaseEffectRow.style.display = 'none';
+    }
+    if (leasePassRow) {
+      if (totalLeaseGain > 0) {
+        leasePassRow.style.display = '';
+        setText('sub_calc_lease_gain', '+' + eurFull(totalLeaseGain));
+      } else leasePassRow.style.display = 'none';
+    }
+
+    const tInp = $('v_sub_lease_passthrough_truck');
+    const cInp = $('v_sub_lease_passthrough_charger');
+    if (tInp) tInp.disabled = !(truckFin === 'lease');
+    if (cInp) cInp.disabled = !(chargerFin === 'lease');
+  }
+
+  // === Block D (Lease-impact) collapsible state — runs in BOTH modes ===
+  // Block D is hidden in standaard mode (sub_custom_calc has display:none),
+  // but we keep its status text up-to-date so it's correct when user switches to custom.
+  {
+    const truckIsLease = (truckFin === 'lease');
+    const chargerIsLease = (chargerFin === 'lease');
+    const anyLease = truckIsLease || chargerIsLease;
+    const truckFinLabel = { buy: 'aankoop', buyback: 'buy-back', lease: 'lease' }[truckFin] || truckFin;
+    const chargerFinLabel = { buy: 'aankoop', buyback: 'buy-back', lease: 'lease', none: 'geen laders' }[chargerFin] || chargerFin;
+
+    if (!anyLease) {
+      const statusTxt = (truckFin === chargerFin)
+        ? `niet van toepassing (beide op ${truckFinLabel})`
+        : `niet van toepassing (trucks: ${truckFinLabel}, laders: ${chargerFinLabel})`;
+      setCollapsibleState(
+        'block_d_lease_impact', 'inactive',
+        'D · Lease-impact op investeringsaftrek',
+        statusTxt,
+        `<div class="collapsible-na-notice"><strong>Niet van toepassing</strong>Geen van beide assets staat op operationele lease. Bij <em>aankoop</em> en <em>buy-back</em> blijft uw bedrijf eigenaar en behoudt zij het volle investeringsaftrekrecht. Korting op leaseprijs speelt enkel bij operationele lease. Wijzig de financieringsvorm bovenaan naar <em>Op-lease</em> om dit blok te activeren.</div>`
+      );
+    } else if (truckIsLease && chargerIsLease) {
+      setCollapsibleState('block_d_lease_impact', 'warning',
+        'D · Lease-impact op investeringsaftrek',
+        'actief — beide op lease', '');
+    } else if (truckIsLease) {
+      setCollapsibleState('block_d_lease_impact', 'warning',
+        'D · Lease-impact op investeringsaftrek',
+        `actief — trucks op lease (laders: ${chargerFinLabel})`,
+        `<div class="collapsible-na-notice"><strong>Gedeeltelijk actief</strong>Alleen <em>trucks</em> staan op lease. De korting op laders-leaseprijs heeft geen effect zolang laders niet op operationele lease staan.</div>`);
+    } else {
+      setCollapsibleState('block_d_lease_impact', 'warning',
+        'D · Lease-impact op investeringsaftrek',
+        `actief — laders op lease (trucks: ${truckFinLabel})`,
+        `<div class="collapsible-na-notice"><strong>Gedeeltelijk actief</strong>Alleen <em>laders</em> staan op lease. De korting op truck-leaseprijs heeft geen effect zolang trucks niet op operationele lease staan.</div>`);
+    }
+  }
+
+  // Block A: Inputs
+  const labelGrid = connectionTypes[gridType]?.label || gridType;
+  const labelCharger = chargerTypes[chargerType]?.label || chargerType;
+  const labelTruckFin = { buy: 'Aankoop', buyback: 'Buy-back', lease: 'Op-lease' }[truckFin] || truckFin;
+  const labelChargerFin = { buy: 'Aankoop', buyback: 'Buy-back', lease: 'Laders-leasing' }[chargerFin] || chargerFin;
+  setHTML('audit_inputs', [
+    auditRow('Aantal trucks', trucks),
+    auditRow('Looptijd', years + ' jaar'),
+    auditRow('km per truck per jaar', kmYear.toLocaleString('nl-BE')),
+    auditRow('Truck-financiering', labelTruckFin),
+    auditRow('Lader-financiering', labelChargerFin),
+    auditRow('Aansluiting', labelGrid),
+    auditRow('Lader-type', labelCharger + ' (' + chargerCount + ' units)'),
+    auditRow('Subsidie (gekalibreerd @ 80 trucks)', eurFull(subsidy)),
+    auditRow('Subsidie geschaald', eurFull(scaledSubsidy), `${subsidy.toLocaleString('nl-BE')} × ${trucks}/80`),
+    auditRow('Subsidie effectief (na 40% cap)', eurFull(effectiveSubsidy), `min(geschaald, 40% × bruto)`)
+  ].join(''));
+
+  // Block B: Energy & fuel
+  const fuelMul = chargeMul;
+  setHTML('audit_energy', [
+    auditRow('kWh per truck per jaar', num(kwhPerTruckYear, 0) + ' kWh', `${kmYear.toLocaleString('nl-BE')} km × ${kwhKm} kWh/km`),
+    auditRow('L diesel per truck per jaar', num(lPerTruckYear, 0) + ' L', `${kmYear.toLocaleString('nl-BE')} km × ${lKm}/100 L/km`),
+    auditRow('€/kWh baseline (weeknacht)', eurDec(ePrice, 3)),
+    auditRow('Laad-profiel multiplier', '× ' + num(fuelMul, 2), chargeProfile),
+    auditRow('€/kWh effectief', eurDec(effectiveEPrice, 3), `${num(ePrice, 3)} × ${num(fuelMul, 2)}`, { headline: true }),
+    auditRow('€/L diesel (netto pro)', eurDec(dPrice, 2)),
+    auditRow('E-fuel kost per truck per jaar', eurFull(eFuelPerTruck), `${num(kwhPerTruckYear, 0)} × ${num(effectiveEPrice, 3)}`),
+    auditRow('D-fuel kost per truck per jaar', eurFull(dFuelPerTruck), `${num(lPerTruckYear, 0)} × ${num(dPrice, 2)}`)
+  ].join(''));
+
+  // Block C: Toll
+  setHTML('audit_toll', [
+    auditRow('Route BE/NL/DE/FR', `${routeBE}/${routeNL}/${routeDE}/${routeFR}%`),
+    auditRow('Tolvrij BE/NL/DE/FR', `${tollfreeBE}/${tollfreeNL}/${tollfreeDE}/${tollfreeFR}%`),
+    auditRow('Korting BE (gemiddeld)', pct(discBE)),
+    auditRow('Korting NL (gemiddeld)', pct(discNL)),
+    auditRow('Korting DE (gemiddeld)', pct(discDE)),
+    auditRow('Korting FR (gemiddeld)', pct(discFR)),
+    auditRow('Inflatie-factor (gem. tarief)', '× ' + num(inflationFactor, 3)),
+    auditRow('Gewogen diesel-tol €/km', eurDec(weightedDRate, 4) + '/km'),
+    auditRow('Gewogen e-truck-tol €/km', eurDec(weightedERate, 4) + '/km'),
+    auditRow('Gewogen tolkorting', pct(overallTollDiscount), null, { headline: true }),
+    auditRow('Tol-besparing per truck per jaar', eurFull(tollSavePerTruckYear), `(${num(weightedDRate, 4)} − ${num(weightedERate, 4)}) × ${kmYear.toLocaleString('nl-BE')}`),
+    auditRow('Tol-besparing fleet × looptijd', eurFull(tollSaveFleetTotal), `${eurFull(tollSavePerTruckYear)}/jr × ${trucks} × ${years}j`, { total: true })
+  ].join(''));
+
+  // Block D: Truck residual — use unified collapsible helper
+  if (truckFin === 'lease') {
+    setCollapsibleState('audit_truck_resid_block', 'inactive',
+      'D · Restwaarde trucks',
+      'niet van toepassing (trucks op lease)',
+      `<div class="collapsible-na-notice"><strong>Niet van toepassing bij leasing</strong>De lessor (leasingmaatschappij) blijft eigenaar van de trucks, dus de restwaarde komt niet ten goede aan de gebruiker. De TCO-berekening houdt enkel rekening met cumulatieve lease-betalingen. Wijzig truck-financiering naar <em>Aankoop</em> of <em>Buy-back</em> bovenaan om dit blok te activeren.</div>`
+    );
+    setHTML('audit_truck_resid', '');
+  } else if (truckFin === 'buyback') {
+    setCollapsibleState('audit_truck_resid_block', 'warning',
+      'D · Buy-back garantie trucks',
+      'buy-back contract actief', '');
+    setHTML('audit_truck_resid', [
+      auditRow('E-truck aankoopprijs (excl. 5% premium)', eurFull(eBuy)),
+      auditRow('E-truck OEM buy-back %', '20%', 'Windrose gegarandeerd', { headline: true }),
+      auditRow('E-truck buy-back waarde', eurFull(eResid), `20% × ${eurFull(eBuy * 1.05)}`, { headline: true }),
+      auditRow('Diesel aankoopprijs (excl. 5% premium)', eurFull(dBuy)),
+      auditRow('Diesel OEM buy-back %', '30%', 'typisch contract'),
+      auditRow('Diesel buy-back waarde', eurFull(dResid), `30% × ${eurFull(dBuy * 1.05)}`, { headline: true })
+    ].join(''));
+  } else {
+    setCollapsibleState('audit_truck_resid_block', 'active',
+      'D · Restwaarde trucks',
+      'aankoop — restwaarde van toepassing', '');
+    const eResidPctCalc = eBuy > 0 ? (eResid / eBuy * 100) : 0;
+    const dResidPctCalc = dBuy > 0 ? (dResid / dBuy * 100) : 0;
+    setHTML('audit_truck_resid', [
+      auditRow('E-truck aankoopprijs', eurFull(eBuy)),
+      auditRow('Diesel aankoopprijs', eurFull(dBuy)),
+      auditRow('E-truck restwaarde curve', eCurve),
+      auditRow('Diesel restwaarde curve', dCurve),
+      auditRow('Extra aanpassingen e-truck (pp)', num(eExtraAdjPP, 1) + 'pp', `batterij ${batterySOHAdj}+merk ${brandPremium}+export ${exportStrength}+mileage ${mileageStress}`),
+      auditRow('E-truck restwaarde', eurFull(eResid), `${num(eResidPctCalc, 1)}% × ${eurFull(eBuy)}`, { headline: true }),
+      auditRow('Diesel restwaarde', eurFull(dResid), `${num(dResidPctCalc, 1)}% × ${eurFull(dBuy)}`, { headline: true })
+    ].join(''));
+  }
+
+  // Block E: Infrastructure — collapsible with context-aware status
+  if (chargerFin === 'lease') {
+    setCollapsibleState('audit_infra_block', 'warning',
+      'E · Infrastructuur',
+      'laders op lease — alleen vaste infra blijft eigendom', '');
+  } else if (chargerFin === 'buyback') {
+    setCollapsibleState('audit_infra_block', 'warning',
+      'E · Infrastructuur',
+      'buy-back garantie laders', '');
+  } else {
+    setCollapsibleState('audit_infra_block', 'active',
+      'E · Infrastructuur',
+      'aankoop — volledige eigendom infra', '');
+  }
+  const infraRows = [
+    auditRow('Hoogspanningsaansluiting', eurFull(infra.connect)),
+    auditRow('Transfocabine', eurFull(infra.cabine)),
+    auditRow('Laders (' + chargerCount + ' × type)', chargerFin === 'lease' ? 'N.v.t. (lease)' : eurFull(infra.chargers)),
+    auditRow('Civiele werken', eurFull(infra.civil)),
+    auditRow('EMS + smart charging', eurFull(infra.ems)),
+    auditRow('Engineering + vergunningen', eurFull(infra.eng)),
+    auditRow('Reserve', eurFull(infra.reserve)),
+    auditRow('Bruto infra (na schaling)', eurFull(infraGross), 'sum components × scale factor', { total: true }),
+    auditRow('Subsidies effectief', '− ' + eurFull(effectiveSubsidy), null, { neg: true }),
+    auditRow('Netto investering', eurFull(netInfra), `bruto − subsidie`)
+  ];
+
+  // Restwaarde — only meaningful when charger is owned (buy) AND infra residual mode active
+  if (chargerFin === 'buy') {
+    infraRows.push(auditRow('Restwaarde infra (jaar ' + years + ')', '− ' + eurFull(infraResidNet), null, { neg: true }));
+  } else if (chargerFin === 'lease') {
+    infraRows.push(`<div class="audit-row"><div class="audit-label" style="font-style:italic; color: var(--text-muted);">Restwaarde laders: n.v.t. — lessor blijft eigenaar bij operationele lease.</div><div class="audit-value">—</div></div>`);
+    infraRows.push(auditRow('Lader-lease cumulatief', '+ ' + eurFull(chargerLeaseCumul)));
+    infraRows.push(auditRow('Lader-onderhoud cumulatief', '+ ' + eurFull(chargerMaintTotal)));
+  } else { // buyback
+    infraRows.push(auditRow('Lader buy-back garantie', '− ' + eurFull(infraResidNet), 'gegarandeerd door OEM', { neg: true }));
+  }
+  if (subsidyClawback > 0) {
+    infraRows.push(auditRow('Subsidie-clawback', '+ ' + eurFull(subsidyClawback)));
+  }
+  infraRows.push(auditRow('Effectieve infra-kost', eurFull(infraEffectiveNet), 'netto − restw + lease + onderh + clawback', { headline: true }));
+  setHTML('audit_infra', infraRows.join(''));
+
+  // Block F: TCO per truck — full breakdown with clickable links to relevant sections
+  // Compute sub-components for transparent buildup
+  const eFuelTotal = eFuelPerTruck * years;
+  const dFuelTotal = dFuelPerTruck * years;
+  const eTollTotal = eTollPerTruckYr * years;
+  const dTollTotal = dTollPerTruckYr * years;
+  const tcoRows = [];
+
+  if (truckFin === 'lease') {
+    // Lease components: lease payments + fuel + tol (no maintenance, no residual)
+    const eLeaseTotal = tcoE - eFuelTotal - eTollTotal;
+    const dLeaseTotal = tcoD - dFuelTotal - dTollTotal;
+    tcoRows.push(
+      auditRow('E-truck lease cumulatief', eurFull(eLeaseTotal), `€2.800/mnd × 12 × ${years}j`, { linkTo: 'section-01' }),
+      auditRow('E-truck brandstof cumulatief', eurFull(eFuelTotal), `€${Math.round(eFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-02' }),
+      auditRow('E-truck tol cumulatief', eurFull(eTollTotal), `€${Math.round(eTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('TCO e-truck totaal (' + years + 'j)', eurFull(tcoE), null, { headline: true })
+    );
+    tcoRows.push(
+      auditRow('Diesel lease cumulatief', eurFull(dLeaseTotal), null, { linkTo: 'section-01' }),
+      auditRow('Diesel brandstof cumulatief', eurFull(dFuelTotal), `€${Math.round(dFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-04' }),
+      auditRow('Diesel tol cumulatief', eurFull(dTollTotal), `€${Math.round(dTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('TCO diesel totaal (' + years + 'j)', eurFull(tcoD), null, { headline: true })
+    );
+  } else if (truckFin === 'buyback') {
+    tcoRows.push(
+      auditRow('E-truck aankoop + 5% premium', eurFull(eBuy * 1.05), `€${eBuy.toLocaleString('nl-BE')} × 1,05`, { linkTo: 'section-01' }),
+      auditRow('E-truck brandstof cumulatief', eurFull(eFuelTotal), `€${Math.round(eFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-02' }),
+      auditRow('E-truck tol cumulatief', eurFull(eTollTotal), `€${Math.round(eTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('− E-truck buy-back garantie', '− ' + eurFull(eResid), '20% gegarandeerd (Windrose)', { neg: true, linkTo: 'section-06' }),
+      auditRow('TCO e-truck totaal (' + years + 'j)', eurFull(tcoE), null, { headline: true })
+    );
+    tcoRows.push(
+      auditRow('Diesel aankoop + 5% premium', eurFull(dBuy * 1.05), `€${dBuy.toLocaleString('nl-BE')} × 1,05`, { linkTo: 'section-01' }),
+      auditRow('Diesel brandstof cumulatief', eurFull(dFuelTotal), `€${Math.round(dFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-04' }),
+      auditRow('Diesel tol cumulatief', eurFull(dTollTotal), `€${Math.round(dTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('− Diesel buy-back garantie', '− ' + eurFull(dResid), '30% typisch contract', { neg: true, linkTo: 'section-06' }),
+      auditRow('TCO diesel totaal (' + years + 'j)', eurFull(tcoD), null, { headline: true })
+    );
+  } else {
+    // Aankoop: full breakdown
+    tcoRows.push(
+      auditRow('E-truck aankoopprijs', eurFull(eBuy), 'Windrose R700', { linkTo: 'section-01' }),
+      auditRow('E-truck brandstof cumulatief', eurFull(eFuelTotal), `€${Math.round(eFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-02' }),
+      auditRow('E-truck tol cumulatief', eurFull(eTollTotal), `€${Math.round(eTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('E-truck onderhoud (' + years + 'j)', eurFull(eMaintTotal), `e-truck rate × ${years}j`),
+      auditRow('− E-truck restwaarde', '− ' + eurFull(eResid), `${(eResid/eBuy*100).toFixed(1)}% × €${eBuy.toLocaleString('nl-BE')}`, { neg: true, linkTo: 'section-06' }),
+      auditRow('TCO e-truck totaal (' + years + 'j)', eurFull(tcoE), null, { headline: true })
+    );
+    tcoRows.push(
+      auditRow('Diesel aankoopprijs', eurFull(dBuy), 'mainstream EU OEM', { linkTo: 'section-01' }),
+      auditRow('Diesel brandstof cumulatief', eurFull(dFuelTotal), `€${Math.round(dFuelPerTruck).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-04' }),
+      auditRow('Diesel tol cumulatief', eurFull(dTollTotal), `€${Math.round(dTollPerTruckYr).toLocaleString('nl-BE')}/jr × ${years}j`, { linkTo: 'section-05' }),
+      auditRow('Diesel onderhoud (' + years + 'j)', eurFull(dMaintTotal), `diesel rate × ${years}j`),
+      auditRow('− Diesel restwaarde', '− ' + eurFull(dResid), `${(dResid/dBuy*100).toFixed(1)}% × €${dBuy.toLocaleString('nl-BE')}`, { neg: true, linkTo: 'section-06' }),
+      auditRow('TCO diesel totaal (' + years + 'j)', eurFull(tcoD), null, { headline: true })
+    );
+  }
+
+  // Summary at bottom
+  tcoRows.push(
+    auditRow('Verschil per truck (' + years + 'j)', eurFull(diffTruck), 'TCO diesel − TCO e-truck', { total: true }),
+    auditRow('TCO e-truck per jaar', eurFull(tcoE / years), `€${Math.round(tcoE).toLocaleString('nl-BE')} / ${years}j`),
+    auditRow('Infra-share per truck per jaar', eurFull(infraSharePerTruck / years), `€${Math.round(infraEffectiveNet).toLocaleString('nl-BE')} / ${trucks} trucks / ${years}j`, { linkTo: 'section-09' }),
+    auditRow('Totaal €/truck/jaar (incl infra)', eurFull(tcoEPerTruckYr), null, { headline: true })
+  );
+
+  setHTML('audit_tco', tcoRows.join(''));
+
+  // Block G: Fleet totals
+  setHTML('audit_fleet', [
+    auditRow('Voordeel per truck × fleet', eurFull(totalSavingsTrucks), `${eurFull(diffTruck)} × ${trucks}`),
+    auditRow('− Effectieve infra-kost', '− ' + eurFull(infraEffectiveNet), null, { neg: true }),
+    auditRow('Netto voordeel totaal', eurFull(totalNet), 'voordeel trucks − infra', { headline: true }),
+    auditRow('Truck premium investering', eurFull(truckPremium), `(${eurFull(eBuy)} − ${eurFull(dBuy)}) × ${trucks}`),
+    auditRow('Totale investering', eurFull(totalInvest), 'truck premium + infra'),
+    auditRow('ROI', pct(roi), `netto / investering × 100`, { headline: true }),
+    auditRow('Operationele besparing per jaar', eurFull(opSavingsYear)),
+    auditRow('Payback', isFinite(paybackYears) ? num(paybackYears, 2) + ' jaar' : 'n.v.t.', `investering / op. besparing/jr`, { headline: true }),
+    auditRow('vs Diesel (TCO-vergelijking)', num(savingsPctVsDiesel, 1) + '%', `(tcoE/jr − tcoD/jr) / tcoD/jr`, { headline: true })
+  ].join(''));
+}
+
+// ============ EVENT HANDLERS ============
+// Main variable changes
+const mainInputs = ['v_trucks','v_km','v_years','v_e_price','v_charge_profile','v_d_price','v_kwh_km','v_l_km','v_e_buy','v_d_buy','v_grid_type','v_charger_type','v_sub','v_sub_iva_pct_trucks','v_sub_iva_pct_infra','v_sub_vpb','v_sub_vl_type','v_sub_vl_pct','v_sub_vl_basis','v_sub_cumul','v_sub_afif_invest','v_sub_afif_pct','v_sub_lease_passthrough_truck','v_sub_lease_passthrough_charger','v_e_resid_curve','v_d_resid_curve','v_e_resid_fixed','v_d_resid_fixed','v_infra_resid_curve','v_charger_resid_curve','v_caas_monthly','v_caas_term','v_acc_scenario','v_acc_start','v_route_be','v_route_nl','v_route_de','v_route_fr','v_tollfree_be','v_tollfree_nl','v_tollfree_de','v_tollfree_fr','v_tolldecay_be','v_tolldecay_de','v_tolldecay_nl','v_acc_target','v_carbon_tax','v_acc_admin','v_btw_status','v_nl_rate','v_wal_share','v_fr_start','v_toll_inflation','v_battery_soh','v_brand_premium','v_export_strength','v_mileage_stress','v_resid_connect','v_resid_cabine','v_resid_civil','v_decommission','v_capacity_rights','v_clawback_rule','v_charger_brand','v_charger_cycles','v_mcs_path','v_charger_buyback_oem','v_charger_maint'];
+mainInputs.forEach(id => {
+  const el = $(id);
+  if (el) {
+    el.addEventListener('change', calc);
+    el.addEventListener('input', calc);
+  }
+});
+
+// Subsidy dropdown: track user-driven changes vs auto-changes from finance toggle
+const subSelEl = $('v_sub');
+if (subSelEl) {
+  subSelEl.addEventListener('change', function() {
+    // If this change was triggered by updateFinanceVisibility, ignore
+    if (this.dataset.autoChange) {
+      delete this.dataset.autoChange;
+      return;
+    }
+    // Otherwise it's a user choice — lock auto-optimization
+    this.dataset.userSet = '1';
+  });
+}
+
+// When user changes truck or charger financing, reset collapsible userToggled flags
+// so auto-open/close resumes based on new context. This is the right UX: financing
+// is the dominant context, so its change should override any prior manual toggle.
+function resetCollapsibleUserToggles() {
+  document.querySelectorAll('details.collapsible-block').forEach(b => {
+    delete b.dataset.userToggled;
+  });
+}
+
+// ============ STRATEGY PRESETS ============
+// Each strategy is a complete set of input values + a description.
+// Switching strategies overrides ALL relevant inputs in one click.
+const strategyPresets = {
+  zekerheid: {
+    title: 'Max zekerheid',
+    heroTitle: 'Aankoop trucks + Aankoop laders + Alinso 36 kV (conservatief)',
+    explain: 'Conservatieve aannames met laag risico. Eigen depot-infrastructuur Alinso 36 kV (vermijdt Vlaamse netcongestie-wachtrij). Restwaardes pessimistisch (e-truck 15%, diesel 22%, infra €1,2 mln). Alleen laadinfra-aftrek aanvragen (€450k). Geen PPA-afhankelijkheid (weeknacht-only laden €0,22/kWh). Realistische verbruik 1,15 kWh/km. Geeft een <em>defensible baseline</em> waar je zelfs in pessimistische scenario\'s op uitkomt — geschikt voor stakeholders die garanties willen.',
+    inputs: {
+      v_grid_type: 'alinso',
+      v_charger_type: 'dual350',
+      v_sub: '450000',
+      v_e_price: '0.22',
+      v_charge_profile: 'none',
+      v_d_price: '0.95',
+      v_kwh_km: '1.15',
+      v_e_resid_curve: 'conservative',
+      v_d_resid_curve: 'conservative',
+      v_infra_resid_curve: 'conservative',
+      v_charger_resid_curve: 'conservative',
+      v_battery_soh: '65',
+      v_brand_premium: '-5',
+      v_export_strength: '-10',
+      v_mileage_stress: '0',
+      v_resid_connect: '65',
+      v_resid_cabine: '60',
+      v_resid_civil: '60',
+      v_charger_maint: '3000',
+      v_charger_brand: '0',
+      v_charger_cycles: '0',
+      v_mcs_path: '0',
+      v_charger_buyback_oem: '0'
+    },
+    finance: { truck: 'buy', charger: 'buy' }
+  },
+  besparing: {
+    title: 'Max besparing',
+    heroTitle: 'Aankoop trucks + Aankoop laders + Alinso 36 kV',
+    explain: 'Eigen depot-infrastructuur Alinso 36 kV met realistische marktcurves voor restwaardes (e-truck 27%, diesel 33%, infra €2,1 mln). Volle investeringsaftrek 40% op trucks én laadinfra (€2,03 mln). Weekend-flex laden met PPA voor goedkoper grid-tarief (€0,18/kWh × 0,87 = €0,157). Officieel Windrose verbruik 1,05 kWh/km. Geeft het hoogste netto voordeel maar vereist actieve uitvoering (PPA-contract, subsidie-aanvragen, batterij-onderhoudscontract).',
+    inputs: {
+      v_grid_type: 'alinso',
+      v_charger_type: 'dual350',
+      v_sub: '2030000',
+      v_e_price: '0.18',
+      v_charge_profile: 'standard',
+      v_d_price: '1.60',
+      v_kwh_km: '1.05',
+      v_e_resid_curve: 'standard',
+      v_d_resid_curve: 'standard',
+      v_infra_resid_curve: 'standard',
+      v_charger_resid_curve: 'standard',
+      v_battery_soh: '75',
+      v_brand_premium: '0',
+      v_export_strength: '0',
+      v_mileage_stress: '0',
+      v_resid_connect: '80',
+      v_resid_cabine: '75',
+      v_resid_civil: '75',
+      v_charger_maint: '0',
+      v_charger_brand: '0',
+      v_charger_cycles: '0',
+      v_mcs_path: '0',
+      v_charger_buyback_oem: '0'
+    },
+    finance: { truck: 'buy', charger: 'buy' }
+  },
+  zoals_diesel: {
+    title: 'Zoals diesel',
+    heroTitle: 'Aankoop e-trucks + extern laden bij Milence + leveranciers',
+    explain: 'Operationele continuïteit zonder capex-spike en <em>zonder depot-infrastructuur</em>. Trucks <em>op-lease</em> (€2.800/mnd, vergelijkbaar met diesel-financiering). <em>Geen eigen laadinfra</em> — uitsluitend publiek laden bij Milence Gent corporate (€0,40/kWh) en bij leveranciers met eigen depot-laders (gemiddeld €0,40/kWh blended). Geen netcongestie-wachtrij, geen vergunningstraject, geen €4,5 mln depot-capex, geen €2,03 mln subsidie-aanvraag. Trade-off: hoger €/kWh tarief (€0,40 publiek vs €0,22 depot) maar geen infrastructuur-investering en operationele continuïteit met huidige diesel-cashflow profiel.',
+    inputs: {
+      v_grid_type: 'public_only',
+      v_charger_type: 'none',
+      v_sub: '0',
+      v_e_price: '0.40',
+      v_charge_profile: 'none',
+      v_d_price: '0.95',
+      v_kwh_km: '1.15',
+      v_e_resid_curve: 'conservative',
+      v_d_resid_curve: 'conservative',
+      v_infra_resid_curve: 'none',
+      v_charger_resid_curve: 'zero',
+      v_battery_soh: '65',
+      v_brand_premium: '-5',
+      v_export_strength: '-10',
+      v_mileage_stress: '0',
+      v_resid_connect: '65',
+      v_resid_cabine: '60',
+      v_resid_civil: '60',
+      v_charger_maint: '0',
+      v_charger_brand: '0',
+      v_charger_cycles: '0',
+      v_mcs_path: '0',
+      v_charger_buyback_oem: '0'
+    },
+    finance: { truck: 'lease', charger: 'none' }
+  }
+};
+
+function applyStrategy(key) {
+  const preset = strategyPresets[key];
+  if (!preset) return;
+  // Apply all input values
+  for (const [id, val] of Object.entries(preset.inputs)) {
+    const el = document.getElementById(id);
+    if (el) el.value = val;
+  }
+  // Apply finance choices
+  window._truckFin = preset.finance.truck;
+  window._chargerFin = preset.finance.charger;
+  document.querySelectorAll('[data-truck-fin]').forEach(b => {
+    b.classList.toggle('active', b.dataset.truckFin === preset.finance.truck);
+  });
+  document.querySelectorAll('[data-charger-fin]').forEach(b => {
+    b.classList.toggle('active', b.dataset.chargerFin === preset.finance.charger);
+  });
+  // Update active strategy button
+  document.querySelectorAll('[data-strategy]').forEach(b => {
+    b.classList.toggle('active', b.dataset.strategy === key);
+  });
+  // Update strategy context card (below numbers — shows what the chosen strategy means)
+  const ctxTitle = document.getElementById('strategy_context_title');
+  if (ctxTitle && preset.title) ctxTitle.textContent = preset.title + ' — wat houdt deze strategie in?';
+  const ctxText = document.getElementById('strategy_context_text');
+  if (ctxText) ctxText.innerHTML = preset.explain;
+  // Lock subsidy to preset value so updateFinanceVisibility doesn't override
+  const sub = document.getElementById('v_sub');
+  if (sub) sub.dataset.userSet = '1';
+  // Refresh display
+  resetCollapsibleUserToggles();
+  updateFinanceVisibility();
+  calc();
+}
+
+document.querySelectorAll('[data-strategy]').forEach(btn => {
+  btn.addEventListener('click', () => applyStrategy(btn.dataset.strategy));
+});
+
+// Truck finance toggle
+document.querySelectorAll('[data-truck-fin]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    window._truckFin = btn.dataset.truckFin;
+    document.querySelectorAll('[data-truck-fin]').forEach(b => b.classList.toggle('active', b === btn));
+    resetCollapsibleUserToggles();
+    updateFinanceVisibility();
+    calc();
+  });
+});
+// Charger finance toggle
+document.querySelectorAll('[data-charger-fin]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    window._chargerFin = btn.dataset.chargerFin;
+    document.querySelectorAll('[data-charger-fin]').forEach(b => b.classList.toggle('active', b === btn));
+    resetCollapsibleUserToggles();
+    updateFinanceVisibility();
+    calc();
+  });
+});
+
+// Show/hide sections based on financing choice
+// Residual sub-calculators are irrelevant for lease (no ownership) and buy-back (contractually fixed)
+function updateFinanceVisibility() {
+  const isTruckLease = window._truckFin === 'lease';
+  const isTruckBuyback = window._truckFin === 'buyback';
+  const isChargerLease = window._chargerFin === 'lease';
+  const isChargerBuyback = window._chargerFin === 'buyback';
+  const isChargerNone = window._chargerFin === 'none';
+  const truckResidShow = window._truckFin === 'buy';
+  const chargerResidShow = window._chargerFin === 'buy';
+
+  // Auto-select optimal default subsidy based on financing combination
+  const subSel = $('v_sub');
+  if (subSel && !subSel.dataset.userSet) {
+    let optimal;
+    if (isChargerNone) {
+      // No laders → no laadinfra-aftrek possible → only trucks-aftrek (or 0 if trucks lease)
+      optimal = isTruckLease ? '0' : '0';  // truck aftrek niet in vooraf-gekalibreerde lijst, dus 0
+    } else if (isTruckLease && isChargerLease) {
+      optimal = '1421000';
+    } else if (isTruckLease) {
+      optimal = '1556000';
+    } else if (isChargerLease) {
+      optimal = '315000';
+    } else {
+      optimal = '450000';
+    }
+    if (subSel.value !== optimal) {
+      subSel.value = optimal;
+      subSel.dataset.autoChange = '1';
+    }
+  }
+
+  // Lease-parameters voor laders (only relevant if charger is leased)
+  const leaseBlock = $('charger_lease_block');
+  const leaseRow = $('charger_lease_row');
+  if (leaseBlock) leaseBlock.style.display = isChargerLease ? '' : 'none';
+  if (leaseRow) leaseRow.style.display = isChargerLease ? '' : 'none';
+
+  // Truck residual section — replace calc with N.v.t. notice when not 'buy'
+  applyNvtBanner('section-06', truckResidShow,
+    isTruckLease
+      ? `<strong>Sectie niet van toepassing — trucks op operationele lease</strong>De lessor (leasingmaatschappij) blijft eigenaar en draagt het restwaarde-risico. De TCO-berekening houdt enkel rekening met cumulatieve lease-betalingen. Wijzig <em>Truck-financiering</em> bovenaan naar <em>Aankoop</em> om deze sub-calculator te activeren.`
+      : `<strong>Sectie niet van toepassing — buy-back contract actief</strong>De OEM koopt de trucks gegarandeerd terug aan een vooraf vastgelegd percentage (20% voor Windrose). Er is geen marktrestwaarde-risico voor uw onderneming. Wijzig <em>Truck-financiering</em> bovenaan naar <em>Aankoop</em> om de markt-restwaarde-curve te modelleren.`
+  );
+
+  // Charger residual section — same approach
+  let chargerNaMsg;
+  if (isChargerNone) {
+    chargerNaMsg = `<strong>Sectie niet van toepassing — geen eigen laders</strong>U laadt uitsluitend extern (publiek bij Milence Gent + bij leveranciers). Geen eigen laadinfrastructuur betekent geen aankoopkost, geen restwaarde, geen onderhoud. De €/kWh in kernvariabelen weerspiegelt het publieke laadtarief. Wijzig <em>Lader-financiering</em> bovenaan naar <em>Aankoop</em> om eigen depot-laders te modelleren.`;
+  } else if (isChargerLease) {
+    chargerNaMsg = `<strong>Sectie niet van toepassing — laders op operationele lease</strong>De lessor blijft eigenaar van de laadinfra. Hardware-onderhoud en restwaarde zijn typisch inbegrepen in de leaseprijs. Wijzig <em>Lader-financiering</em> bovenaan naar <em>Aankoop</em> om deze sub-calculator te activeren.`;
+  } else {
+    chargerNaMsg = `<strong>Sectie niet van toepassing — laders buy-back contract</strong>De OEM koopt de laders gegarandeerd terug (typisch 25-35% van aankoopprijs). Wijzig <em>Lader-financiering</em> bovenaan naar <em>Aankoop</em> om eigen restwaarde-modellering te doen.`;
+  }
+  applyNvtBanner('section_charger_residual', chargerResidShow, chargerNaMsg);
+}
+
+function applyNvtBanner(sectionId, show, naMessage) {
+  const sec = document.getElementById(sectionId);
+  if (!sec) return;
+  // Look for existing banner
+  let banner = sec.querySelector('.section-nvt-banner');
+  const calcBlock = sec.querySelector('.calc-block');
+  if (show) {
+    if (banner) banner.remove();
+    if (calcBlock) calcBlock.style.display = '';
+  } else {
+    if (calcBlock) calcBlock.style.display = 'none';
+    if (!banner) {
+      banner = document.createElement('details');
+      banner.className = 'collapsible-block section-nvt-banner';
+      banner.dataset.state = 'inactive';
+      banner.innerHTML = `
+        <summary class="collapsible-summary">
+          <span class="collapsible-icon">—</span>
+          <span>
+            <span class="collapsible-title">Niet van toepassing in huidige configuratie</span>
+            <span class="collapsible-status">klik voor uitleg</span>
+          </span>
+          <span class="collapsible-chevron">▾</span>
+        </summary>
+        <div class="collapsible-body"><div class="collapsible-na-notice"></div></div>
+      `;
+      // No toggle handler needed — state always reflects current finance choice
+      sec.appendChild(banner);
+    }
+    banner.querySelector('.collapsible-na-notice').innerHTML = naMessage;
+  }
+}
+
+// Mode toggles for sub-calculators
+function setupModeToggle(dataAttr, stateKey, customCalcId) {
+  document.querySelectorAll(`[${dataAttr}]`).forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = btn.getAttribute(dataAttr);
+      window[stateKey] = mode;
+      document.querySelectorAll(`[${dataAttr}]`).forEach(b => b.classList.toggle('active', b === btn));
+      const calcEl = $(customCalcId);
+      if (calcEl) calcEl.classList.toggle('active', mode === 'custom');
+      calc();
+    });
+  });
+}
+setupModeToggle('data-acc-mode', '_accMode', 'acc_custom_calc');
+setupModeToggle('data-toll-mode', '_tollMode', 'toll_custom_calc');
+setupModeToggle('data-truckresid-mode', '_truckResidMode', 'truckresid_custom_calc');
+setupModeToggle('data-infraresid-mode', '_infraResidMode', 'infraresid_custom_calc');
+setupModeToggle('data-charger-resid-mode', '_chargerResidMode', 'chargerresid_custom_calc');
+setupModeToggle('data-sub-mode', '_subMode', 'sub_custom_calc');
+
+// ============ UNIFIED COLLAPSIBLE STATE MANAGEMENT ============
+// Helper: set state of a collapsible block based on context
+// state: 'active' (relevant, auto-open) | 'warning' (active+notable) | 'inactive' (n.v.t., auto-close)
+function setCollapsibleState(id, state, title, statusText, naMessage) {
+  const block = document.getElementById(id);
+  if (!block) return;
+  block.dataset.state = state;
+  const titleEl = block.querySelector('.collapsible-title');
+  const statusEl = block.querySelector('.collapsible-status');
+  const iconEl = block.querySelector('.collapsible-icon');
+  const noticeEl = block.querySelector('.collapsible-notice-slot');
+  if (titleEl && title) titleEl.textContent = title;
+  if (statusEl) statusEl.textContent = statusText || '';
+  if (iconEl) {
+    iconEl.textContent = state === 'inactive' ? '—' : state === 'warning' ? '⚠' : '✓';
+  }
+  if (noticeEl) {
+    noticeEl.innerHTML = naMessage || '';
+  }
+  // Auto open/close based on state — always sync with state, no user-override memory
+  // (Removed userToggled tracking which caused stale-status bug when toggling finance back)
+  const shouldOpen = (state !== 'inactive');
+  if (block.open !== shouldOpen) {
+    block.open = shouldOpen;
+  }
+}
+
+// Wire up: no user-toggle tracking needed anymore. Auto-toggle always reflects state.
+// (Removed previous toggle event handler which caused stale-status bug.)
+
+// When user changes financing, no extra reset needed since userToggled isn't tracked.
+function resetCollapsibleUserToggles() {
+  // Kept for backward compatibility — currently a no-op
+}
+
+// Initial calc — apply default strategy 'besparing' to sync all inputs
+applyStrategy('besparing');
+
+// ============ STICKY DETECTION for summary bar ============
+// Add 'is-stuck' class when bar is pinned at top (for shadow accent)
+const summaryBar = $('summary_bar');
+if (summaryBar) {
+  // Create a sentinel just above the bar to detect when it pins
+  const sentinel = document.createElement('div');
+  sentinel.style.cssText = 'height:1px;position:relative;top:-1px;';
+  summaryBar.parentNode.insertBefore(sentinel, summaryBar);
+  const obs = new IntersectionObserver(([entry]) => {
+    summaryBar.classList.toggle('is-stuck', !entry.isIntersecting);
+  }, { threshold: [0] });
+  obs.observe(sentinel);
+}
+</script>
+
+</body>
+</html>
